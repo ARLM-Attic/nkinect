@@ -9,13 +9,13 @@ using NKinect;
 
 namespace NKinectTest {
     public partial class FrmMain : Form {
-        protected Kinect Kinect;
+        protected BaseKinect Kinect;
         public double[][] Depths { get; set; }
 
         public FrmMain() {
             InitializeComponent();
 
-            Kinect = new Kinect();
+            Kinect = NKinect.Kinect.GetKinect();
         }
 
         private void FrmMainLoad(object sender, EventArgs e) {
@@ -44,7 +44,7 @@ namespace NKinectTest {
             Depths = e.Depths;
 
             var list = new List<Point>();
-            
+
             for (int y = 0; y < Depths[0].Length; y++) {
                 for (int x = 0; x < Depths.Length; x++) {
                     if (Depths[x][y] > 0)
