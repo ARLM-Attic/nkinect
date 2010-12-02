@@ -15,7 +15,7 @@ namespace NKinectTest {
         public FrmMain() {
             InitializeComponent();
 
-            Kinect = NKinect.Kinect.GetKinect();
+            Kinect = KinectFactory.GetKinect();
         }
 
         private void FrmMainLoad(object sender, EventArgs e) {

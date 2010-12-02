@@ -85,7 +85,7 @@
     <ClInclude Include="CameraImageEventArgs.h" />
     <ClInclude Include="DepthEventArgs.h" />
     <ClInclude Include="BaseKinect.h" />
-    <ClInclude Include="Kinect.h" />
+    <ClInclude Include="KinectFactory.h" />
     <ClInclude Include="LedColor.h" />
     <ClInclude Include="Library.h" />
     <ClInclude Include="CLKinect.h" />

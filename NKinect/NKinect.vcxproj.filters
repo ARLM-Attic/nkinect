@@ -33,9 +33,6 @@
     <ClInclude Include="CameraImageEventArgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Kinect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LedColor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -46,6 +43,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CLKinect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KinectFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
