@@ -83,7 +83,8 @@ namespace NKinect {
 
 							DWORD	color	= RawPixels[641 + i];
 							int		gray	= DisparityToGrayscale(RawDepth[i] & 0x07FF);
-							int		thresh	= Depths[x][y] >= MinDistanceThreshold && Depths[x][y] <= MaxDistanceThreshold ? gray : 0x00;
+							bool	valid	= Depths[x][y] >= MinDistanceThreshold && Depths[x][y] <= MaxDistanceThreshold;
+							int		thresh	= valid ? gray : 0x00;
 
 							byte	blue	= (color & 0x000000FF);
 							byte	green	= (color & 0x0000FF00) >> 8;
@@ -104,9 +105,9 @@ namespace NKinect {
 							thrAry[idx + 2]	= thresh;
 							thrAry[idx + 3]	= 0xFF;
 
-							rgbTAry[idx]	= Depths[x][y] >= MinDistanceThreshold && Depths[x][y] <= MaxDistanceThreshold ? blue : 0x00;;
-							rgbTAry[idx + 1]= Depths[x][y] >= MinDistanceThreshold && Depths[x][y] <= MaxDistanceThreshold ? green : 0x00;;
-							rgbTAry[idx + 2]= Depths[x][y] >= MinDistanceThreshold && Depths[x][y] <= MaxDistanceThreshold ? red : 0x00;;
+							rgbTAry[idx]	= valid ? blue : 0x00;
+							rgbTAry[idx + 1]= valid ? green : 0x00;
+							rgbTAry[idx + 2]= valid ? red : 0x00;
 							rgbTAry[idx + 3]= 0xFF;
 						}
 					}

@@ -198,7 +198,7 @@ namespace NKinectTest {
             this.MaximizeBox = false;
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Kinect Test";
+            this.Text = "NKinect Test";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMainFormClosing);
             this.Load += new System.EventHandler(this.FrmMainLoad);
             ((System.ComponentModel.ISupportInitialize)(this.imgDisplay)).EndInit();
