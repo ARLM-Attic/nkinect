@@ -156,14 +156,13 @@ namespace NKinect {
 
 				SetPosition(0);
 
-				RefreshThread->Join();
-				AccelerometerThread->Join();
-
-				SetLed(Green);
+				RefreshThread->Join(1000);
+				AccelerometerThread->Join(1000);
 
 				StopNUICamera(cam);
-
 				DestroyNUICamera(cam);
+
+				SetLed(Green);
 				DestroyNUIMotor(motor);
 
 				delete RawDepth;
