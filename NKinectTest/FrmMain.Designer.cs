@@ -25,25 +25,26 @@ namespace NKinectTest {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.imgColor = new System.Windows.Forms.PictureBox();
+            this.imgDisplay = new System.Windows.Forms.PictureBox();
             this.lblColor = new System.Windows.Forms.Label();
             this.lblDepth = new System.Windows.Forms.Label();
             this.trkPosition = new System.Windows.Forms.TrackBar();
             this.btnExport = new System.Windows.Forms.Button();
             this.lblAccelerometer = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.imgColor)).BeginInit();
+            this.cmbImageType = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.imgDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkPosition)).BeginInit();
             this.SuspendLayout();
             // 
-            // imgColor
+            // imgDisplay
             // 
-            this.imgColor.BackColor = System.Drawing.Color.Silver;
-            this.imgColor.Location = new System.Drawing.Point(15, 12);
-            this.imgColor.Name = "imgColor";
-            this.imgColor.Size = new System.Drawing.Size(640, 480);
-            this.imgColor.TabIndex = 0;
-            this.imgColor.TabStop = false;
-            this.imgColor.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ImgColorMouseMove);
+            this.imgDisplay.BackColor = System.Drawing.Color.Silver;
+            this.imgDisplay.Location = new System.Drawing.Point(15, 12);
+            this.imgDisplay.Name = "imgDisplay";
+            this.imgDisplay.Size = new System.Drawing.Size(640, 480);
+            this.imgDisplay.TabIndex = 0;
+            this.imgDisplay.TabStop = false;
+            this.imgDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ImgColorMouseMove);
             // 
             // lblColor
             // 
@@ -67,12 +68,14 @@ namespace NKinectTest {
             // 
             // trkPosition
             // 
-            this.trkPosition.Location = new System.Drawing.Point(15, 533);
+            this.trkPosition.Location = new System.Drawing.Point(17, 519);
             this.trkPosition.Maximum = 8000;
             this.trkPosition.Minimum = -8000;
             this.trkPosition.Name = "trkPosition";
-            this.trkPosition.Size = new System.Drawing.Size(640, 45);
+            this.trkPosition.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trkPosition.Size = new System.Drawing.Size(45, 96);
             this.trkPosition.TabIndex = 4;
+            this.trkPosition.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkPosition.ValueChanged += new System.EventHandler(this.TrkPositionValueChanged);
             // 
             // btnExport
@@ -95,17 +98,32 @@ namespace NKinectTest {
             this.lblAccelerometer.Text = "ACCELEROMETER";
             this.lblAccelerometer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // cmbImageType
+            // 
+            this.cmbImageType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbImageType.FormattingEnabled = true;
+            this.cmbImageType.Items.AddRange(new object[] {
+            "Color",
+            "Depth",
+            "Color+Depth"});
+            this.cmbImageType.Location = new System.Drawing.Point(15, 495);
+            this.cmbImageType.Name = "cmbImageType";
+            this.cmbImageType.Size = new System.Drawing.Size(121, 21);
+            this.cmbImageType.TabIndex = 7;
+            this.cmbImageType.SelectedIndexChanged += new System.EventHandler(this.CmbImageTypeSelectedIndexChanged);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(671, 614);
+            this.Controls.Add(this.trkPosition);
+            this.Controls.Add(this.cmbImageType);
             this.Controls.Add(this.lblAccelerometer);
             this.Controls.Add(this.btnExport);
-            this.Controls.Add(this.trkPosition);
             this.Controls.Add(this.lblDepth);
             this.Controls.Add(this.lblColor);
-            this.Controls.Add(this.imgColor);
+            this.Controls.Add(this.imgDisplay);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -114,7 +132,7 @@ namespace NKinectTest {
             this.Text = "Kinect Test";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMainFormClosing);
             this.Load += new System.EventHandler(this.FrmMainLoad);
-            ((System.ComponentModel.ISupportInitialize)(this.imgColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkPosition)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -123,12 +141,13 @@ namespace NKinectTest {
 
         #endregion
 
-        private System.Windows.Forms.PictureBox imgColor;
+        private System.Windows.Forms.PictureBox imgDisplay;
         private System.Windows.Forms.Label lblColor;
         private System.Windows.Forms.Label lblDepth;
         private System.Windows.Forms.TrackBar trkPosition;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label lblAccelerometer;
+        private System.Windows.Forms.ComboBox cmbImageType;
     }
 }
 

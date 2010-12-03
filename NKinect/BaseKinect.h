@@ -25,15 +25,21 @@ namespace NKinect {
 			event EventHandler<DepthEventArgs^>^			DepthsCalculated;
 			event EventHandler<AccelerometerEventArgs^>^	AccelerometerUpdated;
 			event EventHandler<CameraImageEventArgs^>^		ImageUpdated;
+			event EventHandler<CameraImageEventArgs^>^		DepthImageUpdated;
 
 			property String^	MotorSerialNumber;
-			property int		MinThreshold;
-			property int		MaxThreshold;
+			property int		MinDistanceThreshold;
+			property int		MaxDistanceThreshold;
+			property int		MinDisparityThreshold;
+			property int		MaxDisparityThreshold;
 			property Unit		DistanceUnit;
 
 			BaseKinect() {
-				MinThreshold = 0;
-				MaxThreshold = 9999;
+				MinDistanceThreshold = 0;
+				MaxDistanceThreshold = 9999;
+
+				MinDisparityThreshold = 0;
+				MaxDisparityThreshold = 1023;
 
 				DistanceUnit = Centimeters;
 			}
@@ -63,10 +69,11 @@ namespace NKinect {
 										break;
 				}
 
-				if (baseCalc < MinThreshold || baseCalc > MaxThreshold)
-					baseCalc = 0.00;
+				return (baseCalc < MinDistanceThreshold || baseCalc > MaxDistanceThreshold) ? 0.00 : baseCalc;
+			}
 
-				return baseCalc;
+			int DisparityToGrayscale(short val) {
+				return (val < MinDisparityThreshold || val > MaxDisparityThreshold) ? 0 : (2048 * 256) / (2048 - val);
 			}
 
 			virtual void UpdateAccelerometer()	 = 0;

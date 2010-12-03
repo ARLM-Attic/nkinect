@@ -1,6 +1,7 @@
 ﻿#region
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using NKinect;
@@ -11,6 +12,7 @@ namespace NKinectTest {
     public partial class FrmMain : Form {
         protected BaseKinect Kinect;
         public double[][] Depths { get; set; }
+        protected int Mode { get; set; }
 
         public FrmMain() {
             InitializeComponent();
@@ -19,16 +21,30 @@ namespace NKinectTest {
         }
 
         private void FrmMainLoad(object sender, EventArgs e) {
+            cmbImageType.SelectedIndex = 0;
+            
             Kinect.DepthsCalculated += KinectDepthsCalculated;
             Kinect.ImageUpdated += KinectImageUpdated;
             Kinect.AccelerometerUpdated += KinectAccelerometerUpdated;
+            Kinect.DepthImageUpdated += KinectDepthImageUpdated;
 
             Kinect.Start();
         }
 
+        private void KinectDepthImageUpdated(object sender, CameraImageEventArgs e) {
+            if (Mode != 1)
+                return;
+
+            imgDisplay.Image = e.CameraImage;
+            imgDisplay.Invalidate();
+        }
+
         private void KinectImageUpdated(object sender, CameraImageEventArgs e) {
-            imgColor.Image = e.CameraImage;
-            imgColor.Invalidate();
+            if (Mode != 0)
+                return;
+
+            imgDisplay.Image = e.CameraImage;
+            imgDisplay.Invalidate();
         }
 
         private void KinectAccelerometerUpdated(object sender, AccelerometerEventArgs e) {
@@ -51,8 +67,6 @@ namespace NKinectTest {
                         list.Add(new Point(x, y));
                 }
             }
-
-            Console.WriteLine("{0} important pixels", list.Count);
         }
 
         private void FrmMainFormClosing(object sender, FormClosingEventArgs e) {
@@ -74,6 +88,10 @@ namespace NKinectTest {
 
         private void BtnExportClick(object sender, EventArgs e) {
             Kinect.ExportPLY("CurrentView.ply");
+        }
+
+        private void CmbImageTypeSelectedIndexChanged(object sender, EventArgs e) {
+            Mode = cmbImageType.SelectedIndex;
         }
     }
 }

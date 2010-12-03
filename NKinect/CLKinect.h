@@ -63,32 +63,44 @@ namespace NKinect {
 					SetLed(Red);
 
 					Bitmap^		 RgbImage	= gcnew Bitmap(640, 480, PixelFormat::Format32bppPArgb);
-					BitmapData^	 bmpData	= RgbImage->LockBits(System::Drawing::Rectangle(0, 0, RgbImage->Width, RgbImage->Height), ImageLockMode::WriteOnly, RgbImage->PixelFormat);
+					Bitmap^		 GrayImage	= gcnew Bitmap(640, 480, PixelFormat::Format32bppPArgb);
+					BitmapData^	 rgbData	= RgbImage->LockBits(System::Drawing::Rectangle(0, 0, RgbImage->Width, RgbImage->Height), ImageLockMode::WriteOnly, RgbImage->PixelFormat);
+					BitmapData^	 grayData	= GrayImage->LockBits(System::Drawing::Rectangle(0, 0, RgbImage->Width, RgbImage->Height), ImageLockMode::WriteOnly, RgbImage->PixelFormat);
 					array<Byte>^ ary		= gcnew array<Byte>(640 * 480 * 4);
+					array<Byte>^ gsAry	= gcnew array<Byte>(640 * 480 * 4);
 
 					for (int i = 0, y = 0, idx = 0; y < 480; y++) {
 						for (int x = 0; x < 640; x++, i++, idx += 4) {
-							Depths[x][y] = DisparityToDistance(RawDepth[i] & 0x07FF);
+							Depths[x][y]	= DisparityToDistance(RawDepth[i] & 0x07FF);
 
-							DWORD color  = RawPixels[641 + i];
-							byte blue	 = (color & 0x000000FF);
-							byte green	 = (color & 0x0000FF00) >> 8;
-							byte red	 = (color & 0x00FF0000) >> 16;
-							byte alpha	 = (color & 0xFF000000) >> 24;
+							DWORD	color	= RawPixels[641 + i];
+							int		gray	= DisparityToGrayscale(RawDepth[i] & 0x07FF);
+							byte	blue	= (color & 0x000000FF);
+							byte	green	= (color & 0x0000FF00) >> 8;
+							byte	red		= (color & 0x00FF0000) >> 16;
+							byte	alpha	= (color & 0xFF000000) >> 24;
 
-							ary[idx]	 = blue;
-							ary[idx + 1] = green;
-							ary[idx + 2] = red;
-							ary[idx + 3] = 0xFF;
+							ary[idx]		= blue;
+							ary[idx + 1]	= green;
+							ary[idx + 2]	= red;
+							ary[idx + 3]	= 0xFF;
+
+							gsAry[idx]		= gray;
+							gsAry[idx + 1]	= gray;
+							gsAry[idx + 2]	= gray;
+							gsAry[idx + 3]	= gray;
 						}
 					}
 
-					Marshal::Copy(ary, 0, bmpData->Scan0, 640 * 480 * 4);
+					Marshal::Copy(ary, 0, rgbData->Scan0, 640 * 480 * 4);
+					Marshal::Copy(gsAry, 0, grayData->Scan0, 640 * 480 * 4);
 
-					RgbImage->UnlockBits(bmpData);
+					RgbImage->UnlockBits(rgbData);
+					GrayImage->UnlockBits(grayData);
 
 					DepthsCalculated(this, gcnew DepthEventArgs(Depths));
 					ImageUpdated(this, gcnew CameraImageEventArgs(RgbImage));
+					DepthImageUpdated(this, gcnew CameraImageEventArgs(GrayImage));
 
 					SetLed(Orange);
 				}
