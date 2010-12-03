@@ -26,14 +26,21 @@ namespace NKinectTest {
         /// </summary>
         private void InitializeComponent() {
             this.imgDisplay = new System.Windows.Forms.PictureBox();
-            this.lblColor = new System.Windows.Forms.Label();
             this.lblDepth = new System.Windows.Forms.Label();
             this.trkPosition = new System.Windows.Forms.TrackBar();
             this.btnExport = new System.Windows.Forms.Button();
             this.lblAccelerometer = new System.Windows.Forms.Label();
             this.cmbImageType = new System.Windows.Forms.ComboBox();
+            this.trkMinDistance = new System.Windows.Forms.TrackBar();
+            this.trkMaxDistance = new System.Windows.Forms.TrackBar();
+            this.cmbUnits = new System.Windows.Forms.ComboBox();
+            this.lblDistance = new System.Windows.Forms.Label();
+            this.lblMinDistance = new System.Windows.Forms.Label();
+            this.lblMaxDistance = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkPosition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkMinDistance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkMaxDistance)).BeginInit();
             this.SuspendLayout();
             // 
             // imgDisplay
@@ -45,16 +52,6 @@ namespace NKinectTest {
             this.imgDisplay.TabIndex = 0;
             this.imgDisplay.TabStop = false;
             this.imgDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ImgColorMouseMove);
-            // 
-            // lblColor
-            // 
-            this.lblColor.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColor.Location = new System.Drawing.Point(15, 495);
-            this.lblColor.Name = "lblColor";
-            this.lblColor.Size = new System.Drawing.Size(640, 13);
-            this.lblColor.TabIndex = 2;
-            this.lblColor.Text = "COLOR";
-            this.lblColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDepth
             // 
@@ -68,12 +65,12 @@ namespace NKinectTest {
             // 
             // trkPosition
             // 
-            this.trkPosition.Location = new System.Drawing.Point(17, 519);
+            this.trkPosition.Location = new System.Drawing.Point(336, 528);
             this.trkPosition.Maximum = 8000;
             this.trkPosition.Minimum = -8000;
             this.trkPosition.Name = "trkPosition";
             this.trkPosition.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trkPosition.Size = new System.Drawing.Size(45, 96);
+            this.trkPosition.Size = new System.Drawing.Size(45, 70);
             this.trkPosition.TabIndex = 4;
             this.trkPosition.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkPosition.ValueChanged += new System.EventHandler(this.TrkPositionValueChanged);
@@ -105,25 +102,97 @@ namespace NKinectTest {
             this.cmbImageType.Items.AddRange(new object[] {
             "Color",
             "Depth",
-            "Color+Depth"});
-            this.cmbImageType.Location = new System.Drawing.Point(15, 495);
+            "Threshold Depth",
+            "Threshold Color"});
+            this.cmbImageType.Location = new System.Drawing.Point(222, 495);
             this.cmbImageType.Name = "cmbImageType";
             this.cmbImageType.Size = new System.Drawing.Size(121, 21);
             this.cmbImageType.TabIndex = 7;
             this.cmbImageType.SelectedIndexChanged += new System.EventHandler(this.CmbImageTypeSelectedIndexChanged);
+            // 
+            // trkMinDistance
+            // 
+            this.trkMinDistance.Location = new System.Drawing.Point(15, 544);
+            this.trkMinDistance.Maximum = 1000;
+            this.trkMinDistance.Name = "trkMinDistance";
+            this.trkMinDistance.Size = new System.Drawing.Size(104, 45);
+            this.trkMinDistance.TabIndex = 8;
+            this.trkMinDistance.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trkMinDistance.ValueChanged += new System.EventHandler(this.TrkMaxDistanceValueChanged);
+            // 
+            // trkMaxDistance
+            // 
+            this.trkMaxDistance.Location = new System.Drawing.Point(179, 544);
+            this.trkMaxDistance.Maximum = 1000;
+            this.trkMaxDistance.Name = "trkMaxDistance";
+            this.trkMaxDistance.Size = new System.Drawing.Size(104, 45);
+            this.trkMaxDistance.TabIndex = 9;
+            this.trkMaxDistance.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trkMaxDistance.Value = 1000;
+            this.trkMaxDistance.ValueChanged += new System.EventHandler(this.TrkMaxDistanceValueChanged);
+            // 
+            // cmbUnits
+            // 
+            this.cmbUnits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUnits.FormattingEnabled = true;
+            this.cmbUnits.Items.AddRange(new object[] {
+            "Centimeters",
+            "Inches",
+            "Meters",
+            "Feet"});
+            this.cmbUnits.Location = new System.Drawing.Point(349, 495);
+            this.cmbUnits.Name = "cmbUnits";
+            this.cmbUnits.Size = new System.Drawing.Size(100, 21);
+            this.cmbUnits.TabIndex = 10;
+            this.cmbUnits.SelectedIndexChanged += new System.EventHandler(this.CmbUnitsSelectedIndexChanged);
+            // 
+            // lblDistance
+            // 
+            this.lblDistance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDistance.Location = new System.Drawing.Point(113, 547);
+            this.lblDistance.Name = "lblDistance";
+            this.lblDistance.Size = new System.Drawing.Size(71, 13);
+            this.lblDistance.TabIndex = 11;
+            this.lblDistance.Text = "DISTANCE";
+            this.lblDistance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblMinDistance
+            // 
+            this.lblMinDistance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMinDistance.Location = new System.Drawing.Point(33, 566);
+            this.lblMinDistance.Name = "lblMinDistance";
+            this.lblMinDistance.Size = new System.Drawing.Size(71, 13);
+            this.lblMinDistance.TabIndex = 12;
+            this.lblMinDistance.Text = "0 cm";
+            this.lblMinDistance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblMaxDistance
+            // 
+            this.lblMaxDistance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMaxDistance.Location = new System.Drawing.Point(196, 566);
+            this.lblMaxDistance.Name = "lblMaxDistance";
+            this.lblMaxDistance.Size = new System.Drawing.Size(71, 13);
+            this.lblMaxDistance.TabIndex = 13;
+            this.lblMaxDistance.Text = "1000 cm";
+            this.lblMaxDistance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(671, 614);
-            this.Controls.Add(this.trkPosition);
+            this.Controls.Add(this.lblMaxDistance);
+            this.Controls.Add(this.lblMinDistance);
+            this.Controls.Add(this.lblDistance);
+            this.Controls.Add(this.cmbUnits);
+            this.Controls.Add(this.trkMaxDistance);
+            this.Controls.Add(this.trkMinDistance);
             this.Controls.Add(this.cmbImageType);
             this.Controls.Add(this.lblAccelerometer);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.lblDepth);
-            this.Controls.Add(this.lblColor);
             this.Controls.Add(this.imgDisplay);
+            this.Controls.Add(this.trkPosition);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -134,6 +203,8 @@ namespace NKinectTest {
             this.Load += new System.EventHandler(this.FrmMainLoad);
             ((System.ComponentModel.ISupportInitialize)(this.imgDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkPosition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkMinDistance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkMaxDistance)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,12 +213,17 @@ namespace NKinectTest {
         #endregion
 
         private System.Windows.Forms.PictureBox imgDisplay;
-        private System.Windows.Forms.Label lblColor;
         private System.Windows.Forms.Label lblDepth;
         private System.Windows.Forms.TrackBar trkPosition;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label lblAccelerometer;
         private System.Windows.Forms.ComboBox cmbImageType;
+        private System.Windows.Forms.TrackBar trkMinDistance;
+        private System.Windows.Forms.TrackBar trkMaxDistance;
+        private System.Windows.Forms.ComboBox cmbUnits;
+        private System.Windows.Forms.Label lblDistance;
+        private System.Windows.Forms.Label lblMinDistance;
+        private System.Windows.Forms.Label lblMaxDistance;
     }
 }
 

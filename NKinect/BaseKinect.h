@@ -26,20 +26,17 @@ namespace NKinect {
 			event EventHandler<AccelerometerEventArgs^>^	AccelerometerUpdated;
 			event EventHandler<CameraImageEventArgs^>^		ImageUpdated;
 			event EventHandler<CameraImageEventArgs^>^		DepthImageUpdated;
+			event EventHandler<CameraImageEventArgs^>^		ThresholdDepthImageUpdated;
+			event EventHandler<CameraImageEventArgs^>^		ThresholdColorImageUpdated;
 
 			property String^	MotorSerialNumber;
 			property int		MinDistanceThreshold;
 			property int		MaxDistanceThreshold;
-			property int		MinDisparityThreshold;
-			property int		MaxDisparityThreshold;
 			property Unit		DistanceUnit;
 
 			BaseKinect() {
 				MinDistanceThreshold = 0;
 				MaxDistanceThreshold = 9999;
-
-				MinDisparityThreshold = 0;
-				MaxDisparityThreshold = 1023;
 
 				DistanceUnit = Centimeters;
 			}
@@ -54,26 +51,11 @@ namespace NKinect {
 
 		protected:
 			double DisparityToDistance(short val) {
-				double baseCalc = (double) (100.00 / (-0.00307 * val + 3.33));
-
-				switch (DistanceUnit) {
-					case Centimeters:	break;
-
-					case Meters:		baseCalc * 0.01;
-										break;
-
-					case Inches:		baseCalc * 0.393700787;
-										break;
-
-					case Feet:			baseCalc * 0.032808399;
-										break;
-				}
-
-				return (baseCalc < MinDistanceThreshold || baseCalc > MaxDistanceThreshold) ? 0.00 : baseCalc;
+				return (double) (100.00 / (-0.00307 * val + 3.33));
 			}
 
 			int DisparityToGrayscale(short val) {
-				return (val < MinDisparityThreshold || val > MaxDisparityThreshold) ? 0 : (2048 * 256) / (2048 - val);
+				return (2048 * 256) / (2048 - val);
 			}
 
 			virtual void UpdateAccelerometer()	 = 0;
@@ -85,6 +67,21 @@ namespace NKinect {
 			virtual void SetLed(LedColor color)  = 0;
 			virtual void SetPosition(short pos)  = 0;
 			virtual void ExportPLY(String^ path) = 0;
+
+			double GetPreferredUnit(double dist) {
+				switch (DistanceUnit) {
+				case Meters:		dist = dist * 0.01;
+					break;
+
+				case Inches:		dist = dist * 0.393700787;
+					break;
+
+				case Feet:			dist = dist * 0.032808399;
+					break;
+				}
+
+				return dist;
+			}
 	};
 }
 

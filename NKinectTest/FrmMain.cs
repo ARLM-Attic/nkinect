@@ -1,8 +1,5 @@
 ﻿#region
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
 using System.Windows.Forms;
 using NKinect;
 
@@ -22,13 +19,24 @@ namespace NKinectTest {
 
         private void FrmMainLoad(object sender, EventArgs e) {
             cmbImageType.SelectedIndex = 0;
-            
+            cmbUnits.SelectedIndex = 0;
+
             Kinect.DepthsCalculated += KinectDepthsCalculated;
             Kinect.ImageUpdated += KinectImageUpdated;
             Kinect.AccelerometerUpdated += KinectAccelerometerUpdated;
             Kinect.DepthImageUpdated += KinectDepthImageUpdated;
+            Kinect.ThresholdDepthImageUpdated += KinectThresholdDepthImageUpdated;
+            Kinect.ThresholdColorImageUpdated += KinectThresholdColorImageUpdated;
 
             Kinect.Start();
+        }
+
+        private void KinectImageUpdated(object sender, CameraImageEventArgs e) {
+            if (Mode != 0)
+                return;
+
+            imgDisplay.Image = e.CameraImage;
+            imgDisplay.Invalidate();
         }
 
         private void KinectDepthImageUpdated(object sender, CameraImageEventArgs e) {
@@ -39,8 +47,16 @@ namespace NKinectTest {
             imgDisplay.Invalidate();
         }
 
-        private void KinectImageUpdated(object sender, CameraImageEventArgs e) {
-            if (Mode != 0)
+        private void KinectThresholdDepthImageUpdated(object sender, CameraImageEventArgs e) {
+            if (Mode != 2)
+                return;
+
+            imgDisplay.Image = e.CameraImage;
+            imgDisplay.Invalidate();
+        }
+
+        private void KinectThresholdColorImageUpdated(object sender, CameraImageEventArgs e) {
+            if (Mode != 3)
                 return;
 
             imgDisplay.Image = e.CameraImage;
@@ -58,15 +74,6 @@ namespace NKinectTest {
 
         private void KinectDepthsCalculated(object sender, DepthEventArgs e) {
             Depths = e.Depths;
-
-            var list = new List<Point>();
-
-            for (int y = 0; y < Depths[0].Length; y++) {
-                for (int x = 0; x < Depths.Length; x++) {
-                    if (Depths[x][y] > 0)
-                        list.Add(new Point(x, y));
-                }
-            }
         }
 
         private void FrmMainFormClosing(object sender, FormClosingEventArgs e) {
@@ -83,7 +90,14 @@ namespace NKinectTest {
             if (Depths == null)
                 return;
 
-            lblDepth.Text = string.Format("{0} cm", Depths[pnt.X][pnt.Y].ToString("0.00"));
+            string str = Kinect.DistanceUnit == (Unit) 1
+                             ? "in"
+                             : (Kinect.DistanceUnit == (Unit) 2 ? "m" : (Kinect.DistanceUnit == (Unit) 3 ? "ft" : "cm"));
+
+            try {
+                lblDepth.Text = string.Format("{0} {1}", Math.Max(0, Kinect.GetPreferredUnit(Depths[pnt.X][pnt.Y])).ToString("0.00"), str);
+            } catch {
+            }
         }
 
         private void BtnExportClick(object sender, EventArgs e) {
@@ -92,6 +106,18 @@ namespace NKinectTest {
 
         private void CmbImageTypeSelectedIndexChanged(object sender, EventArgs e) {
             Mode = cmbImageType.SelectedIndex;
+        }
+
+        private void CmbUnitsSelectedIndexChanged(object sender, EventArgs e) {
+            Kinect.DistanceUnit = (Unit) cmbUnits.SelectedIndex;
+        }
+
+        private void TrkMaxDistanceValueChanged(object sender, EventArgs e) {
+            Kinect.MaxDistanceThreshold = trkMaxDistance.Value;
+            Kinect.MinDistanceThreshold = trkMinDistance.Value;
+
+            lblMinDistance.Text = string.Format("{0} cm", trkMinDistance.Value);
+            lblMaxDistance.Text = string.Format("{0} cm", trkMaxDistance.Value);
         }
     }
 }

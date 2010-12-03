@@ -11,7 +11,7 @@ using namespace System::Runtime::InteropServices;
 using namespace System::Text;
 
 namespace NKinect {
-	public ref class CLKinect : public BaseKinect {
+	private ref class CLKinect : public BaseKinect {
 		private:
 			CLNUICamera cam;
 			CLNUIMotor motor;
@@ -64,10 +64,18 @@ namespace NKinect {
 
 					Bitmap^		 RgbImage	= gcnew Bitmap(640, 480, PixelFormat::Format32bppPArgb);
 					Bitmap^		 GrayImage	= gcnew Bitmap(640, 480, PixelFormat::Format32bppPArgb);
+					Bitmap^		 ThresImage	= gcnew Bitmap(640, 480, PixelFormat::Format32bppPArgb);
+					Bitmap^		 RgbTImage	= gcnew Bitmap(640, 480, PixelFormat::Format32bppPArgb);
+
 					BitmapData^	 rgbData	= RgbImage->LockBits(System::Drawing::Rectangle(0, 0, RgbImage->Width, RgbImage->Height), ImageLockMode::WriteOnly, RgbImage->PixelFormat);
-					BitmapData^	 grayData	= GrayImage->LockBits(System::Drawing::Rectangle(0, 0, RgbImage->Width, RgbImage->Height), ImageLockMode::WriteOnly, RgbImage->PixelFormat);
+					BitmapData^	 grayData	= GrayImage->LockBits(System::Drawing::Rectangle(0, 0, GrayImage->Width, GrayImage->Height), ImageLockMode::WriteOnly, RgbImage->PixelFormat);
+					BitmapData^	 thresData	= ThresImage->LockBits(System::Drawing::Rectangle(0, 0, ThresImage->Width, ThresImage->Height), ImageLockMode::WriteOnly, RgbImage->PixelFormat);
+					BitmapData^	 rgbTData	= RgbTImage->LockBits(System::Drawing::Rectangle(0, 0, ThresImage->Width, ThresImage->Height), ImageLockMode::WriteOnly, RgbImage->PixelFormat);
+					
 					array<Byte>^ ary		= gcnew array<Byte>(640 * 480 * 4);
-					array<Byte>^ gsAry	= gcnew array<Byte>(640 * 480 * 4);
+					array<Byte>^ gsAry		= gcnew array<Byte>(640 * 480 * 4);
+					array<Byte>^ thrAry		= gcnew array<Byte>(640 * 480 * 4);
+					array<Byte>^ rgbTAry	= gcnew array<Byte>(640 * 480 * 4);
 
 					for (int i = 0, y = 0, idx = 0; y < 480; y++) {
 						for (int x = 0; x < 640; x++, i++, idx += 4) {
@@ -75,10 +83,11 @@ namespace NKinect {
 
 							DWORD	color	= RawPixels[641 + i];
 							int		gray	= DisparityToGrayscale(RawDepth[i] & 0x07FF);
+							int		thresh	= Depths[x][y] >= MinDistanceThreshold && Depths[x][y] <= MaxDistanceThreshold ? gray : 0x00;
+
 							byte	blue	= (color & 0x000000FF);
 							byte	green	= (color & 0x0000FF00) >> 8;
 							byte	red		= (color & 0x00FF0000) >> 16;
-							byte	alpha	= (color & 0xFF000000) >> 24;
 
 							ary[idx]		= blue;
 							ary[idx + 1]	= green;
@@ -88,19 +97,35 @@ namespace NKinect {
 							gsAry[idx]		= gray;
 							gsAry[idx + 1]	= gray;
 							gsAry[idx + 2]	= gray;
-							gsAry[idx + 3]	= gray;
+							gsAry[idx + 3]	= 0xFF;
+
+							thrAry[idx]		= thresh;
+							thrAry[idx + 1]	= thresh;
+							thrAry[idx + 2]	= thresh;
+							thrAry[idx + 3]	= 0xFF;
+
+							rgbTAry[idx]	= Depths[x][y] >= MinDistanceThreshold && Depths[x][y] <= MaxDistanceThreshold ? blue : 0x00;;
+							rgbTAry[idx + 1]= Depths[x][y] >= MinDistanceThreshold && Depths[x][y] <= MaxDistanceThreshold ? green : 0x00;;
+							rgbTAry[idx + 2]= Depths[x][y] >= MinDistanceThreshold && Depths[x][y] <= MaxDistanceThreshold ? red : 0x00;;
+							rgbTAry[idx + 3]= 0xFF;
 						}
 					}
 
 					Marshal::Copy(ary, 0, rgbData->Scan0, 640 * 480 * 4);
 					Marshal::Copy(gsAry, 0, grayData->Scan0, 640 * 480 * 4);
+					Marshal::Copy(thrAry, 0, thresData->Scan0, 640 * 480 * 4);
+					Marshal::Copy(rgbTAry, 0, rgbTData->Scan0, 640 * 480 * 4);
 
 					RgbImage->UnlockBits(rgbData);
 					GrayImage->UnlockBits(grayData);
+					ThresImage->UnlockBits(thresData);
+					RgbTImage->UnlockBits(rgbTData);
 
 					DepthsCalculated(this, gcnew DepthEventArgs(Depths));
 					ImageUpdated(this, gcnew CameraImageEventArgs(RgbImage));
 					DepthImageUpdated(this, gcnew CameraImageEventArgs(GrayImage));
+					ThresholdDepthImageUpdated(this, gcnew CameraImageEventArgs(ThresImage));
+					ThresholdColorImageUpdated(this, gcnew CameraImageEventArgs(RgbTImage));
 
 					SetLed(Orange);
 				}

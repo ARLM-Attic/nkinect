@@ -1,7 +1,7 @@
 #pragma once
 
 namespace NKinect {
-	public enum Unit : long {
+	public enum Unit {
 		Centimeters,
 		Inches,
 		Meters,
