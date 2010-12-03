@@ -155,6 +155,10 @@ namespace NKinect {
 				Running = false;
 
 				SetPosition(0);
+
+				RefreshThread->Join();
+				AccelerometerThread->Join();
+
 				SetLed(Green);
 
 				StopNUICamera(cam);
