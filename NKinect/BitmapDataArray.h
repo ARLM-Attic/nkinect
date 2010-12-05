@@ -18,9 +18,15 @@ namespace NKinect {
 				if (!isEnabled)
 					return;
 
+				ByteArray = gcnew array<Byte>(640 * 480 * 4);
+			}
+
+			void Reset() {
+				if (ByteArray == nullptr)
+					return;
+
 				Bmp = gcnew Bitmap(640, 480, PixelFormat::Format32bppPArgb);
 				Data = Bmp->LockBits(System::Drawing::Rectangle(0, 0, Bmp->Width, Bmp->Height), ImageLockMode::WriteOnly, Bmp->PixelFormat);
-				ByteArray = gcnew array<Byte>(640 * 480 * 4);
 			}
 
 			void SetBytes(int idx, byte first, byte second, byte third, byte fourth) {

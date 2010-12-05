@@ -25,13 +25,13 @@ namespace NKinect {
 
 		public:
 			CLKinect() {
-				cam = CreateNUICamera();
-				motor = CreateNUIMotor();
+				cam			= CreateNUICamera();
+				motor		= CreateNUIMotor();
 
-				RawDepth = new USHORT[640 * 480];
-				RawPixels = new DWORD[640 * 480];
+				RawDepth	= new USHORT[640 * 480];
+				RawPixels	= new DWORD[640 * 480];
 
-				Depths = gcnew array<array<double>^>(640);
+				Depths		= gcnew array<array<double>^>(640);
 
 				for (int i = 0; i < 640; i++)
 					Depths[i] = gcnew array<double>(480);
@@ -58,23 +58,28 @@ namespace NKinect {
 			}
 
 			virtual void DownloadImages() override {
+				BitmapDataArray^ RgbImage	= gcnew BitmapDataArray(imageUpdateEnabled);
+				BitmapDataArray^ GrayImage	= gcnew BitmapDataArray(depthImageUpdateEnabled);
+				BitmapDataArray^ ThresImage = gcnew BitmapDataArray(thresholdDepthImageUpdateEnabled);
+				BitmapDataArray^ RgbTImage	= gcnew BitmapDataArray(thresholdColorImageUpdateEnabled);
+
 				while (Running) {
-					GetNUICameraColorFrameRGB32(cam, RawPixels, 500);
+					GetNUICameraColorFrameRGB32(cam, RawPixels, 250);
 					GetNUICameraDepthFrameRAW(cam, RawDepth, 0);
 
 					SetLed(Red);
 
-					BitmapDataArray^ RgbImage	= gcnew BitmapDataArray(imageUpdateEnabled);
-					BitmapDataArray^ GrayImage	= gcnew BitmapDataArray(depthImageUpdateEnabled);
-					BitmapDataArray^ ThresImage = gcnew BitmapDataArray(thresholdDepthImageUpdateEnabled);
-					BitmapDataArray^ RgbTImage	= gcnew BitmapDataArray(thresholdColorImageUpdateEnabled);
+					RgbImage->Reset();
+					GrayImage->Reset();
+					ThresImage->Reset();
+					RgbTImage->Reset();
 
 					for (int i = 0, y = 0, idx = 0; y < 480; y++) {
 						for (int x = 0; x < 640; x++, i++, idx += 4) {
-							Depths[x][y]	= DisparityToDistance(RawDepth[i] & 0x07FF);
+							Depths[x][y]	= DisparityToDistance(RawDepth[i]);
 
 							DWORD	color	= RawPixels[641 + i];
-							int		gray	= DisparityToGrayscale(RawDepth[i] & 0x07FF);
+							int		gray	= DisparityToGrayscale(RawDepth[i]);
 							bool	valid	= Depths[x][y] >= MinDistanceThreshold && Depths[x][y] <= MaxDistanceThreshold;
 							int		thresh	= valid ? gray : 0x00;
 
