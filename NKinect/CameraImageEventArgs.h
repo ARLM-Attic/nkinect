@@ -7,7 +7,7 @@ using namespace System::IO;
 namespace NKinect {
 	public ref class CameraImageEventArgs : public EventArgs {
 		public:
-			property Image^ CameraImage;
+			property Bitmap^ CameraImage;
 
 			CameraImageEventArgs(Bitmap^ bmp) {
 				CameraImage = bmp;
