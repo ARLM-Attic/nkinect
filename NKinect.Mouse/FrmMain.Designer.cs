@@ -25,11 +25,13 @@
         private void InitializeComponent() {
             this.imgKinect = new System.Windows.Forms.PictureBox();
             this.trkPosition = new System.Windows.Forms.TrackBar();
-            this.trkDistance = new System.Windows.Forms.TrackBar();
+            this.trkMinDistance = new System.Windows.Forms.TrackBar();
             this.lblSize = new System.Windows.Forms.Label();
+            this.trkMaxDistance = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.imgKinect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkPosition)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trkDistance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkMinDistance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkMaxDistance)).BeginInit();
             this.SuspendLayout();
             // 
             // imgKinect
@@ -52,17 +54,17 @@
             this.trkPosition.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkPosition.Scroll += new System.EventHandler(this.TrkPositionScroll);
             // 
-            // trkDistance
+            // trkMinDistance
             // 
-            this.trkDistance.Location = new System.Drawing.Point(3, 498);
-            this.trkDistance.Maximum = 400;
-            this.trkDistance.Minimum = 100;
-            this.trkDistance.Name = "trkDistance";
-            this.trkDistance.Size = new System.Drawing.Size(575, 45);
-            this.trkDistance.TabIndex = 6;
-            this.trkDistance.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trkDistance.Value = 120;
-            this.trkDistance.Scroll += new System.EventHandler(this.TrkDistanceScroll);
+            this.trkMinDistance.Location = new System.Drawing.Point(3, 498);
+            this.trkMinDistance.Maximum = 400;
+            this.trkMinDistance.Minimum = 100;
+            this.trkMinDistance.Name = "trkMinDistance";
+            this.trkMinDistance.Size = new System.Drawing.Size(289, 45);
+            this.trkMinDistance.TabIndex = 6;
+            this.trkMinDistance.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trkMinDistance.Value = 100;
+            this.trkMinDistance.Scroll += new System.EventHandler(this.TrkDistanceScroll);
             // 
             // lblSize
             // 
@@ -74,13 +76,26 @@
             this.lblSize.TabIndex = 7;
             this.lblSize.Text = "100 - 120 cm";
             // 
+            // trkMaxDistance
+            // 
+            this.trkMaxDistance.Location = new System.Drawing.Point(292, 498);
+            this.trkMaxDistance.Maximum = 400;
+            this.trkMaxDistance.Minimum = 100;
+            this.trkMaxDistance.Name = "trkMaxDistance";
+            this.trkMaxDistance.Size = new System.Drawing.Size(289, 45);
+            this.trkMaxDistance.TabIndex = 8;
+            this.trkMaxDistance.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trkMaxDistance.Value = 115;
+            this.trkMaxDistance.ValueChanged += new System.EventHandler(this.TrkDistanceScroll);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(687, 529);
             this.Controls.Add(this.lblSize);
-            this.Controls.Add(this.trkDistance);
+            this.Controls.Add(this.trkMaxDistance);
+            this.Controls.Add(this.trkMinDistance);
             this.Controls.Add(this.trkPosition);
             this.Controls.Add(this.imgKinect);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -92,7 +107,8 @@
             this.Load += new System.EventHandler(this.FrmMainLoad);
             ((System.ComponentModel.ISupportInitialize)(this.imgKinect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkPosition)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trkDistance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkMinDistance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkMaxDistance)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,8 +118,9 @@
 
         private System.Windows.Forms.PictureBox imgKinect;
         private System.Windows.Forms.TrackBar trkPosition;
-        private System.Windows.Forms.TrackBar trkDistance;
+        private System.Windows.Forms.TrackBar trkMinDistance;
         private System.Windows.Forms.Label lblSize;
+        private System.Windows.Forms.TrackBar trkMaxDistance;
     }
 }
 

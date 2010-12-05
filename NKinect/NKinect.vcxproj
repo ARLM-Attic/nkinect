@@ -82,6 +82,7 @@
   <ItemGroup>
     <ClInclude Include="Accelerometer.h" />
     <ClInclude Include="AccelerometerEventArgs.h" />
+    <ClInclude Include="BitmapDataArray.h" />
     <ClInclude Include="CameraImageEventArgs.h" />
     <ClInclude Include="DepthEventArgs.h" />
     <ClInclude Include="BaseKinect.h" />
