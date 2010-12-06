@@ -11,12 +11,12 @@ using namespace System::Security::Permissions;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly:AssemblyTitleAttribute("KinectWrapper")];
+[assembly:AssemblyTitleAttribute("NKinect")];
 [assembly:AssemblyDescriptionAttribute("")];
 [assembly:AssemblyConfigurationAttribute("")];
-[assembly:AssemblyCompanyAttribute("Microsoft")];
-[assembly:AssemblyProductAttribute("KinectWrapper")];
-[assembly:AssemblyCopyrightAttribute("Copyright (c) Microsoft 2010")];
+[assembly:AssemblyCompanyAttribute("Boris Scheiman Rocha")];
+[assembly:AssemblyProductAttribute("NKinect")];
+[assembly:AssemblyCopyrightAttribute("Copyright (c) Boris Scheiman Rocha 2010")];
 [assembly:AssemblyTrademarkAttribute("")];
 [assembly:AssemblyCultureAttribute("")];
 
