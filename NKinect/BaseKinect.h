@@ -128,6 +128,7 @@ namespace NKinect {
 			property int		MinDistanceThreshold;
 			property int		MaxDistanceThreshold;
 			property Unit		DistanceUnit;
+			property bool		Mirrored;
 
 			BaseKinect() {
 				MinDistanceThreshold = 0;

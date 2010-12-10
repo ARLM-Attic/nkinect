@@ -71,6 +71,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>CLNUIDevice.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Code Laboratories\CL NUI Platform\SDK\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

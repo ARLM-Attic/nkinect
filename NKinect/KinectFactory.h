@@ -1,4 +1,5 @@
 #pragma once
+#include "CLNUIDevice.h"
 #include "BaseKinect.h"
 #include "CLKinect.h"
 
@@ -12,11 +13,15 @@ using namespace System::Text;
 
 namespace NKinect {
 	public ref class KinectFactory abstract sealed {
+		static int CreatedKinects = 0;
 		public:
 			static BaseKinect^ GetKinect() {
 				// TODO: Check for libfreenect, autodetect library.
 
-				return gcnew CLKinect();
+				if (CreatedKinects >= GetNUIDeviceCount())
+					throw gcnew ArgumentException("Too many Kinect objects created.");
+
+				return gcnew CLKinect(CreatedKinects++);
 			}
 	};
 }

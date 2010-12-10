@@ -22,11 +22,14 @@ namespace NKinect {
 			PDWORD RawPixels;
 			array<array<double>^>^ Depths;
 			bool Disposed;
+			PCHAR _serial;
 
 		public:
-			CLKinect() {
-				cam			= CreateNUICamera();
-				motor		= CreateNUIMotor();
+			CLKinect(int idx) {
+				_serial		= GetNUIDeviceSerial(idx);
+
+				cam			= CreateNUICamera(_serial);
+				motor		= CreateNUIMotor(_serial);
 
 				RawDepth	= new USHORT[640 * 480];
 				RawPixels	= new DWORD[640 * 480];
@@ -39,7 +42,7 @@ namespace NKinect {
 				SetLed(Green);
 				SetPosition(0);
 
-				MotorSerialNumber = gcnew String(GetNUIMotorSerial(motor));
+				MotorSerialNumber = gcnew String(_serial);
 			}
 
 		protected:
