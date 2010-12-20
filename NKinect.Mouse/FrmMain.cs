@@ -64,8 +64,7 @@ namespace NKinect.Mouse {
 
                 bc.ProcessImage(grayImage);
 
-                var blobs =
-                    bc.GetObjectsInformation().OrderBy(blob => Depths[blob.CenterOfGravity.X][blob.CenterOfGravity.Y]).ToArray();
+                var blobs = bc.GetObjectsInformation().OrderBy(blob => Depths[blob.CenterOfGravity.X][blob.CenterOfGravity.Y]).ToArray();
 
                 foreach (var blob in blobs) {
                     List<IntPoint> leftPoints, rightPoints;
@@ -84,6 +83,8 @@ namespace NKinect.Mouse {
                     foreach (var pnt in hull)
                         graphics.FillEllipse(new SolidBrush(Color.ForestGreen), pnt.X, pnt.Y, 8, 8);
 
+                    GetHistograms(grayImage);
+
                     if (chkMouse.Checked && blobs.Length == 1)
                         Cursor.Position = MapToScreen(blob.CenterOfGravity);
                 }
@@ -91,6 +92,14 @@ namespace NKinect.Mouse {
 
             imgKinect.Image = e.CameraImage;
             imgKinect.Invalidate();
+        }
+
+        private void GetHistograms(Bitmap grayImage) {
+            var vertical = new VerticalIntensityStatistics(grayImage);
+            var horizontal = new HorizontalIntensityStatistics(grayImage);
+
+            hstVertical.Values = vertical.Gray.Values;
+            hstHorizontal.Values = horizontal.Gray.Values;
         }
 
         private static Point MapToScreen(IntPoint point) {
