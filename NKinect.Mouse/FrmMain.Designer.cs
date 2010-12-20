@@ -32,8 +32,6 @@
             this.chkMouse = new System.Windows.Forms.CheckBox();
             this.hstVertical = new AForge.Controls.Histogram();
             this.hstHorizontal = new AForge.Controls.Histogram();
-            this.lblVertical = new System.Windows.Forms.Label();
-            this.lblHorizontal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgKinect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkMinDistance)).BeginInit();
@@ -51,7 +49,7 @@
             // 
             // trkPosition
             // 
-            this.trkPosition.Location = new System.Drawing.Point(656, 4);
+            this.trkPosition.Location = new System.Drawing.Point(714, 4);
             this.trkPosition.Maximum = 8000;
             this.trkPosition.Minimum = -8000;
             this.trkPosition.Name = "trkPosition";
@@ -63,7 +61,7 @@
             // 
             // trkMinDistance
             // 
-            this.trkMinDistance.Location = new System.Drawing.Point(3, 498);
+            this.trkMinDistance.Location = new System.Drawing.Point(3, 550);
             this.trkMinDistance.Maximum = 900;
             this.trkMinDistance.Minimum = 20;
             this.trkMinDistance.Name = "trkMinDistance";
@@ -77,7 +75,7 @@
             // 
             this.lblSize.AutoSize = true;
             this.lblSize.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSize.Location = new System.Drawing.Point(579, 501);
+            this.lblSize.Location = new System.Drawing.Point(579, 553);
             this.lblSize.Name = "lblSize";
             this.lblSize.Size = new System.Drawing.Size(71, 13);
             this.lblSize.TabIndex = 7;
@@ -85,7 +83,7 @@
             // 
             // trkMaxDistance
             // 
-            this.trkMaxDistance.Location = new System.Drawing.Point(292, 498);
+            this.trkMaxDistance.Location = new System.Drawing.Point(292, 550);
             this.trkMaxDistance.Maximum = 900;
             this.trkMaxDistance.Minimum = 20;
             this.trkMaxDistance.Name = "trkMaxDistance";
@@ -97,9 +95,9 @@
             // 
             // btnAuto
             // 
-            this.btnAuto.Location = new System.Drawing.Point(95, 515);
+            this.btnAuto.Location = new System.Drawing.Point(657, 500);
             this.btnAuto.Name = "btnAuto";
-            this.btnAuto.Size = new System.Drawing.Size(68, 23);
+            this.btnAuto.Size = new System.Drawing.Size(51, 23);
             this.btnAuto.TabIndex = 9;
             this.btnAuto.Text = "Auto";
             this.btnAuto.UseVisualStyleBackColor = true;
@@ -108,7 +106,7 @@
             // chkMouse
             // 
             this.chkMouse.AutoSize = true;
-            this.chkMouse.Location = new System.Drawing.Point(11, 519);
+            this.chkMouse.Location = new System.Drawing.Point(657, 530);
             this.chkMouse.Name = "chkMouse";
             this.chkMouse.Size = new System.Drawing.Size(61, 17);
             this.chkMouse.TabIndex = 10;
@@ -117,49 +115,26 @@
             // 
             // hstVertical
             // 
-            this.hstVertical.Location = new System.Drawing.Point(680, 12);
+            this.hstVertical.IsVertical = true;
+            this.hstVertical.Location = new System.Drawing.Point(657, 12);
             this.hstVertical.Name = "hstVertical";
-            this.hstVertical.Size = new System.Drawing.Size(291, 140);
+            this.hstVertical.Size = new System.Drawing.Size(51, 480);
             this.hstVertical.TabIndex = 11;
-            this.hstVertical.Text = "histogram1";
             this.hstVertical.Values = null;
             // 
             // hstHorizontal
             // 
-            this.hstHorizontal.Location = new System.Drawing.Point(680, 171);
+            this.hstHorizontal.Location = new System.Drawing.Point(11, 501);
             this.hstHorizontal.Name = "hstHorizontal";
-            this.hstHorizontal.Size = new System.Drawing.Size(291, 140);
+            this.hstHorizontal.Size = new System.Drawing.Size(640, 43);
             this.hstHorizontal.TabIndex = 12;
-            this.hstHorizontal.Text = "histogram2";
             this.hstHorizontal.Values = null;
-            // 
-            // lblVertical
-            // 
-            this.lblVertical.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVertical.Location = new System.Drawing.Point(680, 155);
-            this.lblVertical.Name = "lblVertical";
-            this.lblVertical.Size = new System.Drawing.Size(291, 13);
-            this.lblVertical.TabIndex = 13;
-            this.lblVertical.Text = "VERTICAL HISTOGRAM";
-            this.lblVertical.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblHorizontal
-            // 
-            this.lblHorizontal.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHorizontal.Location = new System.Drawing.Point(680, 314);
-            this.lblHorizontal.Name = "lblHorizontal";
-            this.lblHorizontal.Size = new System.Drawing.Size(291, 13);
-            this.lblHorizontal.TabIndex = 14;
-            this.lblHorizontal.Text = "HORIZONTAL HISTOGRAM";
-            this.lblHorizontal.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(983, 545);
-            this.Controls.Add(this.lblHorizontal);
-            this.Controls.Add(this.lblVertical);
+            this.ClientSize = new System.Drawing.Size(745, 577);
             this.Controls.Add(this.hstHorizontal);
             this.Controls.Add(this.hstVertical);
             this.Controls.Add(this.chkMouse);
@@ -196,8 +171,6 @@
         private System.Windows.Forms.CheckBox chkMouse;
         private AForge.Controls.Histogram hstVertical;
         private AForge.Controls.Histogram hstHorizontal;
-        private System.Windows.Forms.Label lblVertical;
-        private System.Windows.Forms.Label lblHorizontal;
     }
 }
 
