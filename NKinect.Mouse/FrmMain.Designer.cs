@@ -28,6 +28,8 @@
             this.trkMinDistance = new System.Windows.Forms.TrackBar();
             this.lblSize = new System.Windows.Forms.Label();
             this.trkMaxDistance = new System.Windows.Forms.TrackBar();
+            this.btnAuto = new System.Windows.Forms.Button();
+            this.chkMouse = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgKinect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkMinDistance)).BeginInit();
@@ -41,6 +43,7 @@
             this.imgKinect.Size = new System.Drawing.Size(640, 480);
             this.imgKinect.TabIndex = 0;
             this.imgKinect.TabStop = false;
+            this.imgKinect.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ImgKinectMouseDown);
             // 
             // trkPosition
             // 
@@ -57,8 +60,8 @@
             // trkMinDistance
             // 
             this.trkMinDistance.Location = new System.Drawing.Point(3, 498);
-            this.trkMinDistance.Maximum = 400;
-            this.trkMinDistance.Minimum = 100;
+            this.trkMinDistance.Maximum = 900;
+            this.trkMinDistance.Minimum = 20;
             this.trkMinDistance.Name = "trkMinDistance";
             this.trkMinDistance.Size = new System.Drawing.Size(289, 45);
             this.trkMinDistance.TabIndex = 6;
@@ -79,8 +82,8 @@
             // trkMaxDistance
             // 
             this.trkMaxDistance.Location = new System.Drawing.Point(292, 498);
-            this.trkMaxDistance.Maximum = 400;
-            this.trkMaxDistance.Minimum = 100;
+            this.trkMaxDistance.Maximum = 900;
+            this.trkMaxDistance.Minimum = 20;
             this.trkMaxDistance.Name = "trkMaxDistance";
             this.trkMaxDistance.Size = new System.Drawing.Size(289, 45);
             this.trkMaxDistance.TabIndex = 8;
@@ -88,11 +91,33 @@
             this.trkMaxDistance.Value = 115;
             this.trkMaxDistance.ValueChanged += new System.EventHandler(this.TrkDistanceScroll);
             // 
+            // btnAuto
+            // 
+            this.btnAuto.Location = new System.Drawing.Point(95, 515);
+            this.btnAuto.Name = "btnAuto";
+            this.btnAuto.Size = new System.Drawing.Size(68, 23);
+            this.btnAuto.TabIndex = 9;
+            this.btnAuto.Text = "Auto";
+            this.btnAuto.UseVisualStyleBackColor = true;
+            this.btnAuto.Click += new System.EventHandler(this.BtnAutoClick);
+            // 
+            // chkMouse
+            // 
+            this.chkMouse.AutoSize = true;
+            this.chkMouse.Location = new System.Drawing.Point(11, 519);
+            this.chkMouse.Name = "chkMouse";
+            this.chkMouse.Size = new System.Drawing.Size(61, 17);
+            this.chkMouse.TabIndex = 10;
+            this.chkMouse.Text = "Mouse";
+            this.chkMouse.UseVisualStyleBackColor = true;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 529);
+            this.ClientSize = new System.Drawing.Size(687, 545);
+            this.Controls.Add(this.chkMouse);
+            this.Controls.Add(this.btnAuto);
             this.Controls.Add(this.lblSize);
             this.Controls.Add(this.trkMaxDistance);
             this.Controls.Add(this.trkMinDistance);
@@ -121,6 +146,8 @@
         private System.Windows.Forms.TrackBar trkMinDistance;
         private System.Windows.Forms.Label lblSize;
         private System.Windows.Forms.TrackBar trkMaxDistance;
+        private System.Windows.Forms.Button btnAuto;
+        private System.Windows.Forms.CheckBox chkMouse;
     }
 }
 

@@ -1,11 +1,14 @@
 ﻿#region
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using AForge;
 using AForge.Imaging;
 using AForge.Imaging.Filters;
+using AForge.Math.Geometry;
 
 #endregion
 
@@ -50,28 +53,33 @@ namespace NKinect.Mouse {
                     MinHeight = 70
                 };
 
+                var hullFinder = new GrahamConvexHull();
                 filter.ApplyInPlace(e.CameraImage);
-                bc.ProcessImage(e.CameraImage);
 
+                bc.ProcessImage(e.CameraImage);
+                
                 var blobs =
                     bc.GetObjectsInformation().Select(blob => blob.Rectangle.GetCenter()).OrderBy(blob => Depths[blob.X][blob.Y]).ToArray();
 
-                switch (blobs.Length) {
-                    case 1:
-                        var obj = blobs[0];
+                for (int i = 0; i < blobs.Length; i++) {
+                    var blob = blobs[i];
+                    var blobInfo = bc.GetObjectsInformation()[i];
 
-                        graphics.FillEllipse(new SolidBrush(Color.DarkRed), obj.X, obj.Y, 10, 10);
-                        Cursor.Position = MapToScreen(obj);
+                    List<IntPoint> leftPoints, rightPoints;
+                    var edgePoints = new List<IntPoint>();
 
-                        break;
+                    bc.GetBlobsLeftAndRightEdges(blobInfo, out leftPoints, out rightPoints);
 
-                    case 2:
-                        mouse_event((uint) (MouseEventFlags.LEFTDOWN | MouseEventFlags.LEFTUP), (uint) blobs[0].X, (uint) blobs[0].Y, 0, 0);
+                    edgePoints.AddRange(leftPoints);
+                    edgePoints.AddRange(rightPoints);
 
-                        break;
+                    var hull = hullFinder.FindHull(edgePoints);
 
-                    default:
-                        break;
+                    graphics.FillEllipse(new SolidBrush(Color.DarkRed), blob.X, blob.Y, 10, 10);
+                    graphics.DrawPolygon(new Pen(Color.Blue, 2f), hull.Select(h => new Point(h.X, h.Y)).ToArray());
+
+                    if (chkMouse.Checked)
+                        Cursor.Position = MapToScreen(blob);
                 }
             }
 
@@ -92,6 +100,35 @@ namespace NKinect.Mouse {
             Kinect.MaxDistanceThreshold = trkMaxDistance.Value;
 
             lblSize.Text = string.Format("{0} - {1} cm", trkMinDistance.Value, trkMaxDistance.Value);
+        }
+
+        private void BtnAutoClick(object sender, EventArgs e) {
+            trkMaxDistance.Value = trkMaxDistance.Maximum;
+            trkMinDistance.Value = trkMinDistance.Minimum;
+
+            Kinect.MinDistanceThreshold = trkMinDistance.Value;
+            Kinect.MaxDistanceThreshold = trkMaxDistance.Value;
+
+            double closest = 9000;
+
+            foreach (double t1 in Depths.SelectMany(t => t.Where(t1 => t1 < closest && t1 > 20)))
+                closest = t1;
+
+            SyncToDistance(closest);
+        }
+
+        private void SyncToDistance(double closest) {
+            if (closest <= 20)
+                return;
+
+            trkMaxDistance.Value = (int) (closest + 5);
+            trkMinDistance.Value = (int) (closest - 5);
+
+            lblSize.Text = string.Format("{0} - {1} cm", trkMinDistance.Value, trkMaxDistance.Value);
+        }
+
+        private void ImgKinectMouseDown(object sender, MouseEventArgs e) {
+            SyncToDistance(Depths[e.X][e.Y]);
         }
     }
 
