@@ -65,30 +65,27 @@ namespace NKinect.Mouse {
                 bc.ProcessImage(grayImage);
 
                 var blobs =
-                    bc.GetObjectsInformation().Select(blob => blob.Rectangle.GetCenter()).OrderBy(blob => Depths[blob.X][blob.Y]).ToArray();
+                    bc.GetObjectsInformation().OrderBy(blob => Depths[blob.CenterOfGravity.X][blob.CenterOfGravity.Y]).ToArray();
 
-                for (int i = 0; i < blobs.Length; i++) {
-                    var blob = blobs[i];
-                    var blobInfo = bc.GetObjectsInformation()[i];
-
+                foreach (var blob in blobs) {
                     List<IntPoint> leftPoints, rightPoints;
                     var edgePoints = new List<IntPoint>();
 
-                    bc.GetBlobsLeftAndRightEdges(blobInfo, out leftPoints, out rightPoints);
+                    bc.GetBlobsLeftAndRightEdges(blob, out leftPoints, out rightPoints);
 
                     edgePoints.AddRange(leftPoints);
                     edgePoints.AddRange(rightPoints);
 
                     var hull = hullFinder.FindHull(edgePoints);
 
-                    graphics.FillEllipse(new SolidBrush(Color.DarkRed), blob.X, blob.Y, 10, 10);
-                    //graphics.DrawPolygon(new Pen(Color.Blue, 2f), hull.Select(h => new Point(h.X, h.Y)).ToArray());
+                    graphics.FillEllipse(new SolidBrush(Color.DarkRed), blob.CenterOfGravity.X, blob.CenterOfGravity.Y, 10, 10);
+                    graphics.DrawPolygon(new Pen(Color.Blue, 2f), hull.Select(h => new Point(h.X, h.Y)).ToArray());
 
                     foreach (var pnt in hull)
                         graphics.FillEllipse(new SolidBrush(Color.ForestGreen), pnt.X, pnt.Y, 8, 8);
 
-                    if (chkMouse.Checked)
-                        Cursor.Position = MapToScreen(blob);
+                    if (chkMouse.Checked && blobs.Length == 1)
+                        Cursor.Position = MapToScreen(blob.CenterOfGravity);
                 }
             }
 
@@ -96,7 +93,7 @@ namespace NKinect.Mouse {
             imgKinect.Invalidate();
         }
 
-        private static Point MapToScreen(Point point) {
+        private static Point MapToScreen(IntPoint point) {
             return new Point(point.X * Screen.PrimaryScreen.Bounds.Width / 640, point.Y * Screen.PrimaryScreen.Bounds.Height / 480);
         }
 
@@ -138,12 +135,6 @@ namespace NKinect.Mouse {
 
         private void ImgKinectMouseDown(object sender, MouseEventArgs e) {
             SyncToDistance(Depths[e.X][e.Y]);
-        }
-    }
-
-    public static class Extensions {
-        public static Point GetCenter(this Rectangle rect) {
-            return new Point(rect.X + rect.Width / 2, rect.Y + rect.Height / 2);
         }
     }
 }
