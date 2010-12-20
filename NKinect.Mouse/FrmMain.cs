@@ -26,11 +26,14 @@ namespace NKinect.Mouse {
 
         private void FrmMainLoad(object sender, EventArgs e) {
             Kinect = KinectFactory.GetKinect();
+            Kinect.Mirrored = true;
+
+            lblSize.Text = string.Format("{0} - {1} cm", trkMinDistance.Value, trkMaxDistance.Value);
 
             Kinect.ThresholdDepthImageUpdated += KinectThresholdDepthImageUpdated;
             Kinect.DepthsCalculated += KinectDepthsCalculated;
-            Kinect.MinDistanceThreshold = 100;
-            Kinect.MaxDistanceThreshold = 120;
+            Kinect.MinDistanceThreshold = trkMinDistance.Value;
+            Kinect.MaxDistanceThreshold = trkMaxDistance.Value;
 
             Kinect.Start();
         }
@@ -40,6 +43,9 @@ namespace NKinect.Mouse {
         }
 
         private void KinectThresholdDepthImageUpdated(object sender, CameraImageEventArgs e) {
+            var gray = new Grayscale(0.2125, 0.7154, 0.0721);
+            var grayImage = gray.Apply(e.CameraImage);
+
             using (var graphics = Graphics.FromImage(e.CameraImage)) {
                 var bc = new BlobCounter {
                     FilterBlobs = true,
@@ -54,10 +60,10 @@ namespace NKinect.Mouse {
                 };
 
                 var hullFinder = new GrahamConvexHull();
-                filter.ApplyInPlace(e.CameraImage);
+                filter.ApplyInPlace(grayImage);
 
-                bc.ProcessImage(e.CameraImage);
-                
+                bc.ProcessImage(grayImage);
+
                 var blobs =
                     bc.GetObjectsInformation().Select(blob => blob.Rectangle.GetCenter()).OrderBy(blob => Depths[blob.X][blob.Y]).ToArray();
 
@@ -76,7 +82,10 @@ namespace NKinect.Mouse {
                     var hull = hullFinder.FindHull(edgePoints);
 
                     graphics.FillEllipse(new SolidBrush(Color.DarkRed), blob.X, blob.Y, 10, 10);
-                    graphics.DrawPolygon(new Pen(Color.Blue, 2f), hull.Select(h => new Point(h.X, h.Y)).ToArray());
+                    //graphics.DrawPolygon(new Pen(Color.Blue, 2f), hull.Select(h => new Point(h.X, h.Y)).ToArray());
+
+                    foreach (var pnt in hull)
+                        graphics.FillEllipse(new SolidBrush(Color.ForestGreen), pnt.X, pnt.Y, 8, 8);
 
                     if (chkMouse.Checked)
                         Cursor.Position = MapToScreen(blob);

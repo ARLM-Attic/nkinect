@@ -25,18 +25,18 @@ namespace NKinect {
 				if (ByteArray == nullptr)
 					return;
 
-				Bmp = gcnew Bitmap(640, 480, PixelFormat::Format32bppPArgb);
+				Bmp = gcnew Bitmap(640, 480, PixelFormat::Format32bppArgb);
 				Data = Bmp->LockBits(System::Drawing::Rectangle(0, 0, Bmp->Width, Bmp->Height), ImageLockMode::WriteOnly, Bmp->PixelFormat);
 			}
 
-			void SetBytes(int idx, byte first, byte second, byte third, byte fourth) {
+			void SetBytes(int idx, byte first, byte second, byte third) {
 				if (ByteArray == nullptr)
 					return;
 
 				ByteArray[idx]		= first;
 				ByteArray[idx + 1]	= second;
 				ByteArray[idx + 2]	= third;
-				ByteArray[idx + 3]	= fourth;
+				ByteArray[idx + 3]	= 0xFF;
 			}
 
 			void End() {
@@ -45,6 +45,13 @@ namespace NKinect {
 
 				Marshal::Copy(ByteArray, 0, Data->Scan0, 640 * 480 * 4);
 				Bmp->UnlockBits(Data);
+			}
+
+			void Mirror() {
+				if (Bmp == nullptr)
+					return;
+
+				Bmp->RotateFlip(RotateFlipType::RotateNoneFlipX);
 			}
 		};
 }

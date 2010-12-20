@@ -60,6 +60,10 @@ namespace NKinect {
 				SetLed(Green);
 			}
 
+			virtual void FlipDepth() override {
+				array<array<double>^>::Reverse(Depths);
+			}
+
 			virtual void DownloadImages() override {
 				BitmapDataArray^ RgbImage	= gcnew BitmapDataArray(imageUpdateEnabled);
 				BitmapDataArray^ GrayImage	= gcnew BitmapDataArray(depthImageUpdateEnabled);
@@ -91,16 +95,16 @@ namespace NKinect {
 							byte	red		= (color & 0x00FF0000) >> 16;
 
 							if (imageUpdateEnabled)
-								RgbImage->SetBytes(idx, blue, green, red, 0xFF);
+								RgbImage->SetBytes(idx, blue, green, red);
 
 							if (depthImageUpdateEnabled)
-								GrayImage->SetBytes(idx, gray, gray, gray, 0xFF);
+								GrayImage->SetBytes(idx, gray, gray, gray);
 
 							if (thresholdDepthImageUpdateEnabled)
-								ThresImage->SetBytes(idx, thresh, thresh, thresh, 0xFF);
+								ThresImage->SetBytes(idx, thresh, thresh, thresh);
 
 							if (thresholdDepthImageUpdateEnabled)
-								RgbTImage->SetBytes(idx, valid ? blue : 0x00, valid ? green : 0x00, valid ? red : 0x00, 0xFF);
+								RgbTImage->SetBytes(idx, valid ? blue : 0x00, valid ? green : 0x00, valid ? red : 0x00);
 						}
 					}
 
@@ -108,6 +112,15 @@ namespace NKinect {
 					GrayImage->End();
 					ThresImage->End();
 					RgbTImage->End();
+
+					if (Mirrored) {
+						RgbImage->Mirror();
+						GrayImage->Mirror();
+						ThresImage->Mirror();
+						RgbTImage->Mirror();
+
+						FlipDepth();
+					}
 
 					DepthsCalculated(this, gcnew DepthEventArgs(Depths));
 

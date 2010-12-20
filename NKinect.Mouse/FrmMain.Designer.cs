@@ -66,7 +66,7 @@
             this.trkMinDistance.Size = new System.Drawing.Size(289, 45);
             this.trkMinDistance.TabIndex = 6;
             this.trkMinDistance.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trkMinDistance.Value = 100;
+            this.trkMinDistance.Value = 20;
             this.trkMinDistance.Scroll += new System.EventHandler(this.TrkDistanceScroll);
             // 
             // lblSize
@@ -88,7 +88,7 @@
             this.trkMaxDistance.Size = new System.Drawing.Size(289, 45);
             this.trkMaxDistance.TabIndex = 8;
             this.trkMaxDistance.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trkMaxDistance.Value = 115;
+            this.trkMaxDistance.Value = 900;
             this.trkMaxDistance.ValueChanged += new System.EventHandler(this.TrkDistanceScroll);
             // 
             // btnAuto

@@ -154,9 +154,9 @@ namespace NKinect {
 				return (2048 * 256) / (2048 - val);
 			}
 
+			virtual void FlipDepth()			 = 0;
 			virtual void UpdateAccelerometer()	 = 0;
 			virtual void DownloadImages()		 = 0;
-
 		public:
 			virtual void Start()				 = 0;
 			virtual void Stop()					 = 0;
@@ -166,14 +166,14 @@ namespace NKinect {
 
 			double GetPreferredUnit(double dist) {
 				switch (DistanceUnit) {
-				case Meters:		dist = dist * 0.01;
-					break;
+					case Meters:		dist = dist * 0.01;
+						break;
 
-				case Inches:		dist = dist * 0.393700787;
-					break;
+					case Inches:		dist = dist * 0.393700787;
+						break;
 
-				case Feet:			dist = dist * 0.032808399;
-					break;
+					case Feet:			dist = dist * 0.032808399;
+						break;
 				}
 
 				return dist;
