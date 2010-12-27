@@ -82,7 +82,7 @@ namespace NKinect {
 					RgbTImage->Reset();
 
 					for (int i = 0, y = 0, idx = 0; y < 480; y++) {
-						for (int x = 0; x < 640; x++, i++, idx += 4) {
+						for (int x = 0; x < 640; x++, i++, idx += 3) {
 							Depths[x][y]	= DisparityToDistance(RawDepth[i]);
 
 							DWORD	color	= RawPixels[641 + i];

@@ -18,14 +18,14 @@ namespace NKinect {
 				if (!isEnabled)
 					return;
 
-				ByteArray = gcnew array<Byte>(640 * 480 * 4);
+				ByteArray = gcnew array<Byte>(640 * 480 * 3);
 			}
 
 			void Reset() {
 				if (ByteArray == nullptr)
 					return;
 
-				Bmp = gcnew Bitmap(640, 480, PixelFormat::Format32bppArgb);
+				Bmp = gcnew Bitmap(640, 480, PixelFormat::Format24bppRgb);
 				Data = Bmp->LockBits(System::Drawing::Rectangle(0, 0, Bmp->Width, Bmp->Height), ImageLockMode::WriteOnly, Bmp->PixelFormat);
 			}
 
@@ -36,14 +36,14 @@ namespace NKinect {
 				ByteArray[idx]		= first;
 				ByteArray[idx + 1]	= second;
 				ByteArray[idx + 2]	= third;
-				ByteArray[idx + 3]	= 0xFF;
+				//ByteArray[idx + 3]	= 0xFF;
 			}
 
 			void End() {
 				if (ByteArray == nullptr)
 					return;
 
-				Marshal::Copy(ByteArray, 0, Data->Scan0, 640 * 480 * 4);
+				Marshal::Copy(ByteArray, 0, Data->Scan0, 640 * 480 * 3);
 				Bmp->UnlockBits(Data);
 			}
 
