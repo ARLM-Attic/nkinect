@@ -91,6 +91,7 @@
     <ClInclude Include="LedColor.h" />
     <ClInclude Include="Library.h" />
     <ClInclude Include="CLKinect.h" />
+    <ClInclude Include="MouseTracker.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="Unit.h" />

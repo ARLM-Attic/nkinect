@@ -2,6 +2,7 @@
 #include "CLNUIDevice.h"
 #include "BaseKinect.h"
 #include "CLKinect.h"
+#include "MouseTracker.h"
 
 using namespace System;
 using namespace System::Threading;

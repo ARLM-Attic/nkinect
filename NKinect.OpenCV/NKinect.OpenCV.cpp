@@ -1,4 +1,5 @@
 // NKinect.OpenCV.cpp : Defines the entry point for the console application.
+
 //
 
 #include "stdafx.h"
@@ -6,17 +7,36 @@
 #include <cxcore.h>
 #include <highgui.h>
 #include <windows.h>
+#include "CLNUIDevice.h"
 
-int _tmain(int argc, _TCHAR* argv[]) {
-	IplImage *img = cvLoadImage("C:\\Phuket.jpg");
+int _tmain(int argc, _TCHAR *argv[]) {
+	CLNUIMotor motor = CreateNUIMotor();
+	SetNUIMotorLED(motor, 0);
 
-	cvNamedWindow("Image:", 1);
-	cvShowImage("Image:", img);
+	CLNUICamera camera = CreateNUICamera();
+	StartNUICamera(camera);
 
-	cvWaitKey();
-	cvDestroyWindow("Image:");
-	cvReleaseImage(&img);
+	PBYTE rawData = (PBYTE) malloc(640 * 480 * 3);
+	GetNUICameraColorFrameRGB24(camera, rawData);
+
+	IplImage *kinectDepthImage = cvCreateImage(cvSize(640, 480), 8, 3);
+	cvSetData(kinectDepthImage, rawData, kinectDepthImage->widthStep);
+
+	cvNamedWindow("NKinect OpenCV Tests", CV_WINDOW_AUTOSIZE);
+
+	while (true) {
+		GetNUICameraColorFrameRGB24(camera, rawData, 250);
+		cvSetData(kinectDepthImage, rawData, kinectDepthImage->widthStep);
+		cvShowImage("NKinect OpenCV Tests", kinectDepthImage);
+
+		char c = cvWaitKey(26);
+
+		if (c == 27)
+			break;
+	}
+
+	cvDestroyWindow("NKinect OpenCV Tests");
+	cvReleaseImageHeader(&kinectDepthImage);
 
 	return 0;
 }
-

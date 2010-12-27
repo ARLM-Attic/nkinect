@@ -16,6 +16,7 @@ namespace NKinect.Mouse {
     public partial class FrmMain : Form {
         protected double[][] Depths { get; set; }
         protected BaseKinect Kinect { get; set; }
+        protected MouseTracker KinectMouse { get; set; }
 
         public FrmMain() {
             InitializeComponent();
