@@ -37,6 +37,7 @@ namespace NKinectTest {
             this.lblDistance = new System.Windows.Forms.Label();
             this.lblMinDistance = new System.Windows.Forms.Label();
             this.lblMaxDistance = new System.Windows.Forms.Label();
+            this.btnCopy = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkMinDistance)).BeginInit();
@@ -176,11 +177,22 @@ namespace NKinectTest {
             this.lblMaxDistance.Text = "1000 cm";
             this.lblMaxDistance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnCopy
+            // 
+            this.btnCopy.Location = new System.Drawing.Point(539, 492);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(55, 23);
+            this.btnCopy.TabIndex = 14;
+            this.btnCopy.Text = "&Copy";
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.BtnCopyClick);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(671, 614);
+            this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.lblMaxDistance);
             this.Controls.Add(this.lblMinDistance);
             this.Controls.Add(this.lblDistance);
@@ -224,6 +236,7 @@ namespace NKinectTest {
         private System.Windows.Forms.Label lblDistance;
         private System.Windows.Forms.Label lblMinDistance;
         private System.Windows.Forms.Label lblMaxDistance;
+        private System.Windows.Forms.Button btnCopy;
     }
 }
 

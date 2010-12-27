@@ -119,5 +119,9 @@ namespace NKinectTest {
             lblMinDistance.Text = string.Format("{0} cm", trkMinDistance.Value);
             lblMaxDistance.Text = string.Format("{0} cm", trkMaxDistance.Value);
         }
+
+        private void BtnCopyClick(object sender, EventArgs e) {
+            Clipboard.SetImage(imgDisplay.Image);
+        }
     }
 }

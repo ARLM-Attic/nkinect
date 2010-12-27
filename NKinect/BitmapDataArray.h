@@ -13,16 +13,22 @@ namespace NKinect {
 			Bitmap^			Bmp;
 			BitmapData^		Data;
 			array<Byte>^	ByteArray;
+			PUSHORT			NativeArray;
 
 			BitmapDataArray(bool isEnabled) {
 				if (!isEnabled)
 					return;
 
 				ByteArray = gcnew array<Byte>(640 * 480 * 3);
+				NativeArray = new USHORT[640 * 480 * 3];
+			}
+
+			!BitmapDataArray() {
+				delete[] NativeArray;
 			}
 
 			void Reset() {
-				if (ByteArray == nullptr)
+				if (ByteArray == nullptr || NativeArray == nullptr)
 					return;
 
 				Bmp = gcnew Bitmap(640, 480, PixelFormat::Format24bppRgb);
@@ -33,10 +39,13 @@ namespace NKinect {
 				if (ByteArray == nullptr)
 					return;
 
-				ByteArray[idx]		= first;
-				ByteArray[idx + 1]	= second;
-				ByteArray[idx + 2]	= third;
-				//ByteArray[idx + 3]	= 0xFF;
+				ByteArray[idx]			= first;
+				ByteArray[idx + 1]		= second;
+				ByteArray[idx + 2]		= third;
+
+				NativeArray[idx]		= first;
+				NativeArray[idx + 1]	= second;
+				NativeArray[idx + 2]	= third;
 			}
 
 			void End() {
