@@ -1,14 +1,9 @@
 ﻿#region
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using AForge;
-using AForge.Imaging;
-using AForge.Imaging.Filters;
-using AForge.Math.Geometry;
 
 #endregion
 
@@ -31,12 +26,20 @@ namespace NKinect.Mouse {
 
             lblSize.Text = string.Format("{0} - {1} cm", trkMinDistance.Value, trkMaxDistance.Value);
 
-            Kinect.ThresholdDepthImageUpdated += KinectThresholdDepthImageUpdated;
-            Kinect.DepthsCalculated += KinectDepthsCalculated;
-            Kinect.MinDistanceThreshold = trkMinDistance.Value;
-            Kinect.MaxDistanceThreshold = trkMaxDistance.Value;
+            KinectMouse = new MouseTracker(Kinect);
 
-            Kinect.Start();
+            KinectMouse.Kinect.ThresholdDepthImageUpdated += KinectThresholdDepthImageUpdated;
+            KinectMouse.Kinect.DepthsCalculated += KinectDepthsCalculated;
+            KinectMouse.Kinect.MinDistanceThreshold = trkMinDistance.Value;
+            KinectMouse.Kinect.MaxDistanceThreshold = trkMaxDistance.Value;
+
+            KinectMouse.MovementDetected += MovementDetected;
+
+            KinectMouse.Start();
+        }
+
+        private void MovementDetected(object sender, MouseCoordinatesEventArgs e) {
+            Cursor.Position = new Point(e.X, e.Y);
         }
 
         private void KinectDepthsCalculated(object sender, DepthEventArgs e) {
@@ -44,76 +47,17 @@ namespace NKinect.Mouse {
         }
 
         private void KinectThresholdDepthImageUpdated(object sender, CameraImageEventArgs e) {
-            var gray = new Grayscale(0.2125, 0.7154, 0.0721);
-            var grayImage = gray.Apply(e.CameraImage);
-
-            using (var graphics = Graphics.FromImage(e.CameraImage)) {
-                var bc = new BlobCounter {
-                    FilterBlobs = true,
-                    MinWidth = 5,
-                    MinHeight = 5,
-                    ObjectsOrder = ObjectsOrder.Size
-                };
-                var filter = new BlobsFiltering {
-                    CoupledSizeFiltering = true,
-                    MinWidth = 70,
-                    MinHeight = 70
-                };
-
-                var hullFinder = new GrahamConvexHull();
-                filter.ApplyInPlace(grayImage);
-
-                bc.ProcessImage(grayImage);
-
-                var blobs = bc.GetObjectsInformation().OrderBy(blob => Depths[blob.CenterOfGravity.X][blob.CenterOfGravity.Y]).ToArray();
-
-                foreach (var blob in blobs) {
-                    List<IntPoint> leftPoints, rightPoints;
-                    var edgePoints = new List<IntPoint>();
-
-                    bc.GetBlobsLeftAndRightEdges(blob, out leftPoints, out rightPoints);
-
-                    edgePoints.AddRange(leftPoints);
-                    edgePoints.AddRange(rightPoints);
-
-                    var hull = hullFinder.FindHull(edgePoints);
-
-                    graphics.FillEllipse(new SolidBrush(Color.DarkRed), blob.CenterOfGravity.X, blob.CenterOfGravity.Y, 10, 10);
-                    graphics.DrawPolygon(new Pen(Color.Blue, 2f), hull.Select(h => new Point(h.X, h.Y)).ToArray());
-
-                    foreach (var pnt in hull)
-                        graphics.FillEllipse(new SolidBrush(Color.ForestGreen), pnt.X, pnt.Y, 8, 8);
-
-                    GetHistograms(grayImage);
-
-                    if (chkMouse.Checked && blobs.Length == 1)
-                        Cursor.Position = MapToScreen(blob.CenterOfGravity);
-                }
-            }
-
             imgKinect.Image = e.CameraImage;
             imgKinect.Invalidate();
         }
 
-        private void GetHistograms(Bitmap grayImage) {
-            var vertical = new VerticalIntensityStatistics(grayImage);
-            var horizontal = new HorizontalIntensityStatistics(grayImage);
-
-            hstVertical.Values = vertical.Gray.Values;
-            hstHorizontal.Values = horizontal.Gray.Values;
-        }
-
-        private static Point MapToScreen(IntPoint point) {
-            return new Point(point.X * Screen.PrimaryScreen.Bounds.Width / 640, point.Y * Screen.PrimaryScreen.Bounds.Height / 480);
-        }
-
         private void TrkPositionScroll(object sender, EventArgs e) {
-            Kinect.SetPosition((short) trkPosition.Value);
+            KinectMouse.Kinect.SetPosition((short) trkPosition.Value);
         }
 
         private void TrkDistanceScroll(object sender, EventArgs e) {
-            Kinect.MinDistanceThreshold = trkMinDistance.Value;
-            Kinect.MaxDistanceThreshold = trkMaxDistance.Value;
+            KinectMouse.Kinect.MinDistanceThreshold = trkMinDistance.Value;
+            KinectMouse.Kinect.MaxDistanceThreshold = trkMaxDistance.Value;
 
             lblSize.Text = string.Format("{0} - {1} cm", trkMinDistance.Value, trkMaxDistance.Value);
         }
@@ -122,8 +66,8 @@ namespace NKinect.Mouse {
             trkMaxDistance.Value = trkMaxDistance.Maximum;
             trkMinDistance.Value = trkMinDistance.Minimum;
 
-            Kinect.MinDistanceThreshold = trkMinDistance.Value;
-            Kinect.MaxDistanceThreshold = trkMaxDistance.Value;
+            KinectMouse.Kinect.MinDistanceThreshold = trkMinDistance.Value;
+            KinectMouse.Kinect.MaxDistanceThreshold = trkMaxDistance.Value;
 
             double closest = 9000;
 
@@ -145,6 +89,10 @@ namespace NKinect.Mouse {
 
         private void ImgKinectMouseDown(object sender, MouseEventArgs e) {
             SyncToDistance(Depths[e.X][e.Y]);
+        }
+
+        private void ChkMouseCheckedChanged(object sender, EventArgs e) {
+            KinectMouse.Enabled = chkMouse.Checked;
         }
     }
 }

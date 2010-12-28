@@ -112,6 +112,7 @@
             this.chkMouse.TabIndex = 10;
             this.chkMouse.Text = "Mouse";
             this.chkMouse.UseVisualStyleBackColor = true;
+            this.chkMouse.CheckedChanged += new System.EventHandler(this.ChkMouseCheckedChanged);
             // 
             // hstVertical
             // 
