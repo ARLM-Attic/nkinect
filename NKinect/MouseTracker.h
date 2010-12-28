@@ -49,6 +49,7 @@ namespace NKinect {
 				Point^ newCoords = GetCoordinates(blobs[0]->CenterOfGravity);
 
 				MovementDetected(this, gcnew MouseCoordinatesEventArgs(newCoords));
+				mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE, newCoords->X * 65535 / ScreenSize->Width, newCoords->Y * 65535 / ScreenSize->Height, 0, 0);
 
 				if (System::Math::Abs(newCoords->X - LastCoordinates->X) < 10 && System::Math::Abs(newCoords->Y - LastCoordinates->Y) < 10)
 					SameCoordinateCount++;
@@ -57,6 +58,8 @@ namespace NKinect {
 
 				if (SameCoordinateCount > 50) {
 					ClickDetected(this, gcnew MouseCoordinatesEventArgs(newCoords));
+					mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+					mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
 
 					ResetCounter();
 				}

@@ -33,19 +33,7 @@ namespace NKinect.Mouse {
             KinectMouse.Kinect.MinDistanceThreshold = trkMinDistance.Value;
             KinectMouse.Kinect.MaxDistanceThreshold = trkMaxDistance.Value;
 
-            KinectMouse.MovementDetected += MovementDetected;
-            KinectMouse.ClickDetected += ClickDetected;
-
             KinectMouse.Start();
-        }
-
-        private static void ClickDetected(object sender, MouseCoordinatesEventArgs e) {
-            mouse_event((uint) MouseEventFlags.LEFTDOWN);
-            mouse_event((uint) MouseEventFlags.LEFTUP);
-        }
-
-        private static void MovementDetected(object sender, MouseCoordinatesEventArgs e) {
-            Cursor.Position = new Point(e.X, e.Y);
         }
 
         private void KinectDepthsCalculated(object sender, DepthEventArgs e) {
