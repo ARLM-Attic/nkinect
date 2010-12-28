@@ -17,10 +17,9 @@ namespace NKinect.XNA {
 
         public KinectCloud() {
             Graphics = new GraphicsDeviceManager(this) {
-                IsFullScreen = false,
+                IsFullScreen = true,
                 PreferredBackBufferWidth = 640,
-                //Screen.PrimaryScreen.Bounds.Width,
-                PreferredBackBufferHeight = 480 //Screen.PrimaryScreen.Bounds.Height
+                PreferredBackBufferHeight = 480
             };
 
             Content.RootDirectory = "Content";
@@ -55,16 +54,7 @@ namespace NKinect.XNA {
                 Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
                 Exit();
 
-            ProcessKeyboard();
-            ProcessMouse();
-
             base.Update(gameTime);
-        }
-
-        private void ProcessMouse() {
-        }
-
-        private void ProcessKeyboard() {
         }
 
         protected override void Draw(GameTime gameTime) {
@@ -80,7 +70,7 @@ namespace NKinect.XNA {
                     for (int i = 0; i < 640; i++) {
                         double z = Depths[i][j];
 
-                        if (z > 1000)
+                        if (z > 1500)
                             continue;
 
                         double y = (640 / 2 - j) * (z + minDistance) * scaleFactor;
