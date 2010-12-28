@@ -9,11 +9,12 @@
 #include "KinectException.h"
 
 using namespace System;
-using namespace System::Threading;
-using namespace System::Drawing;
 using namespace System::IO;
-using namespace System::Drawing::Imaging;
 using namespace System::Text;
+using namespace System::Drawing;
+using namespace System::Threading;
+using namespace System::Windows::Forms;
+using namespace System::Drawing::Imaging;
 
 namespace NKinect {
 	public ref class KinectFactory abstract sealed {
@@ -72,6 +73,7 @@ namespace NKinect {
 						return gcnew CLKinect(0);
 				}
 
+				MessageBox::Show("No Kinect detected.\n\nPlease verify that it's connected and that you have CL NUI / OpenKinect installed.", "NKinect", MessageBoxButtons::OK, MessageBoxIcon::Error);
 				throw gcnew KinectException("No Kinect detected. Please verify that it's connected and that you have CL NUI / OpenKinect installed.");
 			}
 	};
