@@ -8,65 +8,67 @@
   </SettingsComponent>
   <RecentFiles>
     <RecentFiles>
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:Library.h" caret="16" fromTop="1" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:Accelerometer.h" caret="57" fromTop="2" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:Kinect.cpp" caret="54" fromTop="2" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:LedColor.h" caret="170" fromTop="10" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:Unit.h" caret="0" fromTop="0" />
-      <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/f:FrmMain.cs" caret="4148" fromTop="20" />
-      <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/f:FrmMain.Designer.cs" caret="105" fromTop="4" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CameraImageEventArgs.h" caret="259" fromTop="8" />
-      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:app.config" caret="0" fromTop="0" />
-      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:MouseEventFlags.cs" caret="464" fromTop="16" />
-      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.cs" caret="1247" fromTop="16" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BitmapDataArray.h" caret="802" fromTop="13" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:AssemblyInfo.cpp" caret="760" fromTop="17" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:AssemblyInfo.cs" caret="575" fromTop="0" />
-      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/d:Properties/f:AssemblyInfo.cs" caret="579" fromTop="0" />
-      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.resx" caret="2097" fromTop="16" />
+      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.resx" caret="5814" fromTop="16" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:app.rc" caret="12" fromTop="0" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:resource.h" caret="35" fromTop="0" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:Settings.Designer.cs" caret="589" fromTop="13" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:Settings.settings" caret="85" fromTop="0" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:Resources.Designer.cs" caret="1377" fromTop="16" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:Resources.resx" caret="5121" fromTop="16" />
-      <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/f:FrmMain.resx" caret="5326" fromTop="16" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="552" fromTop="18" />
+      <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/f:FrmMain.resx" caret="5814" fromTop="16" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/f:Program.cs" caret="420" fromTop="10" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BaseKinect.h" caret="3769" fromTop="13" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="5131" fromTop="8" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:Accelerometer.h" caret="0" fromTop="0" />
+      <File id="48916714-6647-4CF4-B5D3-837AF682862E/f:NKinect.OpenCV.cpp" caret="565" fromTop="12" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:Kinect.cpp" caret="84" fromTop="4" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CameraImageEventArgs.h" caret="354" fromTop="15" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BitmapDataArray.h" caret="638" fromTop="12" />
+      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.Designer.cs" caret="8814" fromTop="18" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:MouseCoordinatesEventArgs.h" caret="358" fromTop="13" />
+      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/d:Properties/f:AssemblyInfo.cs" caret="283" fromTop="9" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:Unit.h" caret="210" fromTop="7" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:Codebase.h" caret="179" fromTop="4" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BaseKinect.h" caret="4677" fromTop="13" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectException.h" caret="189" fromTop="6" />
+      <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/f:FrmMain.cs" caret="3738" fromTop="11" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:Program.cs" caret="344" fromTop="11" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="5270" fromTop="14" />
+      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.cs" caret="1314" fromTop="10" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:MouseTracker.h" caret="786" fromTop="22" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="1936" fromTop="13" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="2602" fromTop="39" />
     </RecentFiles>
     <RecentEdits>
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BitmapDataArray.h" caret="485" fromTop="16" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BitmapDataArray.h" caret="802" fromTop="25" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="1495" fromTop="5" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="2097" fromTop="21" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="2357" fromTop="23" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="1913" fromTop="8" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="417" fromTop="11" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="892" fromTop="29" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:AssemblyInfo.cpp" caret="477" fromTop="12" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:AssemblyInfo.cpp" caret="760" fromTop="17" />
-      <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:AssemblyInfo.cs" caret="325" fromTop="6" />
-      <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:AssemblyInfo.cs" caret="575" fromTop="11" />
-      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/d:Properties/f:AssemblyInfo.cs" caret="579" fromTop="11" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="721" fromTop="1" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="721" fromTop="14" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="1105" fromTop="28" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="695" fromTop="12" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="794" fromTop="15" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="445" fromTop="13" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="24" fromTop="0" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="552" fromTop="18" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BaseKinect.h" caret="3767" fromTop="24" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="5252" fromTop="9" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="5215" fromTop="8" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="5192" fromTop="10" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="5805" fromTop="24" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="5556" fromTop="16" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="5050" fromTop="0" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="5879" fromTop="24" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="5131" fromTop="2" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="109" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="9" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="8" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="25" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="25" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="10" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="120" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="10" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="8" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="123" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="15" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="15" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="25" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="4" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="8" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="18" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="8" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="5" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="120" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="2069" fromTop="8" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="2688" fromTop="19" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3255" fromTop="21" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="2273" fromTop="16" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3352" fromTop="31" />
+      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.cs" caret="1314" fromTop="17" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:MouseTracker.h" caret="1949" fromTop="18" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:MouseTracker.h" caret="1526" fromTop="3" />
+      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.cs" caret="1314" fromTop="10" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="411" fromTop="15" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="2309" fromTop="19" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -85,7 +87,7 @@
       <Item value="Stop`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Default">
-      <Item value="Kinect" priority="18" />
+      <Item value="Kinect" priority="22" />
       <Item value="lblAccelerometer" priority="0" />
       <Item value="string" priority="4" />
       <Item value="Invoke`0" priority="1" />
@@ -94,23 +96,23 @@
       <Item value="AppDomain`0" priority="0" />
       <Item value="Application`0" priority="1" />
       <Item value="catch" priority="1" />
-      <Item value="for" priority="1" />
-      <Item value="int" priority="3" />
-      <Item value="Depths" priority="3" />
-      <Item value="Length" priority="3" />
-      <Item value="if" priority="3" />
+      <Item value="for" priority="2" />
+      <Item value="int" priority="5" />
+      <Item value="Depths" priority="5" />
+      <Item value="Length" priority="4" />
+      <Item value="if" priority="6" />
       <Item value="ua" priority="0" />
       <Item value="list" priority="1" />
-      <Item value="NKinect" priority="0" />
+      <Item value="NKinect" priority="1" />
       <Item value="Kinect`0" priority="0" />
       <Item value="cmbImageType" priority="1" />
       <Item value="return" priority="1" />
-      <Item value="protected" priority="3" />
+      <Item value="protected" priority="14" />
       <Item value="Mode" priority="0" />
-      <Item value="e" priority="4" />
+      <Item value="e" priority="8" />
       <Item value="Count" priority="1" />
       <Item value="Timer`0" priority="0" />
-      <Item value="new" priority="10" />
+      <Item value="new" priority="22" />
       <Item value="Stopwatch" priority="0" />
       <Item value="Timer" priority="1" />
       <Item value="Text" priority="0" />
@@ -128,49 +130,108 @@
       <Item value="lblMinDistance" priority="0" />
       <Item value="lblMaxDistance" priority="0" />
       <Item value="Math`0" priority="0" />
-      <Item value="BaseKinect`0" priority="0" />
-      <Item value="KinectFactory`0" priority="0" />
+      <Item value="BaseKinect`0" priority="3" />
+      <Item value="KinectFactory`0" priority="1" />
       <Item value="imgKinect" priority="1" />
       <Item value="trkPosition" priority="0" />
       <Item value="trkDistance" priority="3" />
       <Item value="Blob`0" priority="0" />
       <Item value="blobs" priority="7" />
       <Item value="lblSize" priority="0" />
-      <Item value="foreach" priority="1" />
-      <Item value="var" priority="8" />
-      <Item value="in" priority="1" />
+      <Item value="foreach" priority="3" />
+      <Item value="var" priority="14" />
+      <Item value="in" priority="3" />
       <Item value="Debug`0" priority="1" />
       <Item value="blob" priority="3" />
-      <Item value="List&lt;IntPoint&gt;" priority="0" />
-      <Item value="Point`0" priority="1" />
+      <Item value="List&lt;IntPoint&gt;" priority="1" />
+      <Item value="Point`0" priority="2" />
       <Item value="public" priority="2" />
       <Item value="static" priority="1" />
       <Item value="class" priority="0" />
-      <Item value="this" priority="0" />
+      <Item value="this" priority="1" />
       <Item value="Rectangle`0" priority="0" />
-      <Item value="Point" priority="1" />
+      <Item value="Point" priority="2" />
       <Item value="rect" priority="3" />
       <Item value="center" priority="4" />
-      <Item value="color" priority="0" />
-      <Item value="Color`0" priority="2" />
+      <Item value="color" priority="1" />
+      <Item value="Color`0" priority="5" />
       <Item value="Bitmap`0" priority="0" />
       <Item value="using" priority="0" />
       <Item value="Graphics`0" priority="1" />
       <Item value="newImage" priority="0" />
-      <Item value="graphics" priority="0" />
+      <Item value="graphics" priority="1" />
       <Item value="Brush`0" priority="0" />
       <Item value="SolidBrush`0" priority="0" />
-      <Item value="Cursor" priority="1" />
-      <Item value="double" priority="0" />
+      <Item value="Cursor" priority="2" />
+      <Item value="double" priority="2" />
       <Item value="break" priority="4" />
       <Item value="point" priority="1" />
-      <Item value="Screen`0" priority="1" />
+      <Item value="Screen`0" priority="2" />
       <Item value="myBlobs" priority="0" />
       <Item value="default" priority="0" />
-      <Item value="mouse_event`0" priority="0" />
+      <Item value="mouse_event`0" priority="1" />
       <Item value="MOUSEEVENTF_LEFTDOWN" priority="0" />
       <Item value="MOUSEEVENTF_LEFTUP" priority="0" />
-      <Item value="MouseEventFlags`0" priority="1" />
+      <Item value="MouseEventFlags`0" priority="2" />
+      <Item value="hull" priority="1" />
+      <Item value="Console`0" priority="1" />
+      <Item value="Pen" priority="0" />
+      <Item value="h" priority="2" />
+      <Item value="vertical" priority="1" />
+      <Item value="hstVertical" priority="0" />
+      <Item value="hstHorizontal" priority="0" />
+      <Item value="horizontal" priority="0" />
+      <Item value="Clipboard`0" priority="0" />
+      <Item value="imgDisplay" priority="0" />
+      <Item value="MouseTracker" priority="0" />
+      <Item value="KinectMouse" priority="2" />
+      <Item value="EventHandler&lt;MouseCoordinatesEventArgs&gt;" priority="0" />
+      <Item value="chkMouse" priority="0" />
+      <Item value="Microsoft" priority="0" />
+      <Item value="Xna" priority="0" />
+      <Item value="Framework" priority="0" />
+      <Item value="Input" priority="0" />
+      <Item value="Keyboard`0" priority="1" />
+      <Item value="PlayerIndex`0" priority="2" />
+      <Item value="Keys`0" priority="0" />
+      <Item value="SpriteBatch" priority="4" />
+      <Item value="Content" priority="1" />
+      <Item value="Texture2D`0" priority="1" />
+      <Item value="Model`0" priority="0" />
+      <Item value="GraphicsDevice" priority="1" />
+      <Item value="PrimitiveType`0" priority="0" />
+      <Item value="float" priority="3" />
+      <Item value="AspectRatio" priority="0" />
+      <Item value="Graphics" priority="5" />
+      <Item value="Vector3`0" priority="5" />
+      <Item value="Positions" priority="6" />
+      <Item value="Vector3" priority="2" />
+      <Item value="true" priority="0" />
+      <Item value="Cube" priority="1" />
+      <Item value="CameraPosition" priority="1" />
+      <Item value="object" priority="0" />
+      <Item value="p" priority="2" />
+      <Item value="MathHelper`0" priority="0" />
+      <Item value="Random`0" priority="0" />
+      <Item value="rand" priority="2" />
+      <Item value="i" priority="3" />
+      <Item value="effect" priority="0" />
+      <Item value="Keys" priority="0" />
+      <Item value="Position" priority="1" />
+      <Item value="Mouse`0" priority="1" />
+      <Item value="null" priority="1" />
+      <Item value="SpriteFont" priority="0" />
+      <Item value="SpriteFont`0" priority="2" />
+      <Item value="RectTexture" priority="0" />
+      <Item value="Vector2" priority="0" />
+      <Item value="x" priority="0" />
+      <Item value="Vector2`0" priority="0" />
+      <Item value="None" priority="0" />
+      <Item value="z" priority="3" />
+      <Item value="continue" priority="0" />
+      <Item value="minDistance" priority="0" />
+      <Item value="scaleFactor" priority="0" />
+      <Item value="newDepth" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.Label">
       <Item value="Text" priority="3" />
@@ -183,10 +244,12 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
       <Item value="Add`0" priority="0" />
-      <Item value="Count" priority="0" />
+      <Item value="Count" priority="1" />
+      <Item value="Select`2" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Console">
-      <Item value="WriteLine`0" priority="0" />
+      <Item value="WriteLine`0" priority="1" />
+      <Item value="Write`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.ComboBox">
       <Item value="SelectedIndex" priority="5" />
@@ -201,8 +264,8 @@
       <Item value="ThresholdDepthImageUpdated" priority="1" />
       <Item value="ThresholdColorImageUpdated" priority="0" />
       <Item value="SetPosition`0" priority="0" />
-      <Item value="Start`0" priority="0" />
-      <Item value="DepthsCalculated" priority="0" />
+      <Item value="Start`0" priority="1" />
+      <Item value="DepthsCalculated" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Diagnostics.Stopwatch">
       <Item value="Start`0" priority="0" />
@@ -232,10 +295,10 @@
       <Item value="Minimum" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@NKinect.KinectFactory">
-      <Item value="GetKinect`0" priority="0" />
+      <Item value="GetKinect`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.PictureBox">
-      <Item value="Image" priority="0" />
+      <Item value="Image" priority="1" />
       <Item value="Invalidate`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:NKinect.CameraImageEventArgs">
@@ -250,9 +313,9 @@
     <ItemStatistics item="Qualified:System.Drawing.Rectangle">
       <Item value="Center`0" priority="0" />
       <Item value="X" priority="0" />
-      <Item value="Height" priority="2" />
+      <Item value="Height" priority="3" />
       <Item value="Y" priority="0" />
-      <Item value="Width" priority="1" />
+      <Item value="Width" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Drawing.Bitmap">
       <Item value="SetPixel`0" priority="0" />
@@ -262,9 +325,10 @@
       <Item value="Y" priority="4" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Drawing.Color">
-      <Item value="Red" priority="0" />
+      <Item value="Red" priority="1" />
       <Item value="Black" priority="0" />
       <Item value="DarkRed" priority="0" />
+      <Item value="Blue" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Drawing.Imaging.PixelFormat">
       <Item value="Format32bppArgb" priority="0" />
@@ -277,28 +341,132 @@
       <Item value="Clear`0" priority="0" />
       <Item value="DrawEllipse`0" priority="0" />
       <Item value="FillEllipse`0" priority="0" />
+      <Item value="DrawPolygon`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.Cursor">
-      <Item value="Position" priority="1" />
+      <Item value="Position" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
       <Item value="OrderBy`2" priority="1" />
+      <Item value="ToArray`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:NKinect.DepthEventArgs">
-      <Item value="Depths" priority="0" />
+      <Item value="Depths" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Windows.Forms.Screen">
-      <Item value="PrimaryScreen" priority="1" />
+      <Item value="PrimaryScreen" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.Screen">
-      <Item value="Bounds" priority="1" />
+      <Item value="Bounds" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Linq.IOrderedEnumerable`1">
       <Item value="ToArray`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@NKinect.Mouse.MouseEventFlags">
-      <Item value="LEFTDOWN" priority="0" />
-      <Item value="LEFTUP" priority="0" />
+      <Item value="LEFTDOWN" priority="1" />
+      <Item value="LEFTUP" priority="2" />
+      <Item value="RIGHTUP" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:AForge.IntPoint">
+      <Item value="X" priority="0" />
+      <Item value="Y" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:AForge.Imaging.VerticalIntensityStatistics">
+      <Item value="Gray" priority="1" />
+      <Item value="Red" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:AForge.Controls.Histogram">
+      <Item value="Values" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:AForge.Math.Histogram">
+      <Item value="Values" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:AForge.Imaging.HorizontalIntensityStatistics">
+      <Item value="Red" priority="0" />
+      <Item value="Gray" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Windows.Forms.Clipboard">
+      <Item value="SetImage`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:NKinect.MouseTracker">
+      <Item value="MovementDetected" priority="0" />
+      <Item value="ClickDetected" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:NKinect.MouseCoordinatesEventArgs">
+      <Item value="Coordinates" priority="1" />
+      <Item value="X" priority="0" />
+      <Item value="Y" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.CheckBox">
+      <Item value="CheckAlign" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Microsoft.Xna.Framework.Input.Keyboard">
+      <Item value="GetState`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Microsoft.Xna.Framework.PlayerIndex">
+      <Item value="One" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Xna.Framework.Input.KeyboardState">
+      <Item value="IsKeyDown`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Microsoft.Xna.Framework.Input.Keys">
+      <Item value="Escape" priority="0" />
+      <Item value="Up" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Xna.Framework.Content.ContentManager">
+      <Item value="Load`1" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Xna.Framework.Graphics.GraphicsDevice">
+      <Item value="DrawPrimitives`0" priority="0" />
+      <Item value="Viewport" priority="0" />
+      <Item value="DrawUserPrimitives`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Xna.Framework.GraphicsDeviceManager">
+      <Item value="GraphicsDevice" priority="1" />
+      <Item value="IsFullScreen" priority="0" />
+      <Item value="PreferredBackBufferWidth" priority="0" />
+      <Item value="PreferredBackBufferHeight" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Xna.Framework.Graphics.Viewport">
+      <Item value="AspectRatio" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Microsoft.Xna.Framework.Vector3">
+      <Item value="Zero" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Xna.Framework.Vector3">
+      <Item value="X" priority="1" />
+      <Item value="Y" priority="0" />
+      <Item value="Z" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Random">
+      <Item value="Next`0" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Microsoft.Xna.Framework.Input.Mouse">
+      <Item value="GetState`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Xna.Framework.Input.MouseState">
+      <Item value="ScrollWheelValue" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Xna.Framework.Graphics.SpriteBatch">
+      <Item value="DrawString`0" priority="0" />
+      <Item value="Begin`0" priority="0" />
+      <Item value="End`0" priority="0" />
+      <Item value="Draw`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:NKinect.XNA.KinectCloud">
+      <Item value="Window" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Xna.Framework.GameWindow">
+      <Item value="Title" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Microsoft.Xna.Framework.Color">
+      <Item value="Black" priority="0" />
+      <Item value="White" priority="1" />
+      <Item value="FromNonPremultiplied`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Microsoft.Xna.Framework.Vector2">
+      <Item value="Zero" priority="0" />
+      <Item value="One" priority="0" />
     </ItemStatistics>
   </CompletionStatisticsManager>
 </Configuration>

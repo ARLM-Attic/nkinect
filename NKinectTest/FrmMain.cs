@@ -90,9 +90,9 @@ namespace NKinectTest {
             if (Depths == null)
                 return;
 
-            string str = Kinect.DistanceUnit == 1
+            string str = Kinect.DistanceUnit == Unit.Inches
                              ? "in"
-                             : (Kinect.DistanceUnit == 2 ? "m" : (Kinect.DistanceUnit == 3 ? "ft" : "cm"));
+                             : (Kinect.DistanceUnit == Unit.Meters ? "m" : (Kinect.DistanceUnit == 3 ? "ft" : "cm"));
 
             try {
                 lblDepth.Text = string.Format("{0} {1}", Math.Max(0, Kinect.GetPreferredUnit(Depths[pnt.X][pnt.Y])).ToString("0.00"), str);
