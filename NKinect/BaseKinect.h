@@ -127,14 +127,14 @@ namespace NKinect {
 			property String^	MotorSerialNumber;
 			property int		MinDistanceThreshold;
 			property int		MaxDistanceThreshold;
-			property Unit		DistanceUnit;
+			property int		DistanceUnit;
 			property bool		Mirrored;
 
 			BaseKinect() {
 				MinDistanceThreshold = 0;
 				MaxDistanceThreshold = 9999;
 
-				DistanceUnit = Centimeters;
+				DistanceUnit = Unit::Centimeters;
 			}
 
 			!BaseKinect() {
@@ -166,13 +166,16 @@ namespace NKinect {
 
 			double GetPreferredUnit(double dist) {
 				switch (DistanceUnit) {
-					case Meters:		dist = dist * 0.01;
+					case Unit::Meters:
+						dist = dist * 0.01;
 						break;
 
-					case Inches:		dist = dist * 0.393700787;
+					case Unit::Inches:
+						dist = dist * 0.393700787;
 						break;
 
-					case Feet:			dist = dist * 0.032808399;
+					case Unit::Feet:
+						dist = dist * 0.032808399;
 						break;
 				}
 

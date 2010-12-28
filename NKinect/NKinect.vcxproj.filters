@@ -60,6 +60,12 @@
     <ClInclude Include="MouseCoordinatesEventArgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Codebase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KinectException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">

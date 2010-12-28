@@ -90,9 +90,9 @@ namespace NKinectTest {
             if (Depths == null)
                 return;
 
-            string str = Kinect.DistanceUnit == (Unit) 1
+            string str = Kinect.DistanceUnit == 1
                              ? "in"
-                             : (Kinect.DistanceUnit == (Unit) 2 ? "m" : (Kinect.DistanceUnit == (Unit) 3 ? "ft" : "cm"));
+                             : (Kinect.DistanceUnit == 2 ? "m" : (Kinect.DistanceUnit == 3 ? "ft" : "cm"));
 
             try {
                 lblDepth.Text = string.Format("{0} {1}", Math.Max(0, Kinect.GetPreferredUnit(Depths[pnt.X][pnt.Y])).ToString("0.00"), str);
@@ -109,7 +109,7 @@ namespace NKinectTest {
         }
 
         private void CmbUnitsSelectedIndexChanged(object sender, EventArgs e) {
-            Kinect.DistanceUnit = (Unit) cmbUnits.SelectedIndex;
+            Kinect.DistanceUnit = cmbUnits.SelectedIndex;
         }
 
         private void TrkMaxDistanceValueChanged(object sender, EventArgs e) {

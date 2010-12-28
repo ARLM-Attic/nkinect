@@ -1,29 +1,78 @@
 #pragma once
+#include <windows.h>
+#include <SetupAPI.h>
+#include "Codebase.h"
 #include "CLNUIDevice.h"
 #include "BaseKinect.h"
 #include "CLKinect.h"
 #include "MouseTracker.h"
+#include "KinectException.h"
 
 using namespace System;
 using namespace System::Threading;
 using namespace System::Drawing;
 using namespace System::IO;
 using namespace System::Drawing::Imaging;
-using namespace System::Runtime::InteropServices;
 using namespace System::Text;
 
 namespace NKinect {
 	public ref class KinectFactory abstract sealed {
 		static int CreatedKinects = 0;
 
+		private:
+			static int GetInstalledCodeBase() {
+				HDEVINFO hDevInfo = SetupDiGetClassDevs(0, 0, 0, DIGCF_PRESENT | DIGCF_ALLCLASSES);
+				SP_DEVINFO_DATA DeviceInfoData;
+				int returnValue = Codebase::None;
+
+				if (hDevInfo == INVALID_HANDLE_VALUE)
+					return returnValue;
+
+				DeviceInfoData.cbSize = sizeof(SP_DEVINFO_DATA);
+
+				for (DWORD i = 0; SetupDiEnumDeviceInfo(hDevInfo, i, &DeviceInfoData); i++) {
+					DWORD DataT;
+					LPTSTR buffer = NULL;
+					DWORD buffersize = 0;
+
+					while (!SetupDiGetDeviceRegistryProperty(hDevInfo, &DeviceInfoData, SPDRP_DEVICEDESC, &DataT, (PBYTE) buffer, buffersize, &buffersize)) {
+						if (GetLastError() ==  ERROR_INSUFFICIENT_BUFFER) {
+							if (buffer) 
+								LocalFree(buffer);
+
+							buffer = (LPTSTR) LocalAlloc(LPTR, buffersize * 2);
+						} else
+							break;
+					}
+
+					String^ str = gcnew String(buffer);
+
+					if (str->Equals("NUI Motor"))
+						returnValue = Codebase::CodeLabs;
+
+					if (buffer) 
+						LocalFree(buffer);
+				}
+
+
+				if (GetLastError() != NO_ERROR && GetLastError() != ERROR_NO_MORE_ITEMS)
+					return returnValue;
+
+				SetupDiDestroyDeviceInfoList(hDevInfo);
+
+				return returnValue;
+			}
+
 		public:
 			static BaseKinect^ GetKinect() {
-				// TODO: Check for libfreenect, autodetect library.
+				int codeBase = GetInstalledCodeBase();
 
-				/*if (CreatedKinects >= GetNUIDeviceCount())
-					throw gcnew ArgumentException("Too many Kinect objects created.");*/
+				switch (codeBase) {
+					case Codebase::CodeLabs:
+						return gcnew CLKinect(0);
+				}
 
-				return gcnew CLKinect(0);
+				throw gcnew KinectException("No Kinect detected. Please verify that it's connected and that you have CL NUI / OpenKinect installed.");
 			}
 	};
 }

@@ -56,7 +56,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>CLNUIDevice.lib</AdditionalDependencies>
+      <AdditionalDependencies>CLNUIDevice.lib;setupapi.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Code Laboratories\CL NUI Platform\SDK\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -69,7 +69,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>CLNUIDevice.lib</AdditionalDependencies>
+      <AdditionalDependencies>CLNUIDevice.lib;setupapi.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Code Laboratories\CL NUI Platform\SDK\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
@@ -98,8 +98,10 @@
     <ClInclude Include="AccelerometerEventArgs.h" />
     <ClInclude Include="BitmapDataArray.h" />
     <ClInclude Include="CameraImageEventArgs.h" />
+    <ClInclude Include="Codebase.h" />
     <ClInclude Include="DepthEventArgs.h" />
     <ClInclude Include="BaseKinect.h" />
+    <ClInclude Include="KinectException.h" />
     <ClInclude Include="KinectFactory.h" />
     <ClInclude Include="LedColor.h" />
     <ClInclude Include="Library.h" />
