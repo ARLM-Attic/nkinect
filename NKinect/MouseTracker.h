@@ -2,16 +2,23 @@
 #include "BaseKinect.h"
 #include "MouseCoordinatesEventArgs.h"
 
+using namespace System;
+using namespace AForge;
 using namespace System::Drawing;
 using namespace AForge::Imaging;
 using namespace AForge::Imaging::Filters;
-using namespace AForge;
 using namespace AForge::Math::Geometry;
 
 namespace NKinect {
 	public ref class MouseTracker {
 		private:
+			property Point^ LastCoordinates;
+			property int SameCoordinateCount;
+
 			void ThresholdImageUpdated(Object^ sender, CameraImageEventArgs^ e) {
+				if (!Enabled)
+					return;
+
 				Grayscale^ gray = gcnew Grayscale(0.2125, 0.7154, 0.0721);
 				Bitmap^ grayImage = gray->Apply(e->CameraImage);
 
@@ -33,11 +40,31 @@ namespace NKinect {
 
 				array<Blob^>^ blobs = bc->GetObjectsInformation();
 
-				if (blobs->Length != 1)
-					return;
+				if (blobs->Length != 1) {
+					ResetCounter();
 
-				if (Enabled)
-					MovementDetected(this, gcnew MouseCoordinatesEventArgs(GetCoordinates(blobs[0]->CenterOfGravity)));
+					return;
+				}
+
+				Point^ newCoords = GetCoordinates(blobs[0]->CenterOfGravity);
+
+				MovementDetected(this, gcnew MouseCoordinatesEventArgs(newCoords));
+
+				if (System::Math::Abs(newCoords->X - LastCoordinates->X) < 10 && System::Math::Abs(newCoords->Y - LastCoordinates->Y) < 10)
+					SameCoordinateCount++;
+
+				LastCoordinates = newCoords;
+
+				if (SameCoordinateCount > 50) {
+					ClickDetected(this, gcnew MouseCoordinatesEventArgs(newCoords));
+
+					ResetCounter();
+				}
+			}
+
+			void ResetCounter() {
+				LastCoordinates = gcnew Point();
+				SameCoordinateCount = 0;
 			}
 
 			Point^ GetCoordinates(IntPoint^ pnt) {
@@ -58,6 +85,7 @@ namespace NKinect {
 				Kinect->ThresholdDepthImageUpdated += gcnew EventHandler<CameraImageEventArgs^>(this, &MouseTracker::ThresholdImageUpdated);
 
 				ScreenSize = System::Windows::Forms::Screen::PrimaryScreen->Bounds;
+				LastCoordinates = gcnew Point();
 			}
 
 			~MouseTracker() {

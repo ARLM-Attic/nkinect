@@ -18,7 +18,7 @@ namespace NKinect.Mouse {
         }
 
         [DllImport("user32.dll")]
-        private static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, int dwExtraInfo);
+        private static extern void mouse_event(uint dwFlags, uint dx = 0u, uint dy = 0u, uint dwData = 0u, int dwExtraInfo = 0);
 
         private void FrmMainLoad(object sender, EventArgs e) {
             Kinect = KinectFactory.GetKinect();
@@ -34,11 +34,17 @@ namespace NKinect.Mouse {
             KinectMouse.Kinect.MaxDistanceThreshold = trkMaxDistance.Value;
 
             KinectMouse.MovementDetected += MovementDetected;
+            KinectMouse.ClickDetected += ClickDetected;
 
             KinectMouse.Start();
         }
 
-        private void MovementDetected(object sender, MouseCoordinatesEventArgs e) {
+        private static void ClickDetected(object sender, MouseCoordinatesEventArgs e) {
+            mouse_event((uint) MouseEventFlags.LEFTDOWN);
+            mouse_event((uint) MouseEventFlags.LEFTUP);
+        }
+
+        private static void MovementDetected(object sender, MouseCoordinatesEventArgs e) {
             Cursor.Position = new Point(e.X, e.Y);
         }
 
