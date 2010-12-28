@@ -115,6 +115,9 @@
     <Compile Include="KinectCloud.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CLNUIDevice.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
