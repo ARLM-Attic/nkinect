@@ -13,6 +13,7 @@ using namespace System::IO;
 using namespace System::Text;
 using namespace System::Drawing;
 using namespace System::Threading;
+using namespace System::Reflection;
 using namespace System::Windows::Forms;
 using namespace System::Drawing::Imaging;
 
@@ -21,6 +22,8 @@ namespace NKinect {
 		static int CreatedKinects = 0;
 
 		private:
+			static String^ ExecutableDir = Path::GetDirectoryName(Assembly::GetExecutingAssembly()->Location);
+
 			static int GetInstalledCodeBase() {
 				HDEVINFO hDevInfo = SetupDiGetClassDevs(0, 0, 0, DIGCF_PRESENT | DIGCF_ALLCLASSES);
 				SP_DEVINFO_DATA DeviceInfoData;
@@ -64,17 +67,24 @@ namespace NKinect {
 				return returnValue;
 			}
 
+ 			static bool RequiredDLLsFound() {
+				bool clNuiFound = File::Exists(Path::Combine(ExecutableDir, "CLNUIDevice.dll"));
+
+				return clNuiFound;
+			}
 		public:
 			static BaseKinect^ GetKinect() {
 				int codeBase = GetInstalledCodeBase();
+
+				if (!RequiredDLLsFound())
+					throw KinectException::RequiredDllsNotFound;
 
 				switch (codeBase) {
 					case Codebase::CodeLabs:
 						return gcnew CLKinect(0);
 				}
 
-				MessageBox::Show("No Kinect detected.\n\nPlease verify that it's connected and that you have CL NUI / OpenKinect installed.", "NKinect", MessageBoxButtons::OK, MessageBoxIcon::Error);
-				throw gcnew KinectException("No Kinect detected. Please verify that it's connected and that you have CL NUI / OpenKinect installed.");
+				throw KinectException::NotFound;
 			}
 	};
 }
