@@ -1,4 +1,8 @@
 #pragma once
+#include <cv.h>
+#include <cxcore.h>
+#include <highgui.h>
+
 using namespace System;
 using namespace System::Threading;
 using namespace System::Drawing;
@@ -48,6 +52,11 @@ namespace NKinect {
 				NativeArray[idx + 2]	= third;
 			}
 
+			void CopyCvImage(IplImage* image) {
+				for (int i = 0; i < image->imageSize; i += 3)
+					SetBytes(i, image->imageData[i], image->imageData[i + 1], image->imageData[i + 2]);
+			}
+
 			void End() {
 				if (ByteArray == nullptr)
 					return;
@@ -61,6 +70,28 @@ namespace NKinect {
 					return;
 
 				Bmp->RotateFlip(RotateFlipType::RotateNoneFlipX);
+
+				for (int row = 0; row < 480; row++)
+					for (int col = 0; col < 320; col++)
+						SwitchTriplet(row, col, 639 - col);
 			}
+
+		private:
+			void SwitchTriplet(int row, int src, int dest) {
+				int srcIndex = row * 1920 + (src * 3);
+				int dstIndex = row * 1920 + (dest * 3);
+
+				SwapByte(srcIndex, dstIndex);
+				SwapByte(srcIndex + 1, dstIndex + 1);
+				SwapByte(srcIndex + 2, dstIndex + 2);
+			}
+
+			void SwapByte(int src, int dest) {
+				USHORT temp			= NativeArray[dest];
+
+				NativeArray[dest]	= NativeArray[src];
+				NativeArray[src]	= temp;
+			}
+
 		};
 }

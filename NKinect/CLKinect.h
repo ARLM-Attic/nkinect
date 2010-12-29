@@ -125,16 +125,16 @@ namespace NKinect {
 					DepthsCalculated(this, gcnew DepthEventArgs(Depths));
 
 					if (imageUpdateEnabled)
-						ImageUpdated(this, gcnew CameraImageEventArgs(RgbImage->Bmp));
+						ImageUpdated(this, gcnew CameraImageEventArgs(RgbImage));
 
 					if (depthImageUpdateEnabled)
-						DepthImageUpdated(this, gcnew CameraImageEventArgs(GrayImage->Bmp));
+						DepthImageUpdated(this, gcnew CameraImageEventArgs(GrayImage));
 
 					if (thresholdDepthImageUpdateEnabled)
-						ThresholdDepthImageUpdated(this, gcnew CameraImageEventArgs(ThresImage->Bmp));
+						ThresholdDepthImageUpdated(this, gcnew CameraImageEventArgs(ThresImage));
 
 					if (thresholdDepthImageUpdateEnabled)
-						ThresholdColorImageUpdated(this, gcnew CameraImageEventArgs(RgbTImage->Bmp));
+						ThresholdColorImageUpdated(this, gcnew CameraImageEventArgs(RgbTImage));
 
 					SetLed(Orange);
 				}

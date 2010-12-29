@@ -1,6 +1,5 @@
 ﻿#region
 using System;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -10,6 +9,7 @@ using System.Windows.Forms;
 namespace NKinect.Mouse {
     public partial class FrmMain : Form {
         protected double[][] Depths { get; set; }
+        protected bool IsMouseView { get; set; }
         protected BaseKinect Kinect { get; set; }
         protected MouseTracker KinectMouse { get; set; }
 
@@ -29,6 +29,7 @@ namespace NKinect.Mouse {
             KinectMouse = new MouseTracker(Kinect);
 
             KinectMouse.Kinect.ThresholdDepthImageUpdated += KinectThresholdDepthImageUpdated;
+            KinectMouse.MouseViewChanged += KinectMouseViewChanged;
             KinectMouse.Kinect.DepthsCalculated += KinectDepthsCalculated;
             KinectMouse.Kinect.MinDistanceThreshold = trkMinDistance.Value;
             KinectMouse.Kinect.MaxDistanceThreshold = trkMaxDistance.Value;
@@ -41,6 +42,17 @@ namespace NKinect.Mouse {
         }
 
         private void KinectThresholdDepthImageUpdated(object sender, CameraImageEventArgs e) {
+            if (IsMouseView)
+                return;
+
+            imgKinect.Image = e.CameraImage;
+            imgKinect.Invalidate();
+        }
+
+        private void KinectMouseViewChanged(object sender, CameraImageEventArgs e) {
+            if (!IsMouseView)
+                return;
+
             imgKinect.Image = e.CameraImage;
             imgKinect.Invalidate();
         }
@@ -87,6 +99,10 @@ namespace NKinect.Mouse {
 
         private void ChkMouseCheckedChanged(object sender, EventArgs e) {
             KinectMouse.Enabled = chkMouse.Checked;
+        }
+
+        private void ChkMouseViewCheckedChanged(object sender, EventArgs e) {
+            IsMouseView = chkMouseView.Checked;
         }
     }
 }

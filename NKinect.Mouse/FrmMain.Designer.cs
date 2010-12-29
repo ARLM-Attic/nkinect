@@ -32,6 +32,7 @@
             this.chkMouse = new System.Windows.Forms.CheckBox();
             this.hstVertical = new AForge.Controls.Histogram();
             this.hstHorizontal = new AForge.Controls.Histogram();
+            this.chkMouseView = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgKinect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkMinDistance)).BeginInit();
@@ -131,11 +132,23 @@
             this.hstHorizontal.TabIndex = 12;
             this.hstHorizontal.Values = null;
             // 
+            // chkMouseView
+            // 
+            this.chkMouseView.AutoSize = true;
+            this.chkMouseView.Location = new System.Drawing.Point(657, 548);
+            this.chkMouseView.Name = "chkMouseView";
+            this.chkMouseView.Size = new System.Drawing.Size(89, 17);
+            this.chkMouseView.TabIndex = 13;
+            this.chkMouseView.Text = "Mouse View";
+            this.chkMouseView.UseVisualStyleBackColor = true;
+            this.chkMouseView.CheckedChanged += new System.EventHandler(this.ChkMouseViewCheckedChanged);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(745, 577);
+            this.Controls.Add(this.chkMouseView);
             this.Controls.Add(this.hstHorizontal);
             this.Controls.Add(this.hstVertical);
             this.Controls.Add(this.chkMouse);
@@ -172,6 +185,7 @@
         private System.Windows.Forms.CheckBox chkMouse;
         private AForge.Controls.Histogram hstVertical;
         private AForge.Controls.Histogram hstHorizontal;
+        private System.Windows.Forms.CheckBox chkMouseView;
     }
 }
 
