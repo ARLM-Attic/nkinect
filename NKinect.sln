@@ -10,11 +10,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NKinect", "NKinect\NKinect.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKinect.Mouse", "NKinect.Mouse\NKinect.Mouse.csproj", "{C1D93C06-C583-4F1C-BA31-92A604F25799}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NKinect.OpenCV", "NKinect.OpenCV\NKinect.OpenCV.vcxproj", "{48916714-6647-4CF4-B5D3-837AF682862E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKinect.XNA", "NKinect.XNA\NKinect.XNA\NKinect.XNA.csproj", "{2F176983-8D9F-42E6-AD66-00A56361DEC2}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "NKinect.XNAContent", "NKinect.XNA\NKinect.XNAContent\NKinect.XNAContent.contentproj", "{84BDF1F8-117E-450C-8059-D8F771C4E55C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKinect.XNAContent", "NKinect.XNA\NKinect.XNAContent\NKinect.XNAContent.contentproj", "{84BDF1F8-117E-450C-8059-D8F771C4E55C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NKinect.OpenCV", "NKinect.OpenCV\NKinect.OpenCV.vcxproj", "{C582ACEC-2601-433B-8B2A-AFDE630EF763}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,16 +56,6 @@ Global
 		{C1D93C06-C583-4F1C-BA31-92A604F25799}.Release|Win32.ActiveCfg = Release|x86
 		{C1D93C06-C583-4F1C-BA31-92A604F25799}.Release|x86.ActiveCfg = Release|x86
 		{C1D93C06-C583-4F1C-BA31-92A604F25799}.Release|x86.Build.0 = Release|x86
-		{48916714-6647-4CF4-B5D3-837AF682862E}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{48916714-6647-4CF4-B5D3-837AF682862E}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{48916714-6647-4CF4-B5D3-837AF682862E}.Debug|Win32.ActiveCfg = Debug|Win32
-		{48916714-6647-4CF4-B5D3-837AF682862E}.Debug|Win32.Build.0 = Debug|Win32
-		{48916714-6647-4CF4-B5D3-837AF682862E}.Debug|x86.ActiveCfg = Debug|Win32
-		{48916714-6647-4CF4-B5D3-837AF682862E}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{48916714-6647-4CF4-B5D3-837AF682862E}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{48916714-6647-4CF4-B5D3-837AF682862E}.Release|Win32.ActiveCfg = Release|Win32
-		{48916714-6647-4CF4-B5D3-837AF682862E}.Release|Win32.Build.0 = Release|Win32
-		{48916714-6647-4CF4-B5D3-837AF682862E}.Release|x86.ActiveCfg = Release|Win32
 		{2F176983-8D9F-42E6-AD66-00A56361DEC2}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{2F176983-8D9F-42E6-AD66-00A56361DEC2}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{2F176983-8D9F-42E6-AD66-00A56361DEC2}.Debug|Win32.ActiveCfg = Debug|x86
@@ -82,6 +72,16 @@ Global
 		{84BDF1F8-117E-450C-8059-D8F771C4E55C}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{84BDF1F8-117E-450C-8059-D8F771C4E55C}.Release|Win32.ActiveCfg = Release|x86
 		{84BDF1F8-117E-450C-8059-D8F771C4E55C}.Release|x86.ActiveCfg = Release|x86
+		{C582ACEC-2601-433B-8B2A-AFDE630EF763}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{C582ACEC-2601-433B-8B2A-AFDE630EF763}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{C582ACEC-2601-433B-8B2A-AFDE630EF763}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C582ACEC-2601-433B-8B2A-AFDE630EF763}.Debug|Win32.Build.0 = Debug|Win32
+		{C582ACEC-2601-433B-8B2A-AFDE630EF763}.Debug|x86.ActiveCfg = Debug|Win32
+		{C582ACEC-2601-433B-8B2A-AFDE630EF763}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{C582ACEC-2601-433B-8B2A-AFDE630EF763}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{C582ACEC-2601-433B-8B2A-AFDE630EF763}.Release|Win32.ActiveCfg = Release|Win32
+		{C582ACEC-2601-433B-8B2A-AFDE630EF763}.Release|Win32.Build.0 = Release|Win32
+		{C582ACEC-2601-433B-8B2A-AFDE630EF763}.Release|x86.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

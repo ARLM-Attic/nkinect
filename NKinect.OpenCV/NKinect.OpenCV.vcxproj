@@ -11,21 +11,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{66A93B19-13C9-45B7-8E2B-E6B237F9CC90}</ProjectGuid>
+    <ProjectGuid>{C582ACEC-2601-433B-8B2A-AFDE630EF763}</ProjectGuid>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>NKinect</RootNamespace>
-    <ProjectName>NKinect</ProjectName>
+    <RootNamespace>NKinectOpenCV</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CLRSupport>true</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CLRSupport>true</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
@@ -44,11 +43,13 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\OpenCV2.2\include;C:\OpenCV2.2\include\opencv;$(IncludePath)</IncludePath>
     <LibraryPath>C:\OpenCV2.2\lib\;$(LibraryPath)</LibraryPath>
+    <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>C:\OpenCV2.2\include;C:\OpenCV2.2\include\opencv;$(IncludePath)</IncludePath>
     <LibraryPath>C:\OpenCV2.2\lib\;$(LibraryPath)</LibraryPath>
+    <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -56,12 +57,10 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Code Laboratories\CL NUI Platform\SDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>CLNUIDevice.lib;setupapi.lib;user32.lib;opencv_objdetect220d.lib;opencv_core220d.lib;opencv_highgui220d.lib;opencv_video220d.lib;opencv_ml220d.lib;opencv_legacy220d.lib;opencv_imgproc220d.lib;</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Code Laboratories\CL NUI Platform\SDK\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_objdetect220d.lib;opencv_core220d.lib;opencv_highgui220d.lib;opencv_video220d.lib;opencv_ml220d.lib;opencv_legacy220d.lib;opencv_imgproc220d.lib;</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -69,69 +68,34 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Code Laboratories\CL NUI Platform\SDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>CLNUIDevice.lib;setupapi.lib;user32.lib;opencv_objdetect220.lib;opencv_core220.lib;opencv_highgui220.lib;opencv_video220.lib;opencv_ml220.lib;opencv_legacy220.lib;opencv_imgproc220.lib;</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Code Laboratories\CL NUI Platform\SDK\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalDependencies>opencv_objdetect220.lib;opencv_core220.lib;opencv_highgui220.lib;opencv_video220.lib;opencv_ml220.lib;opencv_legacy220.lib;opencv_imgproc220.lib;</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Reference Include="AForge, Version=2.1.4.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb">
-      <HintPath>C:\Program Files (x86)\AForge.NET\Framework\Release\AForge.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Imaging, Version=2.1.4.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b">
-      <HintPath>C:\Program Files (x86)\AForge.NET\Framework\Release\AForge.Imaging.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Math, Version=2.1.4.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9">
-      <HintPath>C:\Program Files (x86)\AForge.NET\Framework\Release\AForge.Math.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Vision, Version=2.1.1.0, Culture=neutral, PublicKeyToken=b612fa915eefaa06">
-      <HintPath>C:\Program Files (x86)\AForge.NET\Framework\Release\AForge.Vision.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Accelerometer.h" />
-    <ClInclude Include="AccelerometerEventArgs.h" />
-    <ClInclude Include="BitmapDataArray.h" />
-    <ClInclude Include="CameraImageEventArgs.h" />
-    <ClInclude Include="Codebase.h" />
-    <ClInclude Include="DepthEventArgs.h" />
-    <ClInclude Include="BaseKinect.h" />
-    <ClInclude Include="KinectException.h" />
-    <ClInclude Include="KinectFactory.h" />
-    <ClInclude Include="LedColor.h" />
-    <ClInclude Include="Library.h" />
-    <ClInclude Include="CLKinect.h" />
-    <ClInclude Include="MouseCoordinatesEventArgs.h" />
-    <ClInclude Include="MouseTracker.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="Stdafx.h" />
-    <ClInclude Include="Unit.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="Kinect.cpp" />
-    <ClCompile Include="Stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.ico" />
-    <None Include="C:\Program Files (x86)\Code Laboratories\CL NUI Platform\SDK\Bin\CLNUIDevice.dll">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="NKinect.OpenCV.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

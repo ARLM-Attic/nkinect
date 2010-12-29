@@ -1,4 +1,9 @@
 #pragma once
+#include <windows.h>
+#include <cv.h>
+#include <cxcore.h>
+#include <highgui.h>
+
 #include "BaseKinect.h"
 #include "MouseCoordinatesEventArgs.h"
 
