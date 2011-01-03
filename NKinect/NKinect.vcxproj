@@ -93,6 +93,7 @@
     <ClInclude Include="Codebase.h" />
     <ClInclude Include="DepthEventArgs.h" />
     <ClInclude Include="BaseKinect.h" />
+    <ClInclude Include="ImageCalibrator.h" />
     <ClInclude Include="KinectCalibrator.h" />
     <ClInclude Include="KinectException.h" />
     <ClInclude Include="KinectFactory.h" />
