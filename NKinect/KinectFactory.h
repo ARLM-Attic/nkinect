@@ -7,6 +7,7 @@
 #include "CLKinect.h"
 #include "MouseTracker.h"
 #include "KinectException.h"
+#include "KinectCalibrator.h"
 
 using namespace System;
 using namespace System::IO;
