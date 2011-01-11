@@ -8,10 +8,6 @@
   </SettingsComponent>
   <RecentFiles>
     <RecentFiles>
-      <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:AssemblyInfo.cs" caret="575" fromTop="0" />
-      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.resx" caret="5814" fromTop="16" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:app.rc" caret="12" fromTop="0" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:resource.h" caret="35" fromTop="0" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:Settings.Designer.cs" caret="589" fromTop="13" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:Settings.settings" caret="85" fromTop="0" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:Resources.Designer.cs" caret="1377" fromTop="16" />
@@ -19,56 +15,61 @@
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/f:FrmMain.resx" caret="5814" fromTop="16" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/f:Program.cs" caret="420" fromTop="10" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:Accelerometer.h" caret="0" fromTop="0" />
-      <File id="48916714-6647-4CF4-B5D3-837AF682862E/f:NKinect.OpenCV.cpp" caret="565" fromTop="12" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:Kinect.cpp" caret="84" fromTop="4" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CameraImageEventArgs.h" caret="354" fromTop="15" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BitmapDataArray.h" caret="638" fromTop="12" />
-      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.Designer.cs" caret="8814" fromTop="18" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:MouseCoordinatesEventArgs.h" caret="358" fromTop="13" />
       <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/d:Properties/f:AssemblyInfo.cs" caret="283" fromTop="9" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:Unit.h" caret="210" fromTop="7" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:Codebase.h" caret="179" fromTop="4" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BaseKinect.h" caret="4677" fromTop="13" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectException.h" caret="189" fromTop="6" />
-      <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/f:FrmMain.cs" caret="3738" fromTop="11" />
       <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:Program.cs" caret="344" fromTop="11" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="5270" fromTop="14" />
-      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.cs" caret="1314" fromTop="10" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:MouseTracker.h" caret="786" fromTop="22" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="1936" fromTop="13" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="2602" fromTop="39" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectException.h" caret="195" fromTop="7" />
+      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="2283" fromTop="18" />
+      <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/f:FrmMain.cs" caret="4108" fromTop="13" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BaseKinect.h" caret="0" fromTop="0" />
+      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:Program.cs" caret="69" fromTop="5" />
+      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.cs" caret="1780" fromTop="15" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BitmapDataArray.h" caret="2232" fromTop="58" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="2087" fromTop="0" />
+      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.Designer.cs" caret="0" fromTop="0" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="244" fromTop="9" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:resource.h" caret="0" fromTop="0" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CameraImageEventArgs.h" caret="534" fromTop="22" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:MouseTracker.h" caret="3891" fromTop="19" />
+      <File id="82D001DF-EB7E-4CE1-87F5-ADA8BA06E76B/f:FrmMain.cs" caret="1068" fromTop="22" />
+      <File id="82D001DF-EB7E-4CE1-87F5-ADA8BA06E76B/f:Program.cs" caret="441" fromTop="12" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="893" fromTop="18" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="235" fromTop="6" />
     </RecentFiles>
     <RecentEdits>
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="109" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="9" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="8" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="25" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="25" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="10" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="120" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="10" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="8" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="123" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="15" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="15" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="25" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="4" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="8" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="18" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="8" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="5" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3409" fromTop="120" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="2069" fromTop="8" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="2688" fromTop="19" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3255" fromTop="21" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="2273" fromTop="16" />
-      <File id="2F176983-8D9F-42E6-AD66-00A56361DEC2/f:KinectCloud.cs" caret="3352" fromTop="31" />
-      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.cs" caret="1314" fromTop="17" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:MouseTracker.h" caret="1949" fromTop="18" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:MouseTracker.h" caret="1526" fromTop="3" />
-      <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.cs" caret="1314" fromTop="10" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="411" fromTop="15" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="2309" fromTop="19" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="1209" fromTop="7" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="1209" fromTop="31" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="1209" fromTop="27" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="1209" fromTop="12" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="1209" fromTop="19" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="1209" fromTop="17" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="1209" fromTop="31" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="1209" fromTop="26" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="1209" fromTop="9" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="1203" fromTop="31" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="315" fromTop="6" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="315" fromTop="17" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="315" fromTop="18" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="142" fromTop="12" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="4299" fromTop="10" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="55" fromTop="1" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="315" fromTop="22" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="315" fromTop="25" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="228" fromTop="10" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="562" fromTop="10" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="788" fromTop="18" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="142" fromTop="4" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="315" fromTop="0" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="4286" fromTop="31" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="2595" fromTop="8" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="2391" fromTop="25" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="1685" fromTop="25" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="893" fromTop="27" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="171" fromTop="4" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="421" fromTop="14" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -87,7 +88,7 @@
       <Item value="Stop`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Default">
-      <Item value="Kinect" priority="22" />
+      <Item value="Kinect" priority="25" />
       <Item value="lblAccelerometer" priority="0" />
       <Item value="string" priority="4" />
       <Item value="Invoke`0" priority="1" />
@@ -100,19 +101,19 @@
       <Item value="int" priority="5" />
       <Item value="Depths" priority="5" />
       <Item value="Length" priority="4" />
-      <Item value="if" priority="6" />
+      <Item value="if" priority="9" />
       <Item value="ua" priority="0" />
       <Item value="list" priority="1" />
       <Item value="NKinect" priority="1" />
       <Item value="Kinect`0" priority="0" />
       <Item value="cmbImageType" priority="1" />
-      <Item value="return" priority="1" />
-      <Item value="protected" priority="14" />
+      <Item value="return" priority="3" />
+      <Item value="protected" priority="17" />
       <Item value="Mode" priority="0" />
-      <Item value="e" priority="8" />
+      <Item value="e" priority="9" />
       <Item value="Count" priority="1" />
       <Item value="Timer`0" priority="0" />
-      <Item value="new" priority="22" />
+      <Item value="new" priority="23" />
       <Item value="Stopwatch" priority="0" />
       <Item value="Timer" priority="1" />
       <Item value="Text" priority="0" />
@@ -120,7 +121,7 @@
       <Item value="Enum`0" priority="0" />
       <Item value="switch" priority="1" />
       <Item value="case" priority="6" />
-      <Item value="Unit`0" priority="1" />
+      <Item value="Unit`0" priority="3" />
       <Item value="try" priority="0" />
       <Item value="String`0" priority="0" />
       <Item value="str" priority="3" />
@@ -130,8 +131,8 @@
       <Item value="lblMinDistance" priority="0" />
       <Item value="lblMaxDistance" priority="0" />
       <Item value="Math`0" priority="0" />
-      <Item value="BaseKinect`0" priority="3" />
-      <Item value="KinectFactory`0" priority="1" />
+      <Item value="BaseKinect`0" priority="4" />
+      <Item value="KinectFactory`0" priority="2" />
       <Item value="imgKinect" priority="1" />
       <Item value="trkPosition" priority="0" />
       <Item value="trkDistance" priority="3" />
@@ -184,7 +185,7 @@
       <Item value="Clipboard`0" priority="0" />
       <Item value="imgDisplay" priority="0" />
       <Item value="MouseTracker" priority="0" />
-      <Item value="KinectMouse" priority="2" />
+      <Item value="KinectMouse" priority="3" />
       <Item value="EventHandler&lt;MouseCoordinatesEventArgs&gt;" priority="0" />
       <Item value="chkMouse" priority="0" />
       <Item value="Microsoft" priority="0" />
@@ -206,7 +207,7 @@
       <Item value="Vector3`0" priority="5" />
       <Item value="Positions" priority="6" />
       <Item value="Vector3" priority="2" />
-      <Item value="true" priority="0" />
+      <Item value="true" priority="1" />
       <Item value="Cube" priority="1" />
       <Item value="CameraPosition" priority="1" />
       <Item value="object" priority="0" />
@@ -232,6 +233,15 @@
       <Item value="minDistance" priority="0" />
       <Item value="scaleFactor" priority="0" />
       <Item value="newDepth" priority="3" />
+      <Item value="KinectThresholdDepthImageUpdated`0" priority="0" />
+      <Item value="bool" priority="0" />
+      <Item value="IsMouseView" priority="4" />
+      <Item value="chkMouseView" priority="1" />
+      <Item value="KinectMouseViewChanged`0" priority="0" />
+      <Item value="picColor" priority="1" />
+      <Item value="Calibrator" priority="1" />
+      <Item value="KinectCalibrator" priority="0" />
+      <Item value="picCalibrated" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.Label">
       <Item value="Text" priority="3" />
@@ -266,6 +276,7 @@
       <Item value="SetPosition`0" priority="0" />
       <Item value="Start`0" priority="1" />
       <Item value="DepthsCalculated" priority="1" />
+      <Item value="ImageUpdated" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Diagnostics.Stopwatch">
       <Item value="Start`0" priority="0" />
@@ -295,14 +306,15 @@
       <Item value="Minimum" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@NKinect.KinectFactory">
-      <Item value="GetKinect`0" priority="1" />
+      <Item value="GetKinect`0" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.PictureBox">
-      <Item value="Image" priority="1" />
-      <Item value="Invalidate`0" priority="0" />
+      <Item value="Image" priority="2" />
+      <Item value="Invalidate`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:NKinect.CameraImageEventArgs">
-      <Item value="CameraImage" priority="3" />
+      <Item value="CameraImage" priority="4" />
+      <Item value="RawBytes" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Diagnostics.Debug">
       <Item value="WriteLine`0" priority="2" />
@@ -391,6 +403,8 @@
     <ItemStatistics item="Qualified:NKinect.MouseTracker">
       <Item value="MovementDetected" priority="0" />
       <Item value="ClickDetected" priority="0" />
+      <Item value="MouseViewChanged" priority="1" />
+      <Item value="Kinect" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:NKinect.MouseCoordinatesEventArgs">
       <Item value="Coordinates" priority="1" />
@@ -398,7 +412,8 @@
       <Item value="Y" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.CheckBox">
-      <Item value="CheckAlign" priority="0" />
+      <Item value="CheckAlign" priority="1" />
+      <Item value="Checked" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@Microsoft.Xna.Framework.Input.Keyboard">
       <Item value="GetState`0" priority="1" />
@@ -467,6 +482,14 @@
     <ItemStatistics item="Qualified:@Microsoft.Xna.Framework.Vector2">
       <Item value="Zero" priority="0" />
       <Item value="One" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@NKinect.Unit">
+      <Item value="Inches" priority="0" />
+      <Item value="Meters" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:NKinect.KinectCalibrator">
+      <Item value="CalibratedImageUpdated" priority="0" />
+      <Item value="Start`0" priority="0" />
     </ItemStatistics>
   </CompletionStatisticsManager>
 </Configuration>
