@@ -8,7 +8,6 @@
   </SettingsComponent>
   <RecentFiles>
     <RecentFiles>
-      <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:Settings.Designer.cs" caret="589" fromTop="13" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:Settings.settings" caret="85" fromTop="0" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:Resources.Designer.cs" caret="1377" fromTop="16" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/d:Properties/f:Resources.resx" caret="5121" fromTop="16" />
@@ -30,14 +29,14 @@
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BitmapDataArray.h" caret="2232" fromTop="58" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="2087" fromTop="0" />
       <File id="C1D93C06-C583-4F1C-BA31-92A604F25799/f:FrmMain.Designer.cs" caret="0" fromTop="0" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="244" fromTop="9" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:resource.h" caret="0" fromTop="0" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CameraImageEventArgs.h" caret="534" fromTop="22" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:MouseTracker.h" caret="3891" fromTop="19" />
       <File id="82D001DF-EB7E-4CE1-87F5-ADA8BA06E76B/f:FrmMain.cs" caret="1068" fromTop="22" />
       <File id="82D001DF-EB7E-4CE1-87F5-ADA8BA06E76B/f:Program.cs" caret="441" fromTop="12" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="473" fromTop="17" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="893" fromTop="18" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="235" fromTop="6" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="928" fromTop="8" />
     </RecentFiles>
     <RecentEdits>
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="1209" fromTop="7" />

@@ -8,6 +8,7 @@
 #include "MouseTracker.h"
 #include "KinectException.h"
 #include "KinectCalibrator.h"
+#include "PrimeSensor.h"
 
 using namespace System;
 using namespace System::IO;
@@ -17,6 +18,7 @@ using namespace System::Threading;
 using namespace System::Reflection;
 using namespace System::Windows::Forms;
 using namespace System::Drawing::Imaging;
+using namespace System::Diagnostics;
 
 namespace NKinect {
 	public ref class KinectFactory abstract sealed {
@@ -52,8 +54,15 @@ namespace NKinect {
 
 					String^ str = gcnew String(buffer);
 
-					if (str->Equals("NUI Motor"))
+					if (str->Equals("NUI Motor")) {
 						returnValue = Codebase::CodeLabs;
+
+						Debug::WriteLine("Using CodeLaboratories SDK");
+					} else if (str->Equals("PrimeSensor Development Kit 5.x")) {
+						returnValue = Codebase::OpenNi;
+
+						Debug::WriteLine("Using OpenNI SDK");
+					}
 
 					if (buffer) 
 						LocalFree(buffer);
@@ -83,6 +92,8 @@ namespace NKinect {
 				switch (codeBase) {
 					case Codebase::CodeLabs:
 						return gcnew CLKinect(0);
+					case Codebase::OpenNi:
+						return gcnew PrimeSensor();
 				}
 
 				throw KinectException::NotFound;

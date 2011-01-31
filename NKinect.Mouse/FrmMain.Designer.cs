@@ -30,8 +30,6 @@
             this.trkMaxDistance = new System.Windows.Forms.TrackBar();
             this.btnAuto = new System.Windows.Forms.Button();
             this.chkMouse = new System.Windows.Forms.CheckBox();
-            this.hstVertical = new AForge.Controls.Histogram();
-            this.hstHorizontal = new AForge.Controls.Histogram();
             this.chkMouseView = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgKinect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkPosition)).BeginInit();
@@ -50,7 +48,7 @@
             // 
             // trkPosition
             // 
-            this.trkPosition.Location = new System.Drawing.Point(714, 4);
+            this.trkPosition.Location = new System.Drawing.Point(663, 12);
             this.trkPosition.Maximum = 8000;
             this.trkPosition.Minimum = -8000;
             this.trkPosition.Name = "trkPosition";
@@ -62,7 +60,7 @@
             // 
             // trkMinDistance
             // 
-            this.trkMinDistance.Location = new System.Drawing.Point(3, 550);
+            this.trkMinDistance.Location = new System.Drawing.Point(12, 498);
             this.trkMinDistance.Maximum = 900;
             this.trkMinDistance.Minimum = 20;
             this.trkMinDistance.Name = "trkMinDistance";
@@ -76,7 +74,7 @@
             // 
             this.lblSize.AutoSize = true;
             this.lblSize.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSize.Location = new System.Drawing.Point(579, 553);
+            this.lblSize.Location = new System.Drawing.Point(588, 501);
             this.lblSize.Name = "lblSize";
             this.lblSize.Size = new System.Drawing.Size(71, 13);
             this.lblSize.TabIndex = 7;
@@ -84,7 +82,7 @@
             // 
             // trkMaxDistance
             // 
-            this.trkMaxDistance.Location = new System.Drawing.Point(292, 550);
+            this.trkMaxDistance.Location = new System.Drawing.Point(301, 498);
             this.trkMaxDistance.Maximum = 900;
             this.trkMaxDistance.Minimum = 20;
             this.trkMaxDistance.Name = "trkMaxDistance";
@@ -96,7 +94,7 @@
             // 
             // btnAuto
             // 
-            this.btnAuto.Location = new System.Drawing.Point(657, 500);
+            this.btnAuto.Location = new System.Drawing.Point(240, 520);
             this.btnAuto.Name = "btnAuto";
             this.btnAuto.Size = new System.Drawing.Size(51, 23);
             this.btnAuto.TabIndex = 9;
@@ -107,7 +105,7 @@
             // chkMouse
             // 
             this.chkMouse.AutoSize = true;
-            this.chkMouse.Location = new System.Drawing.Point(657, 530);
+            this.chkMouse.Location = new System.Drawing.Point(297, 524);
             this.chkMouse.Name = "chkMouse";
             this.chkMouse.Size = new System.Drawing.Size(61, 17);
             this.chkMouse.TabIndex = 10;
@@ -115,27 +113,10 @@
             this.chkMouse.UseVisualStyleBackColor = true;
             this.chkMouse.CheckedChanged += new System.EventHandler(this.ChkMouseCheckedChanged);
             // 
-            // hstVertical
-            // 
-            this.hstVertical.IsVertical = true;
-            this.hstVertical.Location = new System.Drawing.Point(657, 12);
-            this.hstVertical.Name = "hstVertical";
-            this.hstVertical.Size = new System.Drawing.Size(51, 480);
-            this.hstVertical.TabIndex = 11;
-            this.hstVertical.Values = null;
-            // 
-            // hstHorizontal
-            // 
-            this.hstHorizontal.Location = new System.Drawing.Point(11, 501);
-            this.hstHorizontal.Name = "hstHorizontal";
-            this.hstHorizontal.Size = new System.Drawing.Size(640, 43);
-            this.hstHorizontal.TabIndex = 12;
-            this.hstHorizontal.Values = null;
-            // 
             // chkMouseView
             // 
             this.chkMouseView.AutoSize = true;
-            this.chkMouseView.Location = new System.Drawing.Point(657, 548);
+            this.chkMouseView.Location = new System.Drawing.Point(364, 524);
             this.chkMouseView.Name = "chkMouseView";
             this.chkMouseView.Size = new System.Drawing.Size(89, 17);
             this.chkMouseView.TabIndex = 13;
@@ -147,10 +128,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 577);
+            this.ClientSize = new System.Drawing.Size(692, 553);
             this.Controls.Add(this.chkMouseView);
-            this.Controls.Add(this.hstHorizontal);
-            this.Controls.Add(this.hstVertical);
             this.Controls.Add(this.chkMouse);
             this.Controls.Add(this.btnAuto);
             this.Controls.Add(this.lblSize);
@@ -183,8 +162,6 @@
         private System.Windows.Forms.TrackBar trkMaxDistance;
         private System.Windows.Forms.Button btnAuto;
         private System.Windows.Forms.CheckBox chkMouse;
-        private AForge.Controls.Histogram hstVertical;
-        private AForge.Controls.Histogram hstHorizontal;
         private System.Windows.Forms.CheckBox chkMouseView;
     }
 }
