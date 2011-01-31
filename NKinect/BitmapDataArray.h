@@ -31,6 +31,10 @@ namespace NKinect {
 				delete[] NativeArray;
 			}
 
+			~BitmapDataArray() {
+				delete[] NativeArray;
+			}
+
 			void Reset() {
 				if (ByteArray == nullptr || NativeArray == nullptr)
 					return;

@@ -91,22 +91,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Accelerometer.h" />
-    <ClInclude Include="AccelerometerEventArgs.h" />
     <ClInclude Include="BitmapDataArray.h" />
     <ClInclude Include="CameraImageEventArgs.h" />
-    <ClInclude Include="Codebase.h" />
     <ClInclude Include="DepthEventArgs.h" />
     <ClInclude Include="BaseKinect.h" />
-    <ClInclude Include="ImageCalibrator.h" />
-    <ClInclude Include="KinectCalibrator.h" />
     <ClInclude Include="KinectException.h" />
-    <ClInclude Include="KinectFactory.h" />
-    <ClInclude Include="LedColor.h" />
     <ClInclude Include="CLKinect.h" />
-    <ClInclude Include="MouseCoordinatesEventArgs.h" />
-    <ClInclude Include="MouseTracker.h" />
-    <ClInclude Include="PrimeSensor.h" />
+    <ClInclude Include="Sensor.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="Unit.h" />
@@ -121,9 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />
-    <None Include="C:\Program Files (x86)\Code Laboratories\CL NUI Platform\SDK\Bin\CLNUIDevice.dll">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />

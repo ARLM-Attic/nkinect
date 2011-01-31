@@ -21,19 +21,10 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Accelerometer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AccelerometerEventArgs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DepthEventArgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CameraImageEventArgs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LedColor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BaseKinect.h">
@@ -42,34 +33,16 @@
     <ClInclude Include="CLKinect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="KinectFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Unit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BitmapDataArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MouseTracker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MouseCoordinatesEventArgs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Codebase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="KinectException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="KinectCalibrator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageCalibrator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PrimeSensor.h">
+    <ClInclude Include="Sensor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -88,7 +61,6 @@
     <None Include="app.ico">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="C:\Program Files (x86)\Code Laboratories\CL NUI Platform\SDK\Bin\CLNUIDevice.dll" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
