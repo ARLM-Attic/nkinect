@@ -2,7 +2,6 @@
 
 #include <windows.h>
 #include "LedColor.h"
-#include "Library.h"
 #include "Accelerometer.h"
 #include "AccelerometerEventArgs.h"
 #include "CameraImageEventArgs.h"

@@ -36,9 +36,6 @@
     <ClInclude Include="LedColor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Library.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BaseKinect.h">
       <Filter>Header Files</Filter>
     </ClInclude>

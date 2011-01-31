@@ -2,9 +2,7 @@
 #include <windows.h>
 #include <SetupAPI.h>
 #include "Codebase.h"
-#include "CLNUIDevice.h"
 #include "BaseKinect.h"
-#include "CLKinect.h"
 #include "MouseTracker.h"
 #include "KinectException.h"
 #include "KinectCalibrator.h"
@@ -76,22 +74,11 @@ namespace NKinect {
 
 				return returnValue;
 			}
-
- 			static bool RequiredDLLsFound() {
-				bool clNuiFound = File::Exists(Path::Combine(ExecutableDir, "CLNUIDevice.dll"));
-
-				return clNuiFound;
-			}
 		public:
 			static BaseKinect^ GetKinect() {
 				int codeBase = GetInstalledCodeBase();
 
-				if (!RequiredDLLsFound())
-					throw KinectException::RequiredDllsNotFound;
-
 				switch (codeBase) {
-					case Codebase::CodeLabs:
-						return gcnew CLKinect(0);
 					case Codebase::OpenNi:
 						return gcnew PrimeSensor();
 				}

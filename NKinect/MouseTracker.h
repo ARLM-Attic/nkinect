@@ -147,7 +147,6 @@ namespace NKinect {
 			property BaseKinect^ Kinect;
 			property bool Enabled;
 
-
 			MouseTracker(BaseKinect^ kinect) {
 				Kinect = kinect;
 

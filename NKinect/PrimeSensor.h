@@ -1,6 +1,5 @@
 #pragma once
 #pragma once
-#include "CLNUIDevice.h"
 #include "BaseKinect.h"
 #include "Accelerometer.h"
 
@@ -26,6 +25,9 @@ namespace NKinect {
 			XnMOpenNIContext^ Context;
 			XnMSessionManager^ SessionManager;
 			XnMSelectableSlider2D^ Slider2D;
+			XnMPushDetector^ PushDetector;
+			
+			property Point^ Coordinates;
 
 		public:
 			PrimeSensor() {
@@ -33,14 +35,33 @@ namespace NKinect {
 				Context->Init();
 
 				SessionManager = gcnew XnMSessionManager(Context, "Wave", "RaiseHand");
+
 				Slider2D = gcnew XnMSelectableSlider2D(1920, 1200);
 				Slider2D->ItemHovered += gcnew EventHandler<SelectableSlider2DHoverEventArgs^>(this, &PrimeSensor::Slider2DItemHovered);
+				
+				PushDetector = gcnew XnMPushDetector();
+				PushDetector->Push += gcnew EventHandler<PushDetectorEventArgs^>(this, &PrimeSensor::PushDetected);
 
 				SessionManager->AddListener(Slider2D);
+				SessionManager->AddListener(PushDetector);
+
+				Coordinates = gcnew Point();
+			}
+
+			void PushDetected(Object^ sender, PushDetectorEventArgs^ e) {
+				Console::WriteLine("Push detected @ " + Coordinates->X + ", " + Coordinates->Y);
+				
+				mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+				mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
 			}
 
 			void Slider2DItemHovered(Object^ sender, SelectableSlider2DHoverEventArgs^ e) {
 				Console::WriteLine(e->X + ", " + e->Y);
+
+				SetCursorPos(Coordinates->X, Coordinates->Y);
+
+				Coordinates->X = e->X;
+				Coordinates->Y = 1200 - e->Y;
 			}
 
 		protected:
