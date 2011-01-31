@@ -1,5 +1,6 @@
 ﻿#region
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using NKinect;
 
@@ -27,6 +28,23 @@ namespace NKinectTest {
             //Kinect.DepthImageUpdated += KinectDepthImageUpdated;
             //Kinect.ThresholdDepthImageUpdated += KinectThresholdDepthImageUpdated;
             //Kinect.ThresholdColorImageUpdated += KinectThresholdColorImageUpdated;
+
+            Kinect.AddControl(new Slider2DControl(1920, 1200, (x, y) => {
+                                                                  Console.WriteLine("{0}, {1}", x, y);
+                                                                  Cursor.Position = new Point(x, y);
+                                                              }));
+            Kinect.AddControl(new PushControl(() => { Console.WriteLine("Push detected"); }));
+            Kinect.AddControl(new SteadyControl(5, () => {
+                                                       Console.WriteLine("Steady hand detected");
+                                                       Win32Helper.SendLeftMouseClick();
+                                                   }));
+            Kinect.AddControl(new SwipeControl(() => Console.WriteLine("Swipe detected: UP"),
+                                               () => Console.WriteLine("Swipe detected: DOWN"),
+                                               () => Console.WriteLine("Swipe detected: RIGHT"),
+                                               () => Console.WriteLine("Swipe detected: LEFT")));
+            Kinect.AddControl(new WaveControl(() => Console.WriteLine("Wave detected")));
+            //Kinect.AddControl(new CircleControl(() => Console.WriteLine("Circle detected")));
+
 
             Kinect.Start();
         }

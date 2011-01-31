@@ -13,71 +13,242 @@ using namespace System::IO;
 using namespace System::Drawing::Imaging;
 using namespace System::Runtime::InteropServices;
 using namespace System::Text;
+using namespace System::Collections::Generic;
 using namespace ManagedNite;
 
 namespace NKinect {
-	private ref class Sensor {
+	private enum ControlType {
+		Slider2D,
+		Slider1D,
+		Swipe,
+		Wave,
+		Circle,
+		Push,
+		Steady
+	};
+
+	public ref class OpenNiControl {
 		private:
-			Thread^ RefreshThread;
+			property ControlType Type;
+
+		protected:
+
+		public:
+			XnMPointControl^ XnMControl;
+
+			OpenNiControl(ControlType type) {
+				Type = type;
+			}
+	};
+
+	public ref class WaveControl : public OpenNiControl {
+		public:
+			delegate void WaveDelegate();
+			WaveDelegate^ ControlEvent;
+
+			WaveControl(WaveDelegate^ func) : OpenNiControl(ControlType::Wave) {
+				XnMControl = gcnew XnMWaveDetector();
+
+				((XnMWaveDetector^) XnMControl)->Wave += gcnew EventHandler(this, &WaveControl::Wave);
+
+				ControlEvent = func;
+			}
+
+			void Wave(Object^ sender, EventArgs^ e) {
+				if (ControlEvent == nullptr)
+					return;
+
+				ControlEvent();
+			}
+	};
+
+	public ref class CircleControl : public OpenNiControl {
+		public:
+			delegate void CircleDelegate();
+			CircleDelegate^ ControlEvent;
+
+			CircleControl(CircleDelegate^ func) : OpenNiControl(ControlType::Circle) {
+				XnMControl = gcnew XnMCircleDetector();
+
+				((XnMCircleDetector^) XnMControl)->Circle += gcnew EventHandler<CircleEventArgs^>(this, &CircleControl::Circle);
+
+				ControlEvent = func;
+			}
+
+			void Circle(Object^ sender, CircleEventArgs^ e) {
+				if (ControlEvent == nullptr)
+					return;
+
+				ControlEvent();
+			}
+	};
+
+	public ref class SwipeControl : public OpenNiControl {
+		public:
+			delegate void SwipeDelegate();
+			SwipeDelegate^ ControlEventSwipeUp;
+			SwipeDelegate^ ControlEventSwipeDown;
+			SwipeDelegate^ ControlEventSwipeRight;
+			SwipeDelegate^ ControlEventSwipeLeft;
+
+			SwipeControl(SwipeDelegate^ up, SwipeDelegate^ down, SwipeDelegate^ right, SwipeDelegate^ left) : OpenNiControl(ControlType::Swipe) {
+				XnMControl = gcnew XnMSwipeDetector();
+
+				((XnMSwipeDetector^) XnMControl)->SwipeUp += gcnew EventHandler<SwipeDetectorEventArgs^>(this, &SwipeControl::SwipeUp);
+				((XnMSwipeDetector^) XnMControl)->SwipeDown += gcnew EventHandler<SwipeDetectorEventArgs^>(this, &SwipeControl::SwipeDown);
+				((XnMSwipeDetector^) XnMControl)->SwipeRight += gcnew EventHandler<SwipeDetectorEventArgs^>(this, &SwipeControl::SwipeRight);
+				((XnMSwipeDetector^) XnMControl)->SwipeLeft += gcnew EventHandler<SwipeDetectorEventArgs^>(this, &SwipeControl::SwipeLeft);
+
+				ControlEventSwipeUp = up;
+				ControlEventSwipeDown = down;
+				ControlEventSwipeRight = right;
+				ControlEventSwipeLeft = left;
+			}
+
+		private:
+			void SwipeUp(Object^ sender, SwipeDetectorEventArgs^ e) {
+				if (ControlEventSwipeUp == nullptr)
+					return;
+
+				ControlEventSwipeUp();
+			}
+
+			void SwipeDown(Object^ sender, SwipeDetectorEventArgs^ e) {
+				if (ControlEventSwipeDown == nullptr)
+					return;
+
+				ControlEventSwipeDown();
+			}
+
+			void SwipeRight(Object^ sender, SwipeDetectorEventArgs^ e) {
+				if (ControlEventSwipeRight == nullptr)
+					return;
+
+				ControlEventSwipeRight();
+			}
+
+			void SwipeLeft(Object^ sender, SwipeDetectorEventArgs^ e) {
+				if (ControlEventSwipeLeft == nullptr)
+					return;
+
+				ControlEventSwipeLeft();
+			}
+	};
+
+	public ref class SteadyControl : public OpenNiControl {
+		private:
+			DateTime LastFired;
+
+		public:
+			delegate void SteadyDelegate();
+			SteadyDelegate^ ControlEvent;
+			property int Duration;
+
+			SteadyControl(int duration, SteadyDelegate^ func) : OpenNiControl(ControlType::Steady) {
+				XnMControl = gcnew XnMSteadyDetector();
+
+				((XnMSteadyDetector^) XnMControl)->Steady += gcnew EventHandler<SteadyEventArgs^>(this, &SteadyControl::Steady);
+
+				ControlEvent = func;
+				LastFired = DateTime::Now;
+				Duration = duration;
+			}
+
+		private:
+			void Steady(Object^ sender, SteadyEventArgs^ e) {
+				if (ControlEvent == nullptr || DateTime::Now.Subtract(LastFired).TotalSeconds < Duration)
+					return;
+
+				ControlEvent();
+				LastFired = DateTime::Now;
+			}
+	};
+
+	public ref class PushControl : public OpenNiControl {
+		public:
+			delegate void PushDelegate();
+			PushDelegate^ ControlEvent;
+			
+			PushControl(PushDelegate^ func) : OpenNiControl(ControlType::Push) {
+				XnMControl = gcnew XnMPushDetector();
+
+				((XnMPushDetector^) XnMControl)->Push += gcnew EventHandler<PushDetectorEventArgs^>(this, &PushControl::Push);
+
+				ControlEvent = func;
+			}
+
+			void Push(Object^ sender, PushDetectorEventArgs^ e) {
+				if (ControlEvent == nullptr)
+					return;
+
+				ControlEvent();
+			}
+	};
+
+	public ref class Slider2DControl : public OpenNiControl {
+		public:
+			delegate void HoverDelegate(int x, int y);
+			HoverDelegate^ ControlEvent;
+			property int Width;
+			property int Height;
+
+			Slider2DControl(int width, int height, HoverDelegate^ func) : OpenNiControl(ControlType::Slider2D) {
+				Width = width;
+				Height = height;
+
+				XnMControl = gcnew XnMSelectableSlider2D(Width, Height);
+				((XnMSelectableSlider2D^) XnMControl)->ItemHovered += gcnew EventHandler<SelectableSlider2DHoverEventArgs^>(this, &Slider2DControl::ItemHovered);
+
+				ControlEvent = func;
+			}
+
+			void ItemHovered(Object^ sender, SelectableSlider2DHoverEventArgs^ e) {
+				if (ControlEvent == nullptr)
+					return;
+
+				ControlEvent(e->X, Height - e->Y);
+			}
+	};
+
+	public ref class Win32Helper {
+		public:
+			static void SendLeftMouseClick() {
+				mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+				mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+			}
+
+			static void SendRightMouseClick() {
+				mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
+				mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+			}
+	};
+
+	public ref class Sensor {
+		private:
+			Thread^ UpdateThread;
 			bool Running;
 			array<array<double>^>^ Depths;
 			bool Disposed;
 			XnMOpenNIContext^ Context;
 			XnMSessionManager^ SessionManager;
-			XnMSelectableSlider2D^ Slider2D;
-			XnMPushDetector^ PushDetector;
-			XnMSteadyDetector^ SteadyDetector;
-
-			property Point^ Coordinates;
 
 		public:
+			EventHandler^ SessionStarted;
+
 			Sensor() {
 				Context = gcnew XnMOpenNIContext();
 				Context->Init();
 
+				Context->SetSmoothing(0.1);
 				SessionManager = gcnew XnMSessionManager(Context, "Wave", "RaiseHand");
-
-				Slider2D = gcnew XnMSelectableSlider2D(1920, 1200);
-				Slider2D->ItemHovered += gcnew EventHandler<SelectableSlider2DHoverEventArgs^>(this, &Sensor::Slider2DItemHovered);
-				
-				PushDetector = gcnew XnMPushDetector();
-				PushDetector->Push += gcnew EventHandler<PushDetectorEventArgs^>(this, &Sensor::PushDetected);
-
-				SteadyDetector = gcnew XnMSteadyDetector();
-				SteadyDetector->Steady += gcnew EventHandler<SteadyEventArgs^>(this, &Sensor::SteadyHand);
-
-				SessionManager->AddListener(Slider2D);
-				SessionManager->AddListener(PushDetector);
-				SessionManager->AddListener(SteadyDetector);
-
-				Coordinates = gcnew Point();
 			}
 
-			void SteadyHand(Object^ sender, SteadyEventArgs^ e) {
-				Console::WriteLine("Steady hand detected @ " + Coordinates->X + ", " + Coordinates->Y);
-				
-				/*mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-				mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);*/
-			}
-
-			void PushDetected(Object^ sender, PushDetectorEventArgs^ e) {
-				Console::WriteLine("Push detected @ " + Coordinates->X + ", " + Coordinates->Y);
-
-				/*mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-				mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);*/
-			}
-
-			void Slider2DItemHovered(Object^ sender, SelectableSlider2DHoverEventArgs^ e) {
-				Console::WriteLine(e->X + ", " + e->Y);
-
-				SetCursorPos(Coordinates->X, Coordinates->Y);
-
-				Coordinates->X = e->X;
-				Coordinates->Y = 1200 - e->Y;
+			void AddControl(OpenNiControl^ control) {
+				SessionManager->AddListener(control->XnMControl);
 			}
 
 		protected:
-			void DownloadImages() {
+			void UpdateSensor() {
 				while (Running) {
 					Context->Update();
 					SessionManager->Update(Context);
@@ -88,9 +259,9 @@ namespace NKinect {
 			void Start() {
 				Running = true;
 
-				RefreshThread = gcnew Thread(gcnew ThreadStart(this, &Sensor::DownloadImages));
-				RefreshThread->IsBackground = true;
-				RefreshThread->Start();
+				UpdateThread = gcnew Thread(gcnew ThreadStart(this, &Sensor::UpdateSensor));
+				UpdateThread->IsBackground = true;
+				UpdateThread->Start();
 			}
 
 			void Stop() {
@@ -99,8 +270,8 @@ namespace NKinect {
 
 				Running = false;
 
-				if (RefreshThread != nullptr)
-					RefreshThread->Join(1000);
+				if (UpdateThread != nullptr)
+					UpdateThread->Join(1000);
 
 				Disposed = true;
 			}
