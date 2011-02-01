@@ -65,10 +65,10 @@ namespace NKinect {
 			}
 
 			virtual void DownloadImages() override {
-				BitmapDataArray^ RgbImage	= gcnew BitmapDataArray(imageUpdateEnabled);
-				BitmapDataArray^ GrayImage	= gcnew BitmapDataArray(depthImageUpdateEnabled);
-				BitmapDataArray^ ThresImage = gcnew BitmapDataArray(thresholdDepthImageUpdateEnabled);
-				BitmapDataArray^ RgbTImage	= gcnew BitmapDataArray(thresholdColorImageUpdateEnabled);
+				BitmapDataArray^ RgbImage	= gcnew BitmapDataArray();
+				BitmapDataArray^ GrayImage	= gcnew BitmapDataArray();
+				BitmapDataArray^ ThresImage = gcnew BitmapDataArray();
+				BitmapDataArray^ RgbTImage	= gcnew BitmapDataArray();
 
 				while (Running) {
 					GetNUICameraColorFrameRGB32(cam, RawPixels, 250);

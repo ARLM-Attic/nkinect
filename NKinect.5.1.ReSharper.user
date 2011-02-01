@@ -24,20 +24,14 @@
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CameraImageEventArgs.h" caret="534" fromTop="22" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="473" fromTop="17" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="893" fromTop="18" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BaseKinect.h" caret="1705" fromTop="0" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/f:app.config" caret="97" fromTop="4" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="2698" fromTop="13" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:CLKinect.h" caret="4067" fromTop="17" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:MouseTracker.h" caret="3708" fromTop="27" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="844" fromTop="23" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BaseKinect.h" caret="3603" fromTop="0" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="2288" fromTop="24" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="1960" fromTop="23" />
     </RecentFiles>
     <RecentEdits>
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="315" fromTop="6" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="315" fromTop="17" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="315" fromTop="18" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="142" fromTop="12" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="4299" fromTop="10" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="55" fromTop="1" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="315" fromTop="22" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="315" fromTop="25" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectCalibrator.h" caret="228" fromTop="10" />
@@ -54,14 +48,20 @@
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:ImageCalibrator.h" caret="421" fromTop="14" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/f:app.config" caret="201" fromTop="6" />
       <File id="40AC0732-CAE7-4452-AA76-8787DC1C0220/f:app.config" caret="97" fromTop="4" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="2262" fromTop="20" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="2347" fromTop="24" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="2745" fromTop="20" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="2830" fromTop="24" />
       <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:MouseTracker.h" caret="4621" fromTop="12" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="1203" fromTop="10" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="833" fromTop="13" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="1477" fromTop="21" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="1649" fromTop="21" />
-      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="2002" fromTop="32" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="2485" fromTop="32" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="107" fromTop="5" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="28" fromTop="2" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="2194" fromTop="20" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="2194" fromTop="20" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:KinectFactory.h" caret="2288" fromTop="24" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:BaseKinect.h" caret="61" fromTop="4" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="808" fromTop="5" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="1651" fromTop="26" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="2124" fromTop="29" />
+      <File id="66A93B19-13C9-45B7-8E2B-E6B237F9CC90/f:PrimeSensor.h" caret="1960" fromTop="23" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>

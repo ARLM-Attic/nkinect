@@ -81,9 +81,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Reference Include="ManagedNite, Version=1.1.3928.31375, Culture=neutral, PublicKeyToken=null">
-      <HintPath>C:\Program Files (x86)\Prime Sense\NITE\Wrappers\C#\Bin\ManagedNite.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -91,16 +88,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BitmapDataArray.h" />
     <ClInclude Include="CameraImageEventArgs.h" />
-    <ClInclude Include="DepthEventArgs.h" />
-    <ClInclude Include="BaseKinect.h" />
+    <ClInclude Include="CircleControl.h" />
     <ClInclude Include="KinectException.h" />
     <ClInclude Include="CLKinect.h" />
+    <ClInclude Include="OpenNiControl.h" />
+    <ClInclude Include="PushControl.h" />
     <ClInclude Include="Sensor.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Slider2DControl.h" />
     <ClInclude Include="Stdafx.h" />
-    <ClInclude Include="Unit.h" />
+    <ClInclude Include="SteadyControl.h" />
+    <ClInclude Include="SwipeControl.h" />
+    <ClInclude Include="WaveControl.h" />
+    <ClInclude Include="Win32Helper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />

@@ -2,256 +2,181 @@
 
 #include <windows.h>
 #include "CameraImageEventArgs.h"
-#include "DepthEventArgs.h"
-#include "Unit.h"
-#include "BitmapDataArray.h"
+#include <XnOpenNI.h>
+#include <XnCppWrapper.h>
+#include <XnHash.h>
+#include <XnLog.h>
+#include "XnVNite.h"
+#include "OpenNiControl.h"
+#include "cv.h"
 
+using namespace xn;
 using namespace System;
-using namespace System::Threading;
-using namespace System::Drawing;
 using namespace System::IO;
-using namespace System::Drawing::Imaging;
-using namespace System::Runtime::InteropServices;
 using namespace System::Text;
+using namespace System::Drawing;
+using namespace System::Threading;
+using namespace System::Drawing::Imaging;
 using namespace System::Collections::Generic;
-using namespace ManagedNite;
+using namespace System::Runtime::InteropServices;
 
 namespace NKinect {
-	private enum ControlType {
-		Slider2D,
-		Slider1D,
-		Swipe,
-		Wave,
-		Circle,
-		Push,
-		Steady
-	};
-
-	public ref class OpenNiControl {
-		private:
-			property ControlType Type;
-
-		protected:
-
-		public:
-			XnMPointControl^ XnMControl;
-
-			OpenNiControl(ControlType type) {
-				Type = type;
-			}
-	};
-
-	public ref class WaveControl : public OpenNiControl {
-		public:
-			delegate void WaveDelegate();
-			WaveDelegate^ ControlEvent;
-
-			WaveControl(WaveDelegate^ func) : OpenNiControl(ControlType::Wave) {
-				XnMControl = gcnew XnMWaveDetector();
-
-				((XnMWaveDetector^) XnMControl)->Wave += gcnew EventHandler(this, &WaveControl::Wave);
-
-				ControlEvent = func;
-			}
-
-			void Wave(Object^ sender, EventArgs^ e) {
-				if (ControlEvent == nullptr)
-					return;
-
-				ControlEvent();
-			}
-	};
-
-	public ref class CircleControl : public OpenNiControl {
-		public:
-			delegate void CircleDelegate();
-			CircleDelegate^ ControlEvent;
-
-			CircleControl(CircleDelegate^ func) : OpenNiControl(ControlType::Circle) {
-				XnMControl = gcnew XnMCircleDetector();
-
-				((XnMCircleDetector^) XnMControl)->Circle += gcnew EventHandler<CircleEventArgs^>(this, &CircleControl::Circle);
-
-				ControlEvent = func;
-			}
-
-			void Circle(Object^ sender, CircleEventArgs^ e) {
-				if (ControlEvent == nullptr)
-					return;
-
-				ControlEvent();
-			}
-	};
-
-	public ref class SwipeControl : public OpenNiControl {
-		public:
-			delegate void SwipeDelegate();
-			SwipeDelegate^ ControlEventSwipeUp;
-			SwipeDelegate^ ControlEventSwipeDown;
-			SwipeDelegate^ ControlEventSwipeRight;
-			SwipeDelegate^ ControlEventSwipeLeft;
-
-			SwipeControl(SwipeDelegate^ up, SwipeDelegate^ down, SwipeDelegate^ right, SwipeDelegate^ left) : OpenNiControl(ControlType::Swipe) {
-				XnMControl = gcnew XnMSwipeDetector();
-
-				((XnMSwipeDetector^) XnMControl)->SwipeUp += gcnew EventHandler<SwipeDetectorEventArgs^>(this, &SwipeControl::SwipeUp);
-				((XnMSwipeDetector^) XnMControl)->SwipeDown += gcnew EventHandler<SwipeDetectorEventArgs^>(this, &SwipeControl::SwipeDown);
-				((XnMSwipeDetector^) XnMControl)->SwipeRight += gcnew EventHandler<SwipeDetectorEventArgs^>(this, &SwipeControl::SwipeRight);
-				((XnMSwipeDetector^) XnMControl)->SwipeLeft += gcnew EventHandler<SwipeDetectorEventArgs^>(this, &SwipeControl::SwipeLeft);
-
-				ControlEventSwipeUp = up;
-				ControlEventSwipeDown = down;
-				ControlEventSwipeRight = right;
-				ControlEventSwipeLeft = left;
-			}
-
-		private:
-			void SwipeUp(Object^ sender, SwipeDetectorEventArgs^ e) {
-				if (ControlEventSwipeUp == nullptr)
-					return;
-
-				ControlEventSwipeUp();
-			}
-
-			void SwipeDown(Object^ sender, SwipeDetectorEventArgs^ e) {
-				if (ControlEventSwipeDown == nullptr)
-					return;
-
-				ControlEventSwipeDown();
-			}
-
-			void SwipeRight(Object^ sender, SwipeDetectorEventArgs^ e) {
-				if (ControlEventSwipeRight == nullptr)
-					return;
-
-				ControlEventSwipeRight();
-			}
-
-			void SwipeLeft(Object^ sender, SwipeDetectorEventArgs^ e) {
-				if (ControlEventSwipeLeft == nullptr)
-					return;
-
-				ControlEventSwipeLeft();
-			}
-	};
-
-	public ref class SteadyControl : public OpenNiControl {
-		private:
-			DateTime LastFired;
-
-		public:
-			delegate void SteadyDelegate();
-			SteadyDelegate^ ControlEvent;
-			property int Duration;
-
-			SteadyControl(int duration, SteadyDelegate^ func) : OpenNiControl(ControlType::Steady) {
-				XnMControl = gcnew XnMSteadyDetector();
-
-				((XnMSteadyDetector^) XnMControl)->Steady += gcnew EventHandler<SteadyEventArgs^>(this, &SteadyControl::Steady);
-
-				ControlEvent = func;
-				LastFired = DateTime::Now;
-				Duration = duration;
-			}
-
-		private:
-			void Steady(Object^ sender, SteadyEventArgs^ e) {
-				if (ControlEvent == nullptr || DateTime::Now.Subtract(LastFired).TotalSeconds < Duration)
-					return;
-
-				ControlEvent();
-				LastFired = DateTime::Now;
-			}
-	};
-
-	public ref class PushControl : public OpenNiControl {
-		public:
-			delegate void PushDelegate();
-			PushDelegate^ ControlEvent;
-			
-			PushControl(PushDelegate^ func) : OpenNiControl(ControlType::Push) {
-				XnMControl = gcnew XnMPushDetector();
-
-				((XnMPushDetector^) XnMControl)->Push += gcnew EventHandler<PushDetectorEventArgs^>(this, &PushControl::Push);
-
-				ControlEvent = func;
-			}
-
-			void Push(Object^ sender, PushDetectorEventArgs^ e) {
-				if (ControlEvent == nullptr)
-					return;
-
-				ControlEvent();
-			}
-	};
-
-	public ref class Slider2DControl : public OpenNiControl {
-		public:
-			delegate void HoverDelegate(int x, int y);
-			HoverDelegate^ ControlEvent;
-			property int Width;
-			property int Height;
-
-			Slider2DControl(int width, int height, HoverDelegate^ func) : OpenNiControl(ControlType::Slider2D) {
-				Width = width;
-				Height = height;
-
-				XnMControl = gcnew XnMSelectableSlider2D(Width, Height);
-				((XnMSelectableSlider2D^) XnMControl)->ItemHovered += gcnew EventHandler<SelectableSlider2DHoverEventArgs^>(this, &Slider2DControl::ItemHovered);
-
-				ControlEvent = func;
-			}
-
-			void ItemHovered(Object^ sender, SelectableSlider2DHoverEventArgs^ e) {
-				if (ControlEvent == nullptr)
-					return;
-
-				ControlEvent(e->X, Height - e->Y);
-			}
-	};
-
-	public ref class Win32Helper {
-		public:
-			static void SendLeftMouseClick() {
-				mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-				mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
-			}
-
-			static void SendRightMouseClick() {
-				mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
-				mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
-			}
-	};
-
 	public ref class Sensor {
 		private:
 			Thread^ UpdateThread;
 			bool Running;
-			array<array<double>^>^ Depths;
 			bool Disposed;
-			XnMOpenNIContext^ Context;
-			XnMSessionManager^ SessionManager;
+			Context* OpenNiContext;
+			XnVSessionManager* SessionManager;
+			HandsGenerator* HandsGen;
+			DepthGenerator* DepthGen;
+			ImageGenerator* ImageGen;
+			IplImage* RgbImage;
+			IplImage* GrayImage;
 
 		public:
-			EventHandler^ SessionStarted;
+			array<array<double>^>^ Depths;
+
+			delegate void SessionStartDelegate(const XnPoint3D& ptPosition, void* UserCxt);
+			delegate void SessionEndDelegate(void* UserCxt);
+			delegate void FocusProgressDelegate(const XnChar* strFocus, const XnPoint3D& ptPosition, XnFloat fProgress, void* UserCxt);
+
+			SessionStartDelegate^ SessionStartCB;
+			SessionEndDelegate^ SessionEndCB;
+			FocusProgressDelegate^ FocusProgressCB;
+
+			EventHandler<CameraImageEventArgs^>^	ImageUpdated;
+			EventHandler<CameraImageEventArgs^>^	DepthImageUpdated;
 
 			Sensor() {
-				Context = gcnew XnMOpenNIContext();
-				Context->Init();
+				NodeInfoList list;
 
-				Context->SetSmoothing(0.1);
-				SessionManager = gcnew XnMSessionManager(Context, "Wave", "RaiseHand");
+				Depths		= gcnew array<array<double>^>(XN_VGA_X_RES);
+
+				for (int i = 0; i < XN_VGA_X_RES; i++)
+					Depths[i] = gcnew array<double>(XN_VGA_Y_RES);
+
+				OpenNiContext = new Context();
+				OpenNiContext->InitFromXmlFile("Data\\openni.xml");
+
+				DepthGen = new DepthGenerator();
+				ImageGen = new ImageGenerator();
+				HandsGen = new HandsGenerator();
+
+				SessionStartCB = gcnew SessionStartDelegate(this, &Sensor::SessionStarted);
+				SessionEndCB = gcnew SessionEndDelegate(this, &Sensor::SessionEnded);
+				FocusProgressCB = gcnew FocusProgressDelegate(this, &Sensor::FocusProgress);
+
+				OpenNiControl::OpenNiContext = OpenNiContext;
+
+				SessionManager = new XnVSessionManager();
+				SessionManager->Initialize(OpenNiContext, "Wave", "RaiseHand");
+				SessionManager->RegisterSession(OpenNiContext, (XnVSessionListener::OnSessionStartCB) Marshal::GetFunctionPointerForDelegate(SessionStartCB).ToPointer(), (XnVSessionListener::OnSessionEndCB) Marshal::GetFunctionPointerForDelegate(SessionEndCB).ToPointer(), (XnVSessionListener::OnFocusStartDetectedCB) Marshal::GetFunctionPointerForDelegate(FocusProgressCB).ToPointer());
+				
+				OpenNiContext->EnumerateExistingNodes(list);
+
+				for (NodeInfoList::Iterator it = list.Begin(); it != list.End(); ++it) {
+					NodeInfo node = *it;
+					Console::WriteLine(node.GetDescription().Type);
+
+					switch (node.GetDescription().Type) {
+						case XN_NODE_TYPE_DEVICE:
+							break;
+						case XN_NODE_TYPE_DEPTH:
+							node.GetInstance(*DepthGen);
+
+							break;
+						case XN_NODE_TYPE_USER:
+							break;
+						case XN_NODE_TYPE_IMAGE:
+							node.GetInstance(*ImageGen);
+
+							break;
+						case XN_NODE_TYPE_IR:
+							break;
+						case XN_NODE_TYPE_AUDIO:
+							break;
+						case XN_NODE_TYPE_PLAYER:
+							break;
+						case XN_NODE_TYPE_GESTURE:
+							break;
+						case XN_NODE_TYPE_SCENE:
+							break;
+						case XN_NODE_TYPE_HANDS:
+							node.GetInstance(*HandsGen);
+
+							break;
+					}
+				}
+
+				RgbImage = cvCreateImage(cvSize(XN_VGA_X_RES, XN_VGA_Y_RES), IPL_DEPTH_8U, 3);
+				GrayImage = cvCreateImage(cvSize(XN_VGA_X_RES, XN_VGA_Y_RES), IPL_DEPTH_8U, 1);
+
+				HandsGen->SetSmoothing(0.1);
+				DepthGen->GetFrameSyncCap().FrameSyncWith(*ImageGen);
+				DepthGen->GetAlternativeViewPointCap().SetViewPoint(*ImageGen);
+
+				OpenNiContext->StartGeneratingAll();
+			}
+
+			~Sensor() {
+				delete HandsGen;
+				delete DepthGen;
+				delete ImageGen;
+				delete SessionManager;
+				delete OpenNiContext;
+			}
+
+			!Sensor() {
+				delete HandsGen;
+				delete DepthGen;
+				delete ImageGen;
+				delete SessionManager;
+				delete OpenNiContext;
 			}
 
 			void AddControl(OpenNiControl^ control) {
 				SessionManager->AddListener(control->XnMControl);
 			}
 
+			void XN_CALLBACK_TYPE FocusProgress(const XnChar* strFocus, const XnPoint3D& ptPosition, XnFloat fProgress, void* UserCxt) {
+			}
+
+			void XN_CALLBACK_TYPE SessionStarted(const XnPoint3D& ptPosition, void* UserCxt) {
+			}
+
+			void XN_CALLBACK_TYPE SessionEnded(void* UserCxt) {
+			}
+	
 		protected:
 			void UpdateSensor() {
+				cvZero(RgbImage);
+				cvZero(GrayImage);
+
 				while (Running) {
-					Context->Update();
-					SessionManager->Update(Context);
+					OpenNiContext->WaitAndUpdateAll();
+					SessionManager->Update(OpenNiContext);
+
+					const XnDepthPixel* depthMap = DepthGen->GetDepthMap();
+					const XnRGB24Pixel* imageMap = ImageGen->GetRGB24ImageMap();
+
+					for (int i = 0, y = 0; y < XN_VGA_Y_RES; y++) {
+						for (int x = 0; x < XN_VGA_X_RES; x++, i++) {
+							Depths[x][y] = depthMap[i];
+
+							((unsigned char*) RgbImage->imageData)[(y * XN_VGA_X_RES + x) * 3 + 0] = imageMap[y * XN_VGA_X_RES + x].nBlue;
+							((unsigned char*) RgbImage->imageData)[(y * XN_VGA_X_RES + x) * 3 + 1] = imageMap[y * XN_VGA_X_RES + x].nGreen;
+							((unsigned char*) RgbImage->imageData)[(y * XN_VGA_X_RES + x) * 3 + 2] = imageMap[y * XN_VGA_X_RES + x].nRed; 						
+
+							((unsigned char*) GrayImage->imageData)[(y * XN_VGA_X_RES + x)] = depthMap[y * XN_VGA_X_RES + x];
+						}
+					}
+
+					/*if (ImageUpdated != nullptr)
+						ImageUpdated(this, gcnew CameraImageEventArgs(RgbImage));
+
+					if (DepthImageUpdated != nullptr)
+						DepthImageUpdated(this, gcnew CameraImageEventArgs(GrayImage));*/
 				}
 			}
 
