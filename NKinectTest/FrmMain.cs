@@ -70,7 +70,7 @@ namespace NKinectTest {
         }
 
         private void BtnExportClick(object sender, EventArgs e) {
-            //Kinect.ExportPLY("CurrentView.ply");
+            Kinect.ExportPLY("CurrentView.ply");
         }
 
         private void CmbImageTypeSelectedIndexChanged(object sender, EventArgs e) {

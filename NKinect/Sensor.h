@@ -10,6 +10,7 @@
 #include "cv.h"
 #include "UserHandler.h"
 #include "BitmapFromIplImage.h"
+#include "Vector3.h"
 
 using namespace xn;
 using namespace System;
@@ -36,6 +37,8 @@ namespace NKinect {
 			IplImage* RgbImage;
 			IplImage* GrayImage;
 			UserHandler^ Users;
+			XnDepthPixel* DepthMap;
+			XnRGB24Pixel* ImageMap;
 
 			void Init() {
 				NodeInfoList list;
@@ -115,6 +118,7 @@ namespace NKinect {
 			delegate void SessionEndDelegate(void* UserCxt);
 			delegate void FocusProgressDelegate(const XnChar* strFocus, const XnPoint3D& ptPosition, XnFloat fProgress, void* UserCxt);
 			delegate void BitmapCallback(Bitmap^ bmp);
+			delegate void PointCloudCallback(List<ColorVector3^>^ points);
 
 			SessionStartDelegate^ SessionStartCB;
 			SessionEndDelegate^ SessionEndCB;
@@ -174,18 +178,18 @@ namespace NKinect {
 					OpenNiContext->WaitAndUpdateAll();
 					SessionManager->Update(OpenNiContext);
 
-					const XnDepthPixel* depthMap = DepthGen->GetDepthMap();
-					const XnRGB24Pixel* imageMap = ImageGen->GetRGB24ImageMap();
+					DepthMap = (XnDepthPixel*) DepthGen->GetDepthMap();
+					ImageMap = (XnRGB24Pixel*) ImageGen->GetRGB24ImageMap();
 
 					for (int i = 0, y = 0; y < XN_VGA_Y_RES; y++) {
 						for (int x = 0; x < XN_VGA_X_RES; x++, i++) {
-							Depths[x][y] = depthMap[i];
+							Depths[x][y] = DepthMap[i];
 
- 							((unsigned char*) RgbImage->imageData)[(y * XN_VGA_X_RES + x) * 3 + 0] = imageMap[y * XN_VGA_X_RES + x].nBlue;
- 							((unsigned char*) RgbImage->imageData)[(y * XN_VGA_X_RES + x) * 3 + 1] = imageMap[y * XN_VGA_X_RES + x].nGreen;
- 							((unsigned char*) RgbImage->imageData)[(y * XN_VGA_X_RES + x) * 3 + 2] = imageMap[y * XN_VGA_X_RES + x].nRed; 						
+ 							((unsigned char*) RgbImage->imageData)[(y * XN_VGA_X_RES + x) * 3 + 0] = ImageMap[y * XN_VGA_X_RES + x].nBlue;
+ 							((unsigned char*) RgbImage->imageData)[(y * XN_VGA_X_RES + x) * 3 + 1] = ImageMap[y * XN_VGA_X_RES + x].nGreen;
+ 							((unsigned char*) RgbImage->imageData)[(y * XN_VGA_X_RES + x) * 3 + 2] = ImageMap[y * XN_VGA_X_RES + x].nRed; 						
 
-							((unsigned char*) GrayImage->imageData)[(y * XN_VGA_X_RES + x)] = depthMap[y * XN_VGA_X_RES + x];
+							((unsigned char*) GrayImage->imageData)[(y * XN_VGA_X_RES + x)] = DepthMap[y * XN_VGA_X_RES + x];
 						}
 					}
 
@@ -225,32 +229,60 @@ namespace NKinect {
 				Disposed = true;
 			}
 
+			List<ColorVector3^>^ GeneratePointCloud() {
+				List<ColorVector3^>^ list = gcnew List<ColorVector3^>();
+				DepthMetaData depthMetadata;
+
+				DepthGen->GetMetaData(depthMetadata);
+
+				unsigned int numPoints = depthMetadata.FullXRes() * depthMetadata.FullYRes();
+
+				XnPoint3D* points = new XnPoint3D[numPoints];
+				XnPoint3D* points3D = new XnPoint3D[numPoints];
+
+				for (int y = 0, idxShift = 0; y < depthMetadata.FullYRes(); ++y) {
+					idxShift = y * depthMetadata.FullXRes();
+
+					for (int x = 0, idx = 0; x < depthMetadata.FullXRes(); ++x) {
+						idx = idxShift + x;
+
+						points[idx].X = x;
+						points[idx].Y = y;
+						points[idx].Z = DepthMap[idx];
+					}
+				}
+
+				DepthGen->ConvertProjectiveToRealWorld(numPoints, points, points3D);
+
+				for (int i = 0; i < numPoints; ++i) {
+					if (points3D[i].Z == 0)
+						continue;
+
+					list->Add(gcnew ColorVector3(points3D[i], ImageMap[i]));
+				}
+
+				delete[] points3D;
+				delete[] points;
+
+				return list;
+			}
+
 			void ExportPLY(String^ path) {
-				int minDistance = -10;
-				double scaleFactor = 0.0021;
-
 				TextWriter^ tw = File::CreateText(path);
-
 				StringBuilder^ sb = gcnew StringBuilder();
+				List<ColorVector3^>^ cloud = GeneratePointCloud();
 
 				sb->AppendLine("ply");
 				sb->AppendLine("format ascii 1.0");
 				sb->AppendLine("comment Created by nKinect");
-				sb->AppendLine("element vertex 307200");
+				sb->AppendLine("element vertex " + cloud->Count);
 				sb->AppendLine("property float x");
 				sb->AppendLine("property float y");
 				sb->AppendLine("property float z");
 				sb->AppendLine("end_header");
 
-				for (int j = 0; j < XN_VGA_Y_RES; j++) {
-					for (int i = 0; i < XN_VGA_X_RES; i++) {
-						double z = Depths[i][j];
-						double y = (XN_VGA_X_RES / 2 - j) * (z + minDistance) * scaleFactor;
-						double x = (i - XN_VGA_Y_RES / 2) * (z + minDistance) * scaleFactor;
-
-						sb->AppendLine(String::Format("{0}\t{1}\t{2}", x, y, z));
-					}
-				}
+				for each (ColorVector3^ vector in cloud)
+					sb->AppendLine(String::Format("{0}\t{1}\t{2}", vector->X, vector->Y, vector->Z));
 
 				tw->WriteLine(sb);
 				tw->Close();

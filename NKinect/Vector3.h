@@ -38,4 +38,17 @@ namespace NKinect {
 				Z = joint.position.position.Z;
 			}
 	};
+
+	public ref class ColorVector3 : public Vector3 {
+		public:
+			property short R;
+			property short G;
+			property short B;
+
+			ColorVector3(XnPoint3D point, XnRGB24Pixel color) : Vector3(point.X, point.Y, point.Z) {
+				R = color.nRed;
+				G = color.nGreen;
+				B = color.nBlue;
+			}
+	};
 }
