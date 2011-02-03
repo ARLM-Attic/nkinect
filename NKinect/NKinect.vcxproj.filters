@@ -21,12 +21,6 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CameraImageEventArgs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CLKinect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="KinectException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -55,6 +49,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PushControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapFromIplImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserSkeleton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

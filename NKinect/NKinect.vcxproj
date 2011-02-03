@@ -88,10 +88,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CameraImageEventArgs.h" />
+    <ClInclude Include="BitmapFromIplImage.h" />
     <ClInclude Include="CircleControl.h" />
     <ClInclude Include="KinectException.h" />
-    <ClInclude Include="CLKinect.h" />
     <ClInclude Include="OpenNiControl.h" />
     <ClInclude Include="PushControl.h" />
     <ClInclude Include="Sensor.h" />
@@ -100,6 +99,9 @@
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="SteadyControl.h" />
     <ClInclude Include="SwipeControl.h" />
+    <ClInclude Include="UserHandler.h" />
+    <ClInclude Include="UserSkeleton.h" />
+    <ClInclude Include="Vector3.h" />
     <ClInclude Include="WaveControl.h" />
     <ClInclude Include="Win32Helper.h" />
   </ItemGroup>

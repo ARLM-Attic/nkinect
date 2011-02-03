@@ -69,9 +69,7 @@ namespace NKinectTest {
             this.cmbImageType.FormattingEnabled = true;
             this.cmbImageType.Items.AddRange(new object[] {
             "Color",
-            "Depth",
-            "Threshold Depth",
-            "Threshold Color"});
+            "Depth"});
             this.cmbImageType.Location = new System.Drawing.Point(275, 495);
             this.cmbImageType.Name = "cmbImageType";
             this.cmbImageType.Size = new System.Drawing.Size(121, 21);

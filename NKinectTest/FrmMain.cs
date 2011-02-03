@@ -1,6 +1,5 @@
 ﻿#region
 using System;
-using System.Drawing;
 using System.Windows.Forms;
 using NKinect;
 
@@ -15,51 +14,40 @@ namespace NKinectTest {
         public FrmMain() {
             InitializeComponent();
 
-            Kinect = new Sensor(); //KinectFactory.GetKinect();
+            Kinect = new Sensor(s => { Console.WriteLine("Skeleton callback, userId: " + s.UserId); }, r => {
+                                                                                                           if (Mode != 0)
+                                                                                                               return;
+                                                                                                           imgDisplay.Image = r;
+                                                                                                           imgDisplay.Invalidate();
+                                                                                                       }, d => {
+                                                                                                              if (Mode != 1)
+                                                                                                                  return;
+
+                                                                                                              imgDisplay.Image = d;
+                                                                                                              imgDisplay.Invalidate();
+                                                                                                          });
         }
 
         private void FrmMainLoad(object sender, EventArgs e) {
             cmbImageType.SelectedIndex = 1;
-            
-            //Kinect.DepthsCalculated += KinectDepthsCalculated;
-            Kinect.ImageUpdated += KinectImageUpdated;
-            Kinect.DepthImageUpdated += KinectDepthImageUpdated;
 
-            Kinect.AddControl(new Slider2DControl(1920, 1200, (x, y) => { Cursor.Position = new Point(x, y); }));
-            Kinect.AddControl(new PushControl(() => { Console.WriteLine("Push detected"); }));
-            Kinect.AddControl(new SteadyControl(5, () => {
-                                                       Console.WriteLine("Steady hand detected");
-                                                       Win32Helper.SendLeftMouseClick();
-                                                   }));
-            Kinect.AddControl(new SwipeControl(() => Console.WriteLine("Swipe detected: UP"),
-                                               () => Console.WriteLine("Swipe detected: DOWN"),
-                                               () => Console.WriteLine("Swipe detected: RIGHT"),
-                                               () => Console.WriteLine("Swipe detected: LEFT")));
-            Kinect.AddControl(new WaveControl(() => Console.WriteLine("Wave detected")));
-            Kinect.AddControl(new CircleControl(() => Console.WriteLine("Circle detected")));
+            //Kinect.DepthsCalculated += KinectDepthsCalculated;
+
+            //Kinect.AddControl(new Slider2DControl(1920, 1200, (x, y) => { Cursor.Position = new Point(x, y); }));
+            //Kinect.AddControl(new PushControl(() => { Console.WriteLine("Push detected"); }));
+            //Kinect.AddControl(new SteadyControl(5, () => {
+            //                                           Console.WriteLine("Steady hand detected");
+            //                                           Win32Helper.SendLeftMouseClick();
+            //                                       }));
+            //Kinect.AddControl(new SwipeControl(() => Console.WriteLine("Swipe detected: UP"),
+            //                                   () => Console.WriteLine("Swipe detected: DOWN"),
+            //                                   () => Console.WriteLine("Swipe detected: RIGHT"),
+            //                                   () => Console.WriteLine("Swipe detected: LEFT")));
+            //Kinect.AddControl(new WaveControl(() => Console.WriteLine("Wave detected")));
+            //Kinect.AddControl(new CircleControl(() => Console.WriteLine("Circle detected")));
 
             Kinect.Start();
         }
-
-        private void KinectImageUpdated(object sender, CameraImageEventArgs e) {
-            if (Mode != 0)
-                return;
-
-            imgDisplay.Image = e.CameraImage;
-            imgDisplay.Invalidate();
-        }
-
-        private void KinectDepthImageUpdated(object sender, CameraImageEventArgs e) {
-            if (Mode != 1)
-                return;
-
-            imgDisplay.Image = e.CameraImage;
-            imgDisplay.Invalidate();
-        }
-
-        //private void KinectDepthsCalculated(object sender, DepthEventArgs e) {
-        //    Depths = e.Depths;
-        //}
 
         private void FrmMainFormClosing(object sender, FormClosingEventArgs e) {
             Kinect.Stop();
