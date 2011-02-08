@@ -193,11 +193,13 @@ namespace NKinect {
 						}
 					}
 
-					if (DepthFunc != nullptr)
+					// TODO: Figure out why these calls generate an AccessViolationException... sigh.
+
+					/*if (DepthFunc != nullptr)
 						DepthFunc(BitmapFromIplImage::Convert(GrayImage));
 
 					if (RgbFunc != nullptr)
-						RgbFunc(BitmapFromIplImage::Convert(RgbImage));
+						RgbFunc(BitmapFromIplImage::Convert(RgbImage)); /*
 
 					Users->ManageUsers();
 				}
