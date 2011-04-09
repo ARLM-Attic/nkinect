@@ -199,7 +199,7 @@ namespace NKinect {
 						DepthFunc(BitmapFromIplImage::Convert(GrayImage));
 
 					if (RgbFunc != nullptr)
-						RgbFunc(BitmapFromIplImage::Convert(RgbImage)); /*
+						RgbFunc(BitmapFromIplImage::Convert(RgbImage));*/
 
 					Users->ManageUsers();
 				}
@@ -291,3 +291,4 @@ namespace NKinect {
 			}
 		};
 }
+
